@@ -22,8 +22,12 @@ codegen:
 	@npx sqd codegen
 
 
-typegen:
+typegen: kusamaVersions.json
 	@npx squid-substrate-typegen typegen.json
+
+
+kusamaVersions.json:
+	@make explore
 
 
 explore:

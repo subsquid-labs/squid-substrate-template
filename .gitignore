@@ -1,7 +1,7 @@
 /node_modules
 /lib
 
-/chainVersions.json
+/kusamaVersions.json
 
 # IDE files
 /.idea
