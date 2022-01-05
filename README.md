@@ -213,6 +213,22 @@ Type definitions (`typesBundle`) can be given to squid tools in two forms:
 All fields in types bundle are optional and applied on top of a fixed set of well known
 frame types.
 
+## Differences from polkadot.js
+
+Polkadot.js provides lots of [specialized classes](https://polkadot.js.org/docs/api/start/types.basics) for various types of data. 
+Even primitives like `u32` are exposed through special classes.
+In contrast, squid framework works only with plain js primitives and objects.
+This allows to decrease coupling and also simply dictated by the fact, that
+there is not enough information in substrate metadata to distinguish between 
+interesting cases.
+
+Account addresses is one example where such difference shows up.
+From substrate metadata (and squid framework) point of view account address is simply a fixed length
+sequence of bytes. On other hand, polkadot.js creates special wrapper for account addresses which 
+aware not only of address value, but also of its 
+[ss58](https://docs.substrate.io/v3/advanced/ss58/) formatting rules.
+Mapping developers should handle such cases themselves.
+
 ## Graphql server extensions
 
 It is possible to extend `squid-graphql-server(1)` with custom
