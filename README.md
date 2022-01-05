@@ -171,7 +171,7 @@ The layout of `lib` must reflect `src`.
 
 ## Types bundle
 
-Substrate chains which have blocks with metadata versions below 14 don't have enough 
+Substrate chains which have blocks with metadata versions below 14 don't provide enough 
 information to decode their data. For those chains external 
 [type definitions](https://polkadot.js.org/docs/api/start/types.extend) are required.
 
@@ -193,13 +193,33 @@ Type definitions (`typesBundle`) can be given to squid tools in two forms:
   "versions": [
     {
       "minmax": [0, 1000], // block range with inclusive boundaries
-      "types": {}, // .types overrides
-      "typesAlias": {} // .typesAlias overrides
+      "types": {
+        "AccountId": "[u8; 16]"
+      },
+      "typesAlias": {
+        "assets": {
+          "Balance": "u32"
+        }
+      }
     }
   ]
 }
 ```
 
-* `.types` - scale type definitions similar to [type defini](https://polkadot.js.org/docs/api/start/types.extend#extension)
+* `.types` - scale type definitions similar to [polkadot.js types](https://polkadot.js.org/docs/api/start/types.extend#extension)
 * `.typesAlias` - similar to [polkadot.js type aliases](https://polkadot.js.org/docs/api/start/types.extend#type-clashes)
 * `.versions` - per-block range overrides/patches for above fields.
+
+All fields in types bundle are optional and applied on top of a fixed set of well known
+frame types.
+
+## Graphql server extensions
+
+It is possible to extend `squid-graphql-server(1)` with custom
+[type-graphql](https://typegraphql.com) resolvers and to add request validation.
+More details will be added later.
+
+## Known issues
+
+* This is alpha-quality software. Expect some bugs and incompatible changes in coming weeks.
+* Processor loses chain connection after a while and exits with error. Will be fixed soon.
