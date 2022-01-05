@@ -168,6 +168,7 @@ The layout of `lib` must reflect `src`.
 * All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
 * Database schema must be defined in `schema.graphql`.
 * Database migrations must reside in `db/migrations` and must be plain js files.
+* `sqd(1)` and `squid-*(1)` executables consult `.env` file for a number of environment variables.
 
 ## Types bundle
 
