@@ -237,5 +237,8 @@ More details will be added later.
 
 ## Known issues
 
-* This is alpha-quality software. Expect some bugs and incompatible changes in coming weeks.
 * Processor loses chain connection after a while and exits with error. Will be fixed soon.
+
+## Disclaimer
+
+This is alpha-quality software. Expect some bugs and incompatible changes in coming weeks.
