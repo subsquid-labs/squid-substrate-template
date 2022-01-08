@@ -236,10 +236,6 @@ It is possible to extend `squid-graphql-server(1)` with custom
 [type-graphql](https://typegraphql.com) resolvers and to add request validation.
 More details will be added later.
 
-## Known issues
-
-* Processor loses chain connection after a while and exits with error. Will be fixed soon.
-
 ## Disclaimer
 
 This is alpha-quality software. Expect some bugs and incompatible changes in coming weeks.
