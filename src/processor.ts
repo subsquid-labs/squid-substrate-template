@@ -1,3 +1,4 @@
+import * as ss58 from "@subsquid/ss58"
 import {EventHandlerContext, Store, SubstrateProcessor} from "@subsquid/substrate-processor"
 import {Account, HistoricalBalance} from "./model"
 import {BalancesTransferEvent} from "./types/events"
@@ -19,14 +20,16 @@ processor.setDataSource({
 processor.addEventHandler('balances.Transfer', async ctx => {
     let transfer = getTransferEvent(ctx)
     let tip = ctx.extrinsic?.tip || 0n
+    let from = ss58.codec('kusama').encode(transfer.from)
+    let to = ss58.codec('kusama').encode(transfer.to)
 
-    let fromAcc = await getOrCreate(ctx.store, Account, toHex(transfer.from))
+    let fromAcc = await getOrCreate(ctx.store, Account, from)
     fromAcc.balance = fromAcc.balance || 0n
     fromAcc.balance -= transfer.amount
     fromAcc.balance -= tip
     await ctx.store.save(fromAcc)
 
-    const toAcc = await getOrCreate(ctx.store, Account, toHex(transfer.to))
+    const toAcc = await getOrCreate(ctx.store, Account, to)
     toAcc.balance = toAcc.balance || 0n
     toAcc.balance += transfer.amount
     await ctx.store.save(toAcc)
@@ -68,11 +71,6 @@ function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
     } else {
         return event.asLatest
     }
-}
-
-
-function toHex(data: Uint8Array): string {
-    return '0x' + Buffer.from(data).toString('hex')
 }
 
 
