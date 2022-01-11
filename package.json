@@ -4,8 +4,10 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "init": "node db/init.js",
-    "proc-kusama-balances": "node lib/processor.js",
-    "query-node": "squid-graphql-server"
+    "db:migrate": "node db/init.js",
+    "processor:migrate": "echo skip",
+    "processor:start": "node lib/processor.js",
+    "query-node:start": "squid-graphql-server"
   },
   "dependencies": {
     "@subsquid/graphql-server": "^0.1.0",
