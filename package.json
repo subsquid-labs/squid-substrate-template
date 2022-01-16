@@ -12,7 +12,7 @@
   "dependencies": {
     "@subsquid/graphql-server": "^0.1.0",
     "@subsquid/ss58": "^0.0.0",
-    "@subsquid/substrate-processor": "^0.2.0",
+    "@subsquid/substrate-processor": "^0.2.1",
     "dotenv": "^10.0.0",
     "pg": "^8.7.1",
     "typeorm": "^0.2.41"
