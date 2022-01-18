@@ -4,7 +4,8 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "init": "node db/init.js",
-    "db:migrate": "node db/init.js",
+    "db:migrate": "sqd db migrate",
+    "schema:reset": "",
     "processor:migrate": "echo skip",
     "processor:start": "node lib/processor.js",
     "query-node:start": "squid-graphql-server"

@@ -11,7 +11,7 @@ Once set up, we encourage to contribute to the Squid community and make a PR to 
 
 ## Where do I get a type bundle for my chain?
 
-Most chains publish their type bundles as an npm package. One of the best places to check for the latest version is the [polkadot-js/app repo](https://github.com/polkadot-js/apps/tree/master/packages/apps-config). Note, however, that a types bundle only needed for pre-Metadata v14 blocks, so newly setup chains it may be not needed. 
+Most chains publish their type bundles as an npm package. One of the best places to check for the latest version is the [polkadot-js/app repo](https://github.com/polkadot-js/apps/tree/master/packages/apps-config). Note, however, that a types bundle is only needed for pre-Metadata v14 blocks, so for recently deployed chains it may be not needed. 
 
 Note that the type bundle format for typegen is slightly different from `OverrideBundleDefinition` of `polkadot.js`. The structure is as follows, all the fields are optional.
 
@@ -38,7 +38,16 @@ Typically, the API is consumed by the frontend and mobile apps, so it's a good i
 
 ## How do I update my schema?
 
-So here's a step-by-step instruction. First, generated the model files:
+TL;DR: If you're ok dropping the database, simply update `schema.graphql` and run:
+
+```sh
+bash reset-schema.sh
+```
+
+OBS! The database will be wiped out, so if it's not an option, read below. 
+
+
+Here's a step-by-step instruction. First, generated the model files:
 
 ```sh
 npx sqd codegen
@@ -47,52 +56,40 @@ npm run build
 
 Now you have to options: either create a migration for an incremental schema update or recreate the whole schema from scratch. 
 
-During the development process, recreating the schema is often more convenient. However, if you already have a running API in production and don't want to resync it, having an incremental update is more preferrable (but requires data backfilling).
+During the development process, recreating the schema is often more convenient. However, if you already have a running API in production and don't want to resync it, having an incremental update is preferrable (but requires data backfilling).
 
-### Option 1: Make an incremental update to the schema
+### Option 1: Recreate schema from scratch
+
+Run
+
+```sh
+bash reset-db.sh
+```
+
+### Option 2: Make an incremental update to the schema
 
 Generate a migration for the incremental changes and apply it
-```
-npx -r dotenv/config sqd db create-migration AddMyAwesomeNewField
-npx -r dotenv/config sqd db migrate
+
+```sh
+npx sqd db create-migration AddMyAwesomeNewField
+npx sqd db migrate
 ```
 
 You can find the newly generated and applied migration in `db/migrations`.
 
-### Option 2: Recreate schema from scratch
-
-To reset the database and recreate the schema from scratch:
-
-```
-npx -r dotenv/config sqd db drop
-npx -r dotenv/config sqd db create
-```
-
-Remove the old migrationa and create a new init migration:
-
-```
-rm -rf db/migrations
-npx -r dotenv/config db create-migration Init
-```
-
-Apply the migration:
-
-```
-npx -r dotenv/config db migrate
-```
 
 ## How do I run and test the GraphQL API?
 
 Once the migrations are applied, simply run
 
 ```
-npm run query-node:start
+npx squid-graphql-server
 ```
 
 Observe the port (4350 by default) and navigate to `localhost:4350/graphql` to explore your API. However, you need to run the processor to start populating the database.
 
 
-## So how do I start the processor?
+## How do I start the processor?
 
 First, make sure you have compiled your project with
 ```
@@ -103,6 +100,12 @@ Then simply run
 ```
 node -r dotenv/config lib/processor.js
 ```
+
+Note that `-r dotenv/config` ensures that the database settings are picked up from `.env`. If you the environment variables them elsewhere, skip it. 
+
+## How do I deploy my API to the Subsquid Hosted service?
+
+Login to the [Subsquid Hosted Service](https://app.subsquid.io) with your github handle to obtain a deployment key. Then create a Squid (that is, your deployment) and follow the instructions.
 
 ## How do I know which events and extrinsics I need for the handlers? 
 
@@ -115,7 +118,7 @@ Runtime upgrades may change the event data and even the event logic altogether, 
 
 Subsquid SDK comes with a tool called metadata explorer which makes it easy to keep track of all runtime upgrades happen so far.
 
-The basic usage of the explorer is as follows (check also README):
+The basic usage of the explorer is as follows (check README for details):
 
 ```sh
 npx squid-substrate-metadata-explorer \
@@ -124,13 +127,13 @@ npx squid-substrate-metadata-explorer \
   --out metadataVersions.json
 ```
 
-Once it's generated, define all events and calls of interest in `typegen.json`, adjust the bundle and metadata history references and run
+Once the exploration is done, you should define all events and calls of interest in `typegen.json`, then adjust the bundle and metadata history references and run:
 
 ```sh
 npx squid-substrate-typegen typegen.json
 ```
 
-A type-safe definition for each and every version of the event will be generated. Most of the times, one should be able to have a simple generic interface together with an runtime version specific adaptors. For example, for Kusama `balances.Transfer` event typegen generated three slightly different versions which can be easily reconciled as follows:
+A type-safe definition for each and every version of the event will be generated. Most of the times, one should be able to infer a normalized interface together with some glue code to make it fit the runtime specific versions. For example, for Kusama `balances.Transfer` event, `squid-substrate-typegen` generated three slightly different versions that can be reconciled as follows:
 
 ```typescript
 /**
