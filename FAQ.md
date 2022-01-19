@@ -15,7 +15,7 @@ Most chains publish their type bundles as an npm package. One of the best places
 
 Note that the type bundle format for typegen is slightly different from `OverrideBundleDefinition` of `polkadot.js`. The structure is as follows, all the fields are optional.
 
-```json
+```javascript
 {
   types: {}, // top-level type definitions, as `.types` option of `ApiPromise`
   typesAlias: {}, // top-level type alieases, as `.typesAlias` option of `ApiPromise`
