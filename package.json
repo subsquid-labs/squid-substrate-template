@@ -4,13 +4,14 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "init": "node db/init.js",
-    "db:migrate": "sqd db migrate",
+    "db:migrate": "npx sqd db migrate",
     "schema:reset": "",
     "processor:migrate": "echo skip",
     "processor:start": "node lib/processor.js",
     "query-node:start": "squid-graphql-server"
   },
   "dependencies": {
+    "@subsquid/cli": "^0.1.2",
     "@subsquid/graphql-server": "^0.1.4",
     "@subsquid/ss58": "^0.0.3",
     "@subsquid/substrate-processor": "^0.2.6",
@@ -19,7 +20,6 @@
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
-    "@subsquid/cli": "^0.1.1",
     "@subsquid/substrate-metadata-explorer": "^0.0.7",
     "@subsquid/substrate-typegen": "^0.2.0",
     "@types/node": "^16.11.17",
