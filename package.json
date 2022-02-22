@@ -13,15 +13,15 @@
   "dependencies": {
     "@subsquid/cli": "^0.1.2",
     "@subsquid/graphql-server": "^0.1.4",
-    "@subsquid/ss58": "^0.0.3",
-    "@subsquid/substrate-processor": "^0.2.6",
+    "@subsquid/ss58": "^0.0.4",
+    "@subsquid/substrate-processor": "^0.3.0",
     "dotenv": "^10.0.0",
     "pg": "^8.7.1",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
     "@subsquid/substrate-metadata-explorer": "^0.0.7",
-    "@subsquid/substrate-typegen": "^0.2.0",
+    "@subsquid/substrate-typegen": "^0.2.1",
     "@types/node": "^16.11.17",
     "typescript": "~4.5.4"
   }
