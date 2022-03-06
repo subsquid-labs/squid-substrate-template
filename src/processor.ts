@@ -1,11 +1,13 @@
-import * as ss58 from "@subsquid/ss58";
 import {
   EventHandlerContext,
-  Store,
   SubstrateProcessor,
 } from "@subsquid/substrate-processor";
-import { Account, HistoricalBalance } from "./model";
 import { BalancesTransferEvent } from "./types/events";
+import {
+  createHistoricalBalance,
+  creteOrUpdateKusamaAccount,
+  getKusamaAccount,
+} from "./db/useCases";
 
 const processor = new SubstrateProcessor("kusama_balances");
 
@@ -20,37 +22,30 @@ processor.setDataSource({
 processor.addEventHandler("balances.Transfer", async (ctx) => {
   const transfer = getTransferEvent(ctx);
   const tip = ctx.extrinsic?.tip || 0n;
-  const from = ss58.codec("kusama").encode(transfer.from);
-  const to = ss58.codec("kusama").encode(transfer.to);
 
-  const fromAcc = await getOrCreate(ctx.store, Account, from);
-  fromAcc.balance = fromAcc.balance || 0n;
-  fromAcc.balance -= transfer.amount;
-  fromAcc.balance -= tip;
-  await ctx.store.save(fromAcc);
+  let fromAccount = await getKusamaAccount(ctx.store, transfer.from);
+  fromAccount = await creteOrUpdateKusamaAccount(ctx.store, transfer.from, {
+    balance: (fromAccount?.balance || 0n) - transfer.amount - tip,
+  });
 
-  const toAcc = await getOrCreate(ctx.store, Account, to);
-  toAcc.balance = toAcc.balance || 0n;
-  toAcc.balance += transfer.amount;
-  await ctx.store.save(toAcc);
+  await createHistoricalBalance(ctx.store, {
+    id: `${ctx.event.id}-from`,
+    account: fromAccount,
+    balance: fromAccount.balance,
+    date: new Date(ctx.block.timestamp),
+  });
 
-  await ctx.store.save(
-    new HistoricalBalance({
-      id: `${ctx.event.id}-to`,
-      account: fromAcc,
-      balance: fromAcc.balance,
-      date: new Date(ctx.block.timestamp),
-    })
-  );
+  let toAccount = await getKusamaAccount(ctx.store, transfer.to);
+  toAccount = await creteOrUpdateKusamaAccount(ctx.store, transfer.to, {
+    balance: (toAccount?.balance || 0n) - transfer.amount,
+  });
 
-  await ctx.store.save(
-    new HistoricalBalance({
-      id: `${ctx.event.id}-from`,
-      account: toAcc,
-      balance: toAcc.balance,
-      date: new Date(ctx.block.timestamp),
-    })
-  );
+  await createHistoricalBalance(ctx.store, {
+    id: `${ctx.event.id}-to`,
+    account: toAccount,
+    balance: toAccount.balance,
+    date: new Date(ctx.block.timestamp),
+  });
 });
 
 processor.run();
@@ -73,24 +68,3 @@ function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
   }
   return event.asLatest;
 }
-
-async function getOrCreate<T extends { id: string }>(
-  store: Store,
-  EntityConstructor: EntityConstructor<T>,
-  id: string
-): Promise<T> {
-  let entity = await store.get<T>(EntityConstructor, {
-    where: { id },
-  });
-
-  if (entity == null) {
-    entity = new EntityConstructor();
-    entity.id = id;
-  }
-
-  return entity;
-}
-
-type EntityConstructor<T> = {
-  new (...args: any[]): T;
-};
