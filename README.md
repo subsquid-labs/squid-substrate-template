@@ -21,6 +21,7 @@ npm run build
 docker compose up -d
 
 # 4. Apply database migrations from db/migrations
+npx sqd db create
 npx sqd db migrate
 
 # 5. Now start the processor
