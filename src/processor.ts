@@ -4,6 +4,7 @@ import {
   Store,
   SubstrateProcessor,
 } from "@subsquid/substrate-processor";
+import { lookupArchive } from "@subsquid/archive-registry";
 import { Account, HistoricalBalance } from "./model";
 import { BalancesTransferEvent } from "./types/events";
 
@@ -13,7 +14,7 @@ processor.setTypesBundle("kusama");
 processor.setBatchSize(500);
 
 processor.setDataSource({
-  archive: "https://kusama.indexer.gc.subsquid.io/v4/graphql",
+  archive: lookupArchive("kusama")[0].url,
   chain: "wss://kusama-rpc.polkadot.io",
 });
 
