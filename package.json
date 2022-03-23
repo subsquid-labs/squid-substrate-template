@@ -13,7 +13,7 @@
     "lint:prod": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "0.0.4",
+    "@subsquid/archive-registry": "^0.0.4",
     "@subsquid/cli": "^0.1.2",
     "@subsquid/graphql-server": "^0.1.4",
     "@subsquid/ss58": "^0.0.4",
