@@ -72,6 +72,10 @@ function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
     const [from, to, amount] = event.asV1050;
     return { from, to, amount };
   }
+  if (event.isV9130) {
+    const { from, to, amount } = event.asV9130;
+    return { from, to, amount };
+  }
   return event.asLatest;
 }
 
