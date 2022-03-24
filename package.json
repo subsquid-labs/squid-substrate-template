@@ -8,9 +8,12 @@
     "schema:reset": "",
     "processor:migrate": "echo skip",
     "processor:start": "node lib/processor.js",
-    "query-node:start": "squid-graphql-server"
+    "query-node:start": "squid-graphql-server",
+    "lint": "npm run lint:prod -- --fix",
+    "lint:prod": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0"
   },
   "dependencies": {
+    "@subsquid/archive-registry": "^0.0.4",
     "@subsquid/cli": "^0.1.2",
     "@subsquid/graphql-server": "^0.1.4",
     "@subsquid/ss58": "^0.0.4",
