@@ -36,6 +36,55 @@ node -r dotenv/config lib/processor.js
 npx squid-graphql-server
 ```
 
+## Setup for parachains
+
+Subsquid provides Squid Archive data sources for most parachains. Use `lookupArchive(<network name>)` to lookup the archive endpoint by the network name, e.g.
+
+```typescript
+processor.setDataSource({
+  archive: lookupArchive("basilisk")[0].url,
+  //...
+});
+```
+
+To make sure you're indexing the right chain one can additionally filter by genesis hash:
+
+```typescript
+processor.setDataSource({
+  archive: lookupArchive("basilisk", undefined, "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755")[0].url,
+  //...
+});
+```
+
+If the chain is not yet supported, please fill the [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request.
+
+## Setup for devnets and testnets
+
+Non-production chains, e.g. Devnets and Testnets are not supported by `lookupArchive` and one has to provide a local Squid Archive as a data source.
+
+Inspect `archive/.env` and provide the websocket endpoint for your node. If the network requires custom type bundles (for older versions of Substrate), mount them as volumes in `archive/docker-compose.yml` and uncomment the relevant sections in `archive/.env`.
+
+Then run (in a separate terminal window)
+
+```bash
+docker compose -f archive/docker-compose.yml up
+```
+
+Inspect your archive at `http://localhost/console`. Run the processor with
+
+```typescript
+processor.setDataSource({
+  archive: `http://localhost/v1/graphql`,
+  chain: // your network endpoint here
+});
+```
+
+To drop the archive, run
+```bash
+docker compose -f archive/docker-compose.yml down -v
+```
+
+
 ## Dev flow
 
 ### 1. Define database schema
