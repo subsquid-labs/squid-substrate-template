@@ -41,7 +41,7 @@ Typically, the API is consumed by the frontend and mobile apps, so it's a good i
 TL;DR: If you're ok dropping the database, simply update `schema.graphql` and run:
 
 ```sh
-bash reset-schema.sh
+bash scripts/reset-schema.sh
 ```
 
 OBS! The database will be wiped out, so if it's not an option, read below. 
@@ -63,7 +63,7 @@ During the development process, recreating the schema is often more convenient. 
 Run
 
 ```sh
-bash reset-db.sh
+bash scripts/reset-db.sh
 ```
 
 ### Option 2: Make an incremental update to the schema
