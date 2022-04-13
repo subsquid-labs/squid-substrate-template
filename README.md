@@ -1,7 +1,21 @@
-# squid-template
+# Squid template project
 
-Sample [squid](https://subsquid.io) project to demonstrate its structure and conventions.
-It accumulates [kusama](https://kusama.network) account balances and serves them via graphql API. For more info consult [FAQ](./FAQ.md).
+A starter [Squid](https://subsquid.io) project to demonstrate its structure and conventions.
+It accumulates [kusama](https://kusama.network) account balances and serves them via GraphQL API. For a full reference of Subsquid features consult [Docs](https://docs.subsquid.io) and [FAQ](./FAQ.md).
+
+## Summary
+
+- [Quickstart](#quickly-running-the-sample)
+- [Setup for Parachains](#setup-for-parachains)
+- [Setup for Localnets, Devnets and Testnets](#setup-for-devnets-and-testnets)
+- [Development flow](#dev-flow)
+  - [Database Schema](#1-define-database-schema)
+  - [Entity classes](#2-generate-typeorm-classes)
+  - [DB migrations](#3-generate-database-migration)
+  - [Typegen for Events, Extrinsics and Storage Calls](#4-generate-typescript-definitions-for-substrate-events-and-calls)
+- [Deploy the Squid](#deploy-the-squid)
+- [Conventions](#project-conventions)
+- [Type Bundles](#types-bundle)
 
 ## Prerequisites
 
@@ -131,12 +145,10 @@ npx sqd db create
 
 This is an optional part, but it is very advisable. 
 
-Event and call data comes to mapping handlers as a raw untyped json. 
-Not only it is unclear what the exact structure of a particular event or call is, but
-it can also rather frequently change over time.
+Event, call and runtime storage data comes to mapping handlers as a raw untyped json. 
+While it is possible to work with raw untyped json data, it's extemely error-prone and moreover the json structure may change over time due to runtime upgrades.
 
-Squid framework provides tools for generation of type-safe, spec version aware wrappers around
-events and calls.
+Squid framework provides tools for generation of type-safe, spec version aware wrappers around events, calls and runtime storage item.
 
 The end result looks like this:
 
@@ -168,7 +180,7 @@ function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
 }
 ```
 
-Generation of type-safe wrappers for events and calls is currently a two-step process.
+Generation of type-safe wrappers for events, calls and storage items is currently a two-step process.
 
 First, you need to explore the chain to find blocks which introduce new spec version and
 fetch corresponding metadata. 
@@ -205,9 +217,23 @@ Where `typegen.json` config file has the following structure:
   ],
   "calls": [ // list of calls to generate
     "timestamp.set"
+  ],
+  "storage": [
+    "System.Account" // list of storage items. To generate wrappers for all storage items, set "storage": true
   ]
 }
 ```
+
+## Deploy the Squid
+
+Subsquid offers a free hosted service for deploying your Squid. First, build and run the docker image locally and fix any error or missing files in Dockerfile:
+
+```sh
+bash scripts/docker-run.sh # optionally specify DB port as an argument
+```
+
+After the local run, follow the [instructions](https://docs.subsquid.io/recipes/deploying-a-squid) for obtaining a deployment key and submitting the Squid to [Aquarium](https://app.subsquid.io).
+
 
 ## Project conventions
 
