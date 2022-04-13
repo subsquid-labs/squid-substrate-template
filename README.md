@@ -84,11 +84,11 @@ Then run (in a separate terminal window)
 docker compose -f archive/docker-compose.yml up
 ```
 
-Inspect your archive at `http://localhost/console`. Run the processor with
+Inspect your archive at `http://localhost:4010/console`. Run the processor with
 
 ```typescript
 processor.setDataSource({
-  archive: `http://localhost/v1/graphql`,
+  archive: `http://localhost:4010/v1/graphql`,
   chain: // your network endpoint here
 });
 ```
