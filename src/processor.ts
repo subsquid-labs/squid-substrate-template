@@ -65,16 +65,13 @@ function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
   if (event.isV1020) {
     const [from, to, amount] = event.asV1020;
     return { from, to, amount };
-  }
-  if (event.isV1050) {
+  } else if (event.isV1050) {
     const [from, to, amount] = event.asV1050;
     return { from, to, amount };
-  }
-  if (event.isV9130) {
+  } else {
     const { from, to, amount } = event.asV9130;
     return { from, to, amount };
   }
-  return event.asLatest;
 }
 
 async function getOrCreate<T extends { id: string }>(
