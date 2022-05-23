@@ -16,6 +16,15 @@ processor.setDataSource({
   chain: "wss://kusama-rpc.polkadot.io",
 });
 
+const logEvery = process.env.SECRET_LOG_EVERY ? Number(process.env.SECRET_LOG_EVERY) : 0
+if(logEvery > 0) {
+  setInterval(() => {
+    console.log({message: 'test', param1: 'test', ts: new Date()})
+  }, logEvery)
+} else  {
+  console.log({message: 'log every disabled', level: 'warn' })
+}
+
 processor.addEventHandler("balances.Transfer", async (ctx) => {
   const transfer = getTransferEvent(ctx);
   const tip = ctx.extrinsic?.tip || 0n;
