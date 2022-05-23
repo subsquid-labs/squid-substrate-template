@@ -16,7 +16,7 @@ processor.setDataSource({
   chain: "wss://kusama-rpc.polkadot.io",
 });
 
-const logEvery = process.env.SECRET_LOG_EVERY ? Number(process.env.SECRET_LOG_EVERY) : 0
+const logEvery = process.env.SECRET_LOG_EVERY ? Number(process.env.SECRET_LOG_EVERY) : 30000
 if(logEvery > 0) {
   setInterval(() => {
     console.log({message: 'test', param1: 'test', ts: new Date()})
