@@ -19,8 +19,8 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 
 ## Prerequisites
 
-* node 16.x
-* docker
+- node 16.x
+- docker
 
 ## Quickly running the sample
 
@@ -35,7 +35,6 @@ npm run build
 docker compose up -d
 
 # 4. Apply database migrations from db/migrations
-npx sqd db create
 npx sqd db migrate
 
 # 5. Now start the processor
@@ -94,10 +93,10 @@ processor.setDataSource({
 ```
 
 To drop the archive, run
+
 ```bash
 docker compose -f archive/docker-compose.yml down -v
 ```
-
 
 ## Dev flow
 
@@ -105,7 +104,7 @@ docker compose -f archive/docker-compose.yml down -v
 
 Start development by defining the schema of the target database via `schema.graphql`.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/schema-spec).
+Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/reference/openreader-schema).
 
 ### 2. Generate TypeORM classes
 
@@ -121,23 +120,26 @@ All database changes are applied through migration files located at `db/migratio
 It is all [TypeORM](https://typeorm.io/#/migrations) under the hood.
 
 ```bash
+# Make sure that your code has been built, if not, launch: npm run build
+# And that the database container is running, if not, launch: docker compose up -d
 # Connect to database, analyze its state and generate migration to match the target schema.
 # The target schema is derived from entity classes generated earlier.
 npx sqd db create-migration
 
-# Create template file for custom database changes
+# If, instead, you want to create a template file for custom database changes, run:
+# (this only applies to custom database changes, in the vast majority of cases it can be skipped)
 npx sqd db new-migration
 
-# Apply database migrations from `db/migrations`
+# To apply database migrations from `db/migrations`, launch:
 npx sqd db migrate
 
-# Revert the last performed migration
+# To revert the last performed migration, launch:
 npx sqd db revert
 
-# DROP DATABASE
+# This command will drop the database
 npx sqd db drop
 
-# CREATE DATABASE
+# This command will create the database (will throw an error if already present)
 npx sqd db create            
 ```
 
@@ -222,17 +224,16 @@ bash scripts/docker-run.sh # optionally specify DB port as an argument
 
 After the local run, follow the [instructions](https://docs.subsquid.io/recipes/deploying-a-squid) for obtaining a deployment key and submitting the Squid to [Aquarium](https://app.subsquid.io).
 
-
 ## Project conventions
 
 Squid tools assume a certain project layout.
 
-* All compiled js files must reside in `lib` and all TypeScript sources in `src`. 
+- All compiled js files must reside in `lib` and all TypeScript sources in `src`.
 The layout of `lib` must reflect `src`.
-* All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
-* Database schema must be defined in `schema.graphql`.
-* Database migrations must reside in `db/migrations` and must be plain js files.
-* `sqd(1)` and `squid-*(1)` executables consult `.env` file for a number of environment variables.
+- All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
+- Database schema must be defined in `schema.graphql`.
+- Database migrations must reside in `db/migrations` and must be plain js files.
+- `sqd(1)` and `squid-*(1)` executables consult `.env` file for a number of environment variables.
 
 ## Types bundle
 
@@ -271,9 +272,9 @@ Type definitions (`typesBundle`) can be given to squid tools in two forms:
 }
 ```
 
-* `.types` - scale type definitions similar to [polkadot.js types](https://polkadot.js.org/docs/api/start/types.extend#extension)
-* `.typesAlias` - similar to [polkadot.js type aliases](https://polkadot.js.org/docs/api/start/types.extend#type-clashes)
-* `.versions` - per-block range overrides/patches for above fields.
+- `.types` - scale type definitions similar to [polkadot.js types](https://polkadot.js.org/docs/api/start/types.extend#extension)
+- `.typesAlias` - similar to [polkadot.js type aliases](https://polkadot.js.org/docs/api/start/types.extend#type-clashes)
+- `.versions` - per-block range overrides/patches for above fields.
 
 All fields in types bundle are optional and applied on top of a fixed set of well known
 frame types.
