@@ -1,0 +1,35 @@
+manifestVersion: subsquid.io/v0.1
+namespace: squid
+
+name: balances-batch-dzlzv
+description: |-
+  The very first squid from manifest
+tags:
+  - balances
+
+database:
+  type: pg-14
+
+api:
+  cmd: [ "npx", "squid-graphql-server" ]
+  graphql-examples:
+    - query: |-
+        query MyQuery {
+          accountsConnection(orderBy: id_ASC) {
+            edges {
+              node {
+                  id
+              }
+            }
+          }
+        }
+      variables: {} # optional
+processor:
+  init:
+    - name: db-migrate
+      cmd: [ "npx" ,"sqd", "db", "migrate" ]
+
+#  secrets:
+#    - name: SECRET_ENV_NAME
+
+  cmd: [ "node", "lib/processor" ]

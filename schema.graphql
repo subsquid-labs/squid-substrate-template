@@ -9,5 +9,5 @@ type HistoricalBalance @entity {
   id: ID!
   account: Account!
   balance: BigInt!
-  date: DateTime!
+  timestamp: BigInt!
 }

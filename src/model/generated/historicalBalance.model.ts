@@ -18,6 +18,6 @@ export class HistoricalBalance {
   @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
   balance!: bigint
 
-  @Column_("timestamp with time zone", {nullable: false})
-  date!: Date
+  @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+  timestamp!: bigint
 }
