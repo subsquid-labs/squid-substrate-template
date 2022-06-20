@@ -1,9 +1,8 @@
 {
   "outDir": "src/types",
-  "chainVersions": "kusamaVersions.json",
-  "typesBundle": "kusama",
+  "specVersions": "https://kusama.archive.subsquid.io/graphql",
   "events": [
-    "balances.Transfer"
+    "Balances.Transfer"
   ],
   "calls": []
 }

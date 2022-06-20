@@ -32,14 +32,10 @@ npm ci
 npm run build
 
 # 3. Start target Postgres database
-docker compose up -d
+make up
 
-# 4. Apply database migrations from db/migrations
-npx sqd db create
-npx sqd db migrate
-
-# 5. Now start the processor
-node -r dotenv/config lib/processor.js
+# 4. Now start the processor
+make process
 
 # 6. The above command will block the terminal
 #    being busy with fetching the chain data, 
@@ -47,7 +43,7 @@ node -r dotenv/config lib/processor.js
 #
 #    To start the graphql server open the separate terminal
 #    and run
-npx squid-graphql-server
+make serve
 ```
 
 ## Setup for parachains
@@ -201,7 +197,7 @@ Where `typegen.json` config file has the following structure:
   "chainVersions": "kusamaVersions.json", // the result of chain exploration
   "typesBundle": "kusama", // see types bundle section below
   "events": [ // list of events to generate
-    "balances.Transfer"
+    "Balances.Transfer"
   ],
   "calls": [ // list of calls to generate
     "timestamp.set"
