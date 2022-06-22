@@ -14,7 +14,7 @@
     "lint:prod": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0"
   },
   "dependencies": {
-    "@subsquid/cli": "^1.1.0",
+    "@subsquid/cli": "1.0.1",
     "@subsquid/graphql-server": "^1.0.0",
     "@subsquid/ss58": "^0.1.0",
     "@subsquid/substrate-processor": "^1.0.1",
