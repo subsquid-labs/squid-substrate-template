@@ -1,4 +1,5 @@
 import * as ss58 from "@subsquid/ss58"
+import { lookupArchive } from "@subsquid/archive-registry"
 import {BatchContext, BatchProcessorItem, SubstrateBatchProcessor} from "@subsquid/substrate-processor"
 import {Store, TypeormDatabase} from "@subsquid/typeorm-store"
 import {Account, HistoricalBalance} from "./model"
@@ -8,7 +9,7 @@ import {BalancesTransferEvent} from "./types/events"
 const processor = new SubstrateBatchProcessor()
     .setBatchSize(500)
     .setDataSource({
-        archive: 'https://kusama.archive.subsquid.io/graphql'
+        archive: lookupArchive("kusama", { version: "FireSquid"})
     })
     .addEvent('Balances.Transfer', {
         data: {event: {args: true}}
