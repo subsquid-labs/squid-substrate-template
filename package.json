@@ -14,7 +14,7 @@
     "lint:prod": "eslint . --ext .ts --ignore-path .gitignore --max-warnings 0"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "^1.0.1",
+    "@subsquid/archive-registry": "^1.0.2",
     "@subsquid/cli": "1.0.1",
     "@subsquid/graphql-server": "^1.0.0",
     "@subsquid/ss58": "^0.1.0",
@@ -25,7 +25,7 @@
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
-    "@subsquid/substrate-metadata-explorer": "^1.0.1",
+    "@subsquid/substrate-metadata-explorer": "^1.0.2",
     "@subsquid/substrate-typegen": "^1.0.1",
     "@types/node": "^16.11.27",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
