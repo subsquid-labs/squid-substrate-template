@@ -1,6 +1,8 @@
-version: "3.4"
+version: "3"
 
 services:
+  # We recommend using a CockroachDB cluster for production deployments
+  # For devnets and testnets postgres it's typically a better fit
   db:
     image: postgres:12
     restart: always
@@ -9,75 +11,55 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: squid-archive
 
-  indexer:
-    image: subsquid/hydra-indexer:5
-    restart: unless-stopped
-    environment:
-      - WORKERS_NUMBER=5
-      - DB_NAME=indexer
-      - DB_HOST=db
-      - DB_USER=postgres
-      - DB_PASS=postgres
-      - DB_PORT=5432
-      - REDIS_URI=redis://redis:6379/0
-      - FORCE_HEIGHT=true # starting block height
-      - WS_PROVIDER_ENDPOINT_URI=wss://kusama-rpc.polkadot.io/
 
-    # # If your chain uses custom types you need to provide those
-    # # as detailed here - https://polkadot.js.org/docs/api/start/types.extend
-    # #
-    # # Json files below are passed verbatim to ApiPromise.create() from @polkadot/api.
-    # # Use any combination of those (defined in .env) file 
-    #
-    #   - TYPES_JSON=types.json
-    #   - TYPES_ALIAS=typesAlias.json
-    #   - SPEC_TYPES=typesSpec.json
-    #   - CHAIN_TYPES=typesChain.json
-    #   - BUNDLE_TYPES=typesBundle.json
-    #
-    # volumes:
-    #   - ./types.json:/configs/types.json
-    #   - ./typesAlias.json:/configs/typesAlias.json
-    #   - ./typesSpec.json:/configs/typesSpec.json
-    #   - ./typesChain.json:/configs/typesChain.json
-    #   - ./typesBundle.json:/configs/typesBundle.json
-
+  ingest:
     depends_on:
       - db
-      - redis
-    command: >
-      sh -c "yarn db:bootstrap && yarn start:prod"
-  indexer-gateway:
-    image: subsquid/hydra-indexer-gateway:5
-    restart: unless-stopped
+    restart: on-failure
+    image: eldar/substrate-ingest:18
+    environment:
+      DATABASE_TYPE: postgres # set to  `cockroach` for CockroachDb
+    command: [
+       "-e", "wss://kusama-rpc.polkadot.io",
+       "-e", "wss://kusama-rpc.polkadot.io",
+       "-e", "wss://kusama-rpc.polkadot.io",
+       "-e", "wss://kusama-rpc.dwellir.com",
+       "-e", "wss://kusama-rpc.dwellir.com",
+       "-e", "wss://kusama-rpc.dwellir.com",
+       # add multiple endpoints to speed up the archiving.
+       # adding the same endpoint will proprtionally increase the bandwidht of the given endpoint
+       #  "--start-block", "1000000", # comment out to specify a non-zero start block
+       "--out", "postgres://postgres:postgres@db:5432/squid-archive"
+    ]
+
+  gateway:
     depends_on:
-      - redis
       - db
-      - indexer-status-service
-      - indexer
-    ports:
-      - "4010:8080"
+    image: tmcgroul/archive-gateway:32
     environment:
-      - DEV_MODE=true
-      - DB_NAME=indexer
-      - DB_HOST=db
-      - DB_USER=postgres
-      - DB_PASS=postgres
-      - DB_PORT=5432
-      - HYDRA_INDEXER_STATUS_SERVICE=http://indexer-status-service:8081/status
-
-  indexer-status-service:
-    image: subsquid/hydra-indexer-status-service:4
-    restart: unless-stopped
-    depends_on:
-      - redis
-    environment:
-      REDIS_URI: redis://redis:6379/0
-      PORT: 8081
-
-  redis:
-    image: redis:6.0-alpine
-    restart: always
+      DATABASE_MAX_CONNECTIONS: 5
+      RUST_LOG: "actix_web=info,actix_server=info"
+      EVM_SUPPORT: false # set to true to additionally index Frontier EVM (e.g. Moonbeam/Moonriver or Astar/Shiden)
+    command: [
+       "--database-url", "postgres://postgres:postgres@db:5432/squid-archive"
+    ]
     ports:
-      - "6379"
+      - "8888:8000"
+
+  # explorer service is optional, but provides a useful GraphQL interface for 
+  # the on-chain data and rich filtering capabilities. 
+  # It proved to be a indespensable tool for debugging, development and exploration
+  explorer:
+    image: tmcgroul/substrate-archive-openreader:1
+    environment:
+      DB_TYPE: postgres # set to `cockroach` for Cockroach DB
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: "squid-archive"
+      DB_USER: "postgres"
+      DB_PASS: "postgres"
+      GRAPHQL_SERVER_PORT: "4350"
+    ports:
+      - "4350:4350"

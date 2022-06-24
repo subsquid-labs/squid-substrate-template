@@ -52,16 +52,16 @@ Subsquid provides Squid Archive data sources for most parachains. Use `lookupArc
 
 ```typescript
 processor.setDataSource({
-  archive: lookupArchive("basilisk")[0].url,
+  archive: lookupArchive("kusama", { version: "FireSquid"})
   //...
 });
 ```
 
-To make sure you're indexing the right chain one can additionally filter by genesis hash:
+To make sure you're indexing the right chain one can additionally filter by genesis hash and other options provided by `LookupOptions`:
 
 ```typescript
 processor.setDataSource({
-  archive: lookupArchive("basilisk", undefined, "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755")[0].url,
+  archive: lookupArchive("kusama", { version: "FireSquid", "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe" }),
   //...
 });
 ```
