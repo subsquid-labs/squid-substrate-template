@@ -2,8 +2,6 @@ import type {Result} from './support'
 
 export type AccountId = Uint8Array
 
-export type Balance = bigint
-
 export interface AccountInfo {
   nonce: Index
   refcount: RefCount
@@ -20,3 +18,5 @@ export interface AccountData {
   miscFrozen: Balance
   feeFrozen: Balance
 }
+
+export type Balance = bigint
