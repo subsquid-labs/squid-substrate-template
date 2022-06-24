@@ -29,7 +29,7 @@ services:
        "-e", "wss://kusama-rpc.dwellir.com",
        "-e", "wss://kusama-rpc.dwellir.com",
        # add multiple endpoints to speed up the archiving.
-       # adding the same endpoint will proprtionally increase the bandwidht of the given endpoint
+       # adding the same endpoint will proprtionally increase the bandwidth and the indexing speed.
        #  "--start-block", "1000000", # comment out to specify a non-zero start block
        "--out", "postgres://postgres:postgres@db:5432/squid-archive"
     ]
@@ -41,9 +41,10 @@ services:
     environment:
       DATABASE_MAX_CONNECTIONS: 5
       RUST_LOG: "actix_web=info,actix_server=info"
-      EVM_SUPPORT: false # set to true to additionally index Frontier EVM (e.g. Moonbeam/Moonriver or Astar/Shiden)
     command: [
-       "--database-url", "postgres://postgres:postgres@db:5432/squid-archive"
+       "--database-url", "postgres://postgres:postgres@db:5432/squid-archive",
+       # "--evm-support" # uncomment to additionally for a native support of Frontier EVM 
+                         # (e.g. Moonbeam/Moonriver or Astar/Shiden)
     ]
     ports:
       - "8888:8000"
