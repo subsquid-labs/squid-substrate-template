@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   # We recommend using a CockroachDB cluster for production deployments
   # For devnets and testnets postgres it's typically a better fit
@@ -18,16 +16,12 @@ services:
     depends_on:
       - db
     restart: on-failure
-    image: eldar/substrate-ingest:18
+    image: subsquid/substrate-ingest:firesquid
     environment:
       DATABASE_TYPE: postgres # set to  `cockroach` for CockroachDb
     command: [
-       "-e", "wss://kusama-rpc.polkadot.io",
-       "-e", "wss://kusama-rpc.polkadot.io",
-       "-e", "wss://kusama-rpc.polkadot.io",
-       "-e", "wss://kusama-rpc.dwellir.com",
-       "-e", "wss://kusama-rpc.dwellir.com",
-       "-e", "wss://kusama-rpc.dwellir.com",
+       "-e", "wss://kusama-rpc.polkadot.io", "--endpoint-capacity", "10", # use 10 concurrent ingesters for this endpoint
+       "-e", "wss://kusama-rpc.dwellir.com", "--endpoint-capacity", "10", # use 10 concurrent ingesters for this endpoint
        # add multiple endpoints to speed up the archiving.
        # adding the same endpoint will proprtionally increase the bandwidth and the indexing speed.
        #  "--start-block", "1000000", # comment out to specify a non-zero start block
@@ -37,7 +31,7 @@ services:
   gateway:
     depends_on:
       - db
-    image: tmcgroul/archive-gateway:32
+    image: subsquid/substrate-gateway:1.0.0
     environment:
       DATABASE_MAX_CONNECTIONS: 5
       RUST_LOG: "actix_web=info,actix_server=info"
@@ -53,7 +47,7 @@ services:
   # the on-chain data and rich filtering capabilities. 
   # It proved to be a indespensable tool for debugging, development and exploration
   explorer:
-    image: tmcgroul/substrate-archive-openreader:1
+    image: subsquid/substrate-explorer:firesquid
     environment:
       DB_TYPE: postgres # set to `cockroach` for Cockroach DB
       DB_HOST: db
