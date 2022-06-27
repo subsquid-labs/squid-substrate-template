@@ -1,6 +1,6 @@
 services:
-  # We recommend using a CockroachDB cluster for production deployments
   # For devnets and testnets postgres it's typically a better fit
+  # For large-scale production setup a CockroachDB cluster may be a better fit 
   db:
     image: postgres:12
     restart: always
@@ -37,7 +37,7 @@ services:
       RUST_LOG: "actix_web=info,actix_server=info"
     command: [
        "--database-url", "postgres://postgres:postgres@db:5432/squid-archive",
-       # "--evm-support" # uncomment to additionally for a native support of Frontier EVM 
+       # "--evm-support" # uncomment for chains with Frontier EVM pallete
                          # (e.g. Moonbeam/Moonriver or Astar/Shiden)
     ]
     ports:
