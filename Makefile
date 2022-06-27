@@ -1,21 +1,23 @@
-process: migrate
-	@node -r dotenv/config lib/processor.js
+build:
+	@npm run build
 
 
 serve:
 	@npx squid-graphql-server
 
+process: migrate
+	@node -r dotenv/config lib/processor.js
 
 migrate:
-	@npx sqd db:migrate
+	@npx squid-typeorm-migration apply
 
 
 migration:
-	@npx sqd db:create-migration Data
+	@npx squid-typeorm-migration create Data
 
 
 codegen:
-	@npx sqd codegen
+	@npx squid-typeorm-codegen
 
 
 typegen:

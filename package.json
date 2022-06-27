@@ -4,9 +4,7 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "init": "node db/init.js",
-    "db:migrate": "npx sqd db migrate",
-    "schema:reset": "",
-    "processor:migrate": "echo skip",
+    "db:migrate": "npx squid-typeorm-migration apply",
     "processor:start": "node lib/processor.js",
     "processor:docker-run": "bash scripts/docker-run.sh",
     "query-node:start": "squid-graphql-server",
@@ -19,12 +17,14 @@
     "@subsquid/graphql-server": "^1.0.0",
     "@subsquid/ss58": "^0.1.0",
     "@subsquid/substrate-processor": "^1.0.1",
+    "@subsquid/typeorm-migration": "^0.0.1",
     "@subsquid/typeorm-store": "^0.0.1",
     "dotenv": "^10.0.0",
     "pg": "^8.7.3",
     "typeorm": "^0.2.41"
   },
   "devDependencies": {
+    "@subsquid/typeorm-codegen": "^0.0.1",
     "@subsquid/substrate-metadata-explorer": "^1.0.2",
     "@subsquid/substrate-typegen": "^1.0.1",
     "@types/node": "^16.11.27",
