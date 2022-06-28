@@ -6,13 +6,13 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 ## Summary
 
 - [Quickstart](#quickly-running-the-sample)
-- [Hosted archives for Parachains](#archives-for-parachains)
-- [Self-hosted archive](#setup-your-own-archive)
+- [Hosted archives for Parachains](#hosted-archives-for-parachains)
+- [Self-hosted archive](#self-hosted-archive)
 - [Development flow](#dev-flow)
   - [Database Schema](#1-define-database-schema)
   - [Entity classes](#2-generate-typeorm-classes)
   - [DB migrations](#3-generate-database-migration)
-  - [Typegen for Events, Extrinsics and Storage Calls](#4-generate-typescript-definitions-for-substrate-events-and-calls)
+  - [Typegen for Events, Extrinsics and Storage Calls](#4-generate-typescript-definitions-for-substrate-events-calls-and-storage)
 - [Deploy the Squid](#deploy-the-squid)
 - [Conventions](#project-conventions)
 - [Type Bundles](#types-bundle)
