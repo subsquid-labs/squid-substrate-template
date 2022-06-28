@@ -1,7 +1,8 @@
+import {lookupArchive} from "@subsquid/archive-registry"
 import * as ss58 from "@subsquid/ss58"
-import { lookupArchive } from "@subsquid/archive-registry"
 import {BatchContext, BatchProcessorItem, SubstrateBatchProcessor} from "@subsquid/substrate-processor"
 import {Store, TypeormDatabase} from "@subsquid/typeorm-store"
+import {In} from "typeorm"
 import {Account, HistoricalBalance} from "./model"
 import {BalancesTransferEvent} from "./types/events"
 
@@ -9,10 +10,11 @@ import {BalancesTransferEvent} from "./types/events"
 const processor = new SubstrateBatchProcessor()
     .setBatchSize(500)
     .setDataSource({
-        // For locally-run archives:
-        // archive: 'http://localhost:8888/graphql'
         // Lookup archive by the network name in the Subsquid registry
         archive: lookupArchive("kusama", { release: "FireSquid" })
+
+        // Use archive created by archive/docker-compose.yml
+        // archive: 'http://localhost:8888/graphql'
     })
     .addEvent('Balances.Transfer', {
         data: {event: {args: true}}
@@ -32,7 +34,7 @@ processor.run(new TypeormDatabase(), async ctx => {
         accountIds.add(t.to)
     }
 
-    let accounts = await ctx.store.findByIds(Account, Array.from(accountIds)).then(accounts => {
+    let accounts = await ctx.store.findBy(Account, {id: In([...accountIds])}).then(accounts => {
         return new Map(accounts.map(a => [a.id, a]))
     })
 

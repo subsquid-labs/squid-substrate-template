@@ -3,11 +3,5 @@
   "specVersions": "https://kusama.archive.subsquid.io/graphql",
   "events": [
     "Balances.Transfer"
-  ],
-  "calls": [ 
-    "Timestamp.set"
-  ],
-  "storage": [
-    "System.Account" 
   ]
 }

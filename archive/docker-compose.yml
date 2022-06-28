@@ -1,8 +1,6 @@
 services:
-  # For devnets and testnets postgres it's typically a better fit
-  # For large-scale production setup a CockroachDB cluster may be a better fit 
   db:
-    image: postgres:12
+    image: postgres:12  # CockroachDB cluster might be a better fit for production deployment
     restart: always
     volumes:
       - /var/lib/postgresql/data
@@ -11,43 +9,42 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: squid-archive
 
-
   ingest:
     depends_on:
       - db
     restart: on-failure
-    image: subsquid/substrate-ingest:firesquid
-    environment:
-      DATABASE_TYPE: postgres # set to  `cockroach` for CockroachDb
+    image: subsquid/substrate-ingest:0
     command: [
-       "-e", "wss://kusama-rpc.polkadot.io", "--endpoint-capacity", "10", # use 10 concurrent ingesters for this endpoint
-       "-e", "wss://kusama-rpc.dwellir.com", "--endpoint-capacity", "10", # use 10 concurrent ingesters for this endpoint
-       # add multiple endpoints to speed up the archiving.
-       # adding the same endpoint will proprtionally increase the bandwidth and the indexing speed.
-       #  "--start-block", "1000000", # comment out to specify a non-zero start block
+       "-e", "wss://kusama-rpc.polkadot.io",
+       "-c", "20", # allow up to 20 pending requests for the above endpoint (default is 5)
+
+       # add another endpoint to increase archiving speed and reliability.
+       "-e", "wss://kusama-rpc.dwellir.com",
+
+       #  "--start-block", "1000000", # uncomment to specify a non-zero start block
        "--out", "postgres://postgres:postgres@db:5432/squid-archive"
     ]
 
   gateway:
     depends_on:
       - db
-    image: subsquid/substrate-gateway:1.0.0
+    image: subsquid/substrate-gateway:1
     environment:
       DATABASE_MAX_CONNECTIONS: 5
       RUST_LOG: "actix_web=info,actix_server=info"
     command: [
        "--database-url", "postgres://postgres:postgres@db:5432/squid-archive",
-       # "--evm-support" # uncomment for chains with Frontier EVM pallete
+       # "--evm-support" # uncomment for chains with Frontier EVM pallet
                          # (e.g. Moonbeam/Moonriver or Astar/Shiden)
     ]
     ports:
       - "8888:8000"
 
-  # explorer service is optional, but provides a useful GraphQL interface for 
-  # the on-chain data and rich filtering capabilities. 
-  # It proved to be a indespensable tool for debugging, development and exploration
+  # Explorer service is optional.
+  # It provides rich GraphQL API for querying archived data.
+  # Many developers find it very useful for exploration and debugging.
   explorer:
-    image: subsquid/substrate-explorer:firesquid
+    image: subsquid/substrate-explorer:0
     environment:
       DB_TYPE: postgres # set to `cockroach` for Cockroach DB
       DB_HOST: db
@@ -55,6 +52,5 @@ services:
       DB_NAME: "squid-archive"
       DB_USER: "postgres"
       DB_PASS: "postgres"
-      GRAPHQL_SERVER_PORT: "4350"
     ports:
-      - "4350:4350"
+      - "4444:3000"
