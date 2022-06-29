@@ -1,7 +1,7 @@
 # Squid template project
 
 A starter [Squid](https://subsquid.io) project to demonstrate its structure and conventions.
-It accumulates [kusama](https://kusama.network) account balances and serves them via GraphQL API. For a full reference of Subsquid features consult [Docs](https://docs.subsquid.io) and [FAQ](./FAQ.md).
+It accumulates [kusama](https://kusama.network) account balances and serves them via GraphQL API.
 
 ## Summary
 
@@ -9,19 +9,18 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
   - [Summary](#summary)
   - [Prerequisites](#prerequisites)
   - [Quickly running the sample](#quickly-running-the-sample)
-  - [Setup for parachains](#setup-for-parachains)
-  - [Setup for devnets and testnets](#setup-for-devnets-and-testnets)
+  - [Hosted archives for Parachains](#hosted-archives-for-parachains)
+  - [Self-hosted archive](#self-hosted-archive)
   - [Dev flow](#dev-flow)
     - [1. Define database schema](#1-define-database-schema)
     - [2. Generate TypeORM classes](#2-generate-typeorm-classes)
     - [3. Generate database migration](#3-generate-database-migration)
-    - [4. Generate TypeScript definitions for substrate events and calls](#4-generate-typescript-definitions-for-substrate-events-and-calls)
+    - [4. Generate TypeScript definitions for substrate events, calls and storage](#4-generate-typescript-definitions-for-substrate-events-calls-and-storage)
   - [Deploy the Squid](#deploy-the-squid)
   - [Project conventions](#project-conventions)
   - [Types bundle](#types-bundle)
   - [Differences from polkadot.js](#differences-from-polkadotjs)
   - [Graphql server extensions](#graphql-server-extensions)
-  - [Disclaimer](#disclaimer)
 
 ## Prerequisites
 
@@ -30,38 +29,41 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 
 ## Quickly running the sample
 
+Example commands below use [make(1)](https://www.gnu.org/software/make/).
+Please, have a look at commands in [Makefile](Makefile) if your platform doesn't support it.
+On Windows we recommend to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
+
 ```bash
 # 1. Install dependencies
 npm ci
 
 # 2. Compile typescript files
-npm run build
+make build
 
-# 3. Start target Postgres database
-docker compose up -d
+# 3. Start target Postgres database and detach
+make up
 
-# 4. Apply database migrations from db/migrations
-npx sqd db migrate
+# 4. Start the processor
+make process
 
-# 5. Now start the processor
-node -r dotenv/config lib/processor.js
-
-# 6. The above command will block the terminal
+# 5. The command above will block the terminal
 #    being busy with fetching the chain data, 
 #    transforming and storing it in the target database.
 #
 #    To start the graphql server open the separate terminal
 #    and run
-npx squid-graphql-server
+make serve
 ```
 
-## Setup for parachains
+## Hosted archives for Parachains
 
-Subsquid provides Squid Archive data sources for most parachains. Use `lookupArchive(<network name>)` to lookup the archive endpoint by the network name, e.g.
+Subsquid provides archive data sources for most parachains. 
+Use `lookupArchive(<network name>)` to look up the archive endpoint 
+by the network name, e.g.
 
 ```typescript
 processor.setDataSource({
-  archive: lookupArchive("basilisk")[0].url,
+  archive: lookupArchive("kusama", { release: "FireSquid" })
   //...
 });
 ```
@@ -70,32 +72,24 @@ To make sure you're indexing the right chain one can additionally filter by gene
 
 ```typescript
 processor.setDataSource({
-  archive: lookupArchive("basilisk", undefined, "0xa85cfb9b9fd4d622a5b28289a02347af987d8f73fa3108450e2b4a11c1ce5755")[0].url,
+  archive: lookupArchive("kusama", { 
+    release: "FireSquid", 
+    genesis: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe" 
+  }),
   //...
 });
 ```
 
-If the chain is not yet supported, please fill the [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request.
+If the chain is not yet supported, 
+please fill out the [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request.
 
-## Setup for devnets and testnets
+## Self-hosted archive
 
-Non-production chains, e.g. Devnets and Testnets are not supported by `lookupArchive` and one has to provide a local Squid Archive as a data source.
-
-Inspect `archive/.env` and provide the websocket endpoint for your node. If the network requires custom type bundles (for older versions of Substrate), mount them as volumes in `archive/docker-compose.yml` and uncomment the relevant sections in `archive/.env`.
-
-Then run (in a separate terminal window)
+To run archive locally inspect [archive/docker-compose.yml](archive/docker-compose.yml) 
+and provide the WebSocket endpoint for your node, then start it with
 
 ```bash
 docker compose -f archive/docker-compose.yml up
-```
-
-Inspect your archive at `http://localhost:4010/console`. Run the processor with
-
-```typescript
-processor.setDataSource({
-  archive: `http://localhost:4010/v1/graphql`,
-  chain: // your network endpoint here
-});
 ```
 
 To drop the archive, run
@@ -103,6 +97,16 @@ To drop the archive, run
 ```bash
 docker compose -f archive/docker-compose.yml down -v
 ```
+
+The archive gateway will be started at port `8888` and it can immediately be used with the processor (even if it's not in sync):
+
+```typescript
+processor.setDataSource({
+  archive: `http://localhost:8888/graphql`,
+});
+```
+
+Additionally, an explorer GraphQL API and a playground will be started at `http://localhost:4350/graphql`. While optional, it's a useful tool for debugging and on-chain data exploration.
 
 ## Dev flow
 
@@ -114,15 +118,15 @@ Full description of `schema.graphql` dialect is available [here](https://docs.su
 
 ### 2. Generate TypeORM classes
 
-Mapping developers use TypeORM [EntityManager](https://typeorm.io/#/working-with-entity-manager)
-to interact with target database during data processing. All necessary entity classes are
-generated by the squid framework from `schema.graphql`. This is done by running `npx sqd codegen`
+Mapping developers use [TypeORM](https://typeorm.io) entities
+to interact with the target database during data processing. All necessary entity classes are
+generated by the squid framework from `schema.graphql`. This is done by running `npx squid-typeorm-codegen`
 command.
 
 ### 3. Generate database migration
 
 All database changes are applied through migration files located at `db/migrations`.
-`sqd(1)` tool provides several commands to drive the process.
+`squid-typeorm-migration(1)` tool provides several commands to drive the process.
 It is all [TypeORM](https://typeorm.io/#/migrations) under the hood.
 
 ```bash
@@ -130,105 +134,109 @@ It is all [TypeORM](https://typeorm.io/#/migrations) under the hood.
 # And that the database container is running, if not, launch: docker compose up -d
 # Connect to database, analyze its state and generate migration to match the target schema.
 # The target schema is derived from entity classes generated earlier.
-npx sqd db create-migration
+# Don't forget to compile your entity classes beforehand!
+npx squid-typeorm-migration generate
 
-# If, instead, you want to create a template file for custom database changes, run:
-# (this only applies to custom database changes, in the vast majority of cases it can be skipped)
-npx sqd db new-migration
+# Create template file for custom database changes
+npx squid-typeorm-migration create
 
-# To apply database migrations from `db/migrations`, launch:
-npx sqd db migrate
+# Apply database migrations from `db/migrations`
+npx squid-typeorm-migration apply
 
-# To revert the last performed migration, launch:
-npx sqd db revert
-
-# This command will drop the database
-npx sqd db drop
-
-# This command will create the database (will throw an error if already present)
-npx sqd db create            
+# Revert the last performed migration
+npx squid-typeorm-migration revert         
 ```
 
-### 4. Generate TypeScript definitions for substrate events and calls
+### 4. Generate TypeScript definitions for substrate events, calls and storage 
 
 This is an optional part, but it is very advisable. 
 
-Event, call and runtime storage data comes to mapping handlers as a raw untyped json. 
-While it is possible to work with raw untyped json data, it's extemely error-prone and moreover the json structure may change over time due to runtime upgrades.
+Event, call and runtime storage data come to mapping handlers as raw untyped json. 
+While it is possible to work with raw untyped json data, 
+it's extremely error-prone and the json structure may change over time due to runtime upgrades.
 
-Squid framework provides tools for generation of type-safe, spec version aware wrappers around events, calls and runtime storage items. Typegen generates type-safe classes in `types/events.ts`, `types/calls.ts` and `types/storage.ts` respectively, with constructors taking `XXXContext` interfaces as the only argument. All historical runtime upgrades are accounted out of the box. A typical usage is as follows (see `src/processor.ts`):
+Squid framework provides tools for generating type-safe wrappers around events, calls and runtime storage items for
+each historical change in the spec version.
+
+Typical usage looks as follows:
 
 ```typescript
-function getTransferEvent(ctx: EventHandlerContext): TransferEvent {
-  // instantiate the autogenerated type-safe class for Balances.Transfer event
-  const event = new BalancesTransferEvent(ctx);
-  // for each runtime version, reduce the data to the common interface
-  if (event.isV1020) {
-    const [from, to, amount] = event.asV1020;
-    return { from, to, amount };
-  } else if (event.isV1050) {
-    const [from, to, amount] = event.asV1050;
-    return { from, to, amount };
-  } else {
-    const { from, to, amount } = event.asV9130;
-    return { from, to, amount };
-  }
+function getTransferEvent(ctx: EventHandlerContext) {
+    // instantiate the autogenerated type-safe class for Balances.Transfer event
+    const event = new BalancesTransferEvent(ctx);
+    // for each runtime version, reduce the data to a common interface
+    if (event.isV1020) {
+        const [from, to, amount, fee] = event.asV1020;
+        return {from, to, amount};
+    } else if (event.isV1050) {
+        const [from, to, amount] = event.asV1050;
+        return {from, to, amount};
+    } else {
+        return event.asV9130;
+    }
 }
 ``` 
 
-Generation of type-safe wrappers for events, calls and storage items is currently a two-step process.
-
-First, you need to explore the chain to find blocks which introduce new spec version and
-fetch corresponding metadata. 
-
-```bash
-npx squid-substrate-metadata-explorer \
-  --chain wss://kusama-rpc.polkadot.io \
-  --archive https://kusama.indexer.gc.subsquid.io/v4/graphql \
-  --out kusamaVersions.json
-```
-
-In the above command `--archive` parameter is optional, but it speeds up the process
-significantly. From scratch exploration of kusama network without archive takes 20-30 minutes.
-
-You can pass the result of previous exploration to `--out` parameter. In that case exploration will
-start from the last known block and thus will take much less time.
-
-After chain exploration is complete you can use `squid-substrate-typegen(1)` to generate 
-required wrappers.
-
-```bash
-npx squid-substrate-typegen typegen.json
-```
-
-Where `typegen.json` config file has the following structure:
+To generate type-safe wrappers for events, calls and storage items, use `squid-substrate-typegen(1)`. It expects a
+config file of the following structure:
 
 ```json5
 {
   "outDir": "src/types",
-  "chainVersions": "kusamaVersions.json", // the result of chain exploration
-  "typesBundle": "kusama", // see types bundle section below
-  "events": [ // list of events to generate
-    "balances.Transfer"
+  // List of chain spec versions.
+  // Can be given as:
+  //    1. Squid archive URL
+  //    2. JSON lines file created by `squid-substrate-metadata-explorer(1)`
+  "specVersions": "https://kusama.archive.subsquid.io/graphql",
+  "events": [ // list of events to generate. To generate all events, set "events": true.
+    "Balances.Transfer"
   ],
-  "calls": [ // list of calls to generate
-    "timestamp.set"
+  "calls": [ // list of calls to generate. To generate all calls, set "calls": true.   
+    "Timestamp.set"
   ],
   "storage": [
-    "System.Account" // list of storage items. To generate wrappers for all storage items, set "storage": true
+    "System.Account" // list of storage items. To all storage items, set "storage": true
   ]
 }
 ```
 
+In the [current template](typegen.json), the list of spec versions is
+specified as an archive URL. However, one can do without archive 
+or simply pre-download spec versions via `squid-substrate-metadata-explorer(1)` tool.
+
+```bash
+# Explore the chain (may take some time)
+npx squid-substrate-metadata-explorer \
+  --chain wss://kusama-rpc.polkadot.io \
+  --out kusamaVersions.jsonl
+  
+# Download spec versions from archive
+npx squid-substrate-metadata-explorer \
+  --archive https://kusama.archive.subsquid.io/graphql \
+  --out kusamaVersions.jsonl
+```
+
 ## Deploy the Squid
 
-Subsquid offers a free hosted service for deploying your Squid. First, build and run the docker image locally and fix any error or missing files in Dockerfile:
+Subsquid offers a free hosted service for deploying your Squid. First, build and run the docker image locally and fix any errors or missing files in Dockerfile:
 
 ```sh
 bash scripts/docker-run.sh # optionally specify DB port as an argument
 ```
 
-After the local run, follow the [instructions](https://docs.subsquid.io/docs/tutorials/deploy-your-squid) for obtaining a deployment key and submitting the Squid to [Aquarium](https://app.subsquid.io).
+After the local run, obtain a deployment key by signing into [Aquarium](https://app.subsquid.io/start) and run 
+
+```sh
+npx sqd auth -k YOUR_DEPLOYMENT_KEY
+```
+
+Next, inspect the Squid CLI help to deploy and manage your squid:
+
+```sh
+npx sqd squid --help
+```
+
+For more information, consult the [Deployment Guide](https://docs.subsquid.io/recipes/deploying-a-squid).
 
 ## Project conventions
 
@@ -236,21 +244,20 @@ Squid tools assume a certain project layout.
 
 - All compiled js files must reside in `lib` and all TypeScript sources in `src`.
 The layout of `lib` must reflect `src`.
-- All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
-- Database schema must be defined in `schema.graphql`.
-- Database migrations must reside in `db/migrations` and must be plain js files.
-- `sqd(1)` and `squid-*(1)` executables consult `.env` file for a number of environment variables.
+* All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
+* Database schema must be defined in `schema.graphql`.
+* Database migrations must reside in `db/migrations` and must be plain js files.
+* `squid-*(1)` executables consult `.env` file for a number of environment variables.
 
 ## Types bundle
 
-Substrate chains which have blocks with metadata versions below 14 don't provide enough 
-information to decode their data. For those chains external 
-[type definitions](https://polkadot.js.org/docs/api/start/types.extend) are required.
+Substrate chains that have blocks with metadata versions below 14 don't provide enough 
+information to decode their data. For those chains, external [type](https://polkadot.js.org/docs/api/start/types.extend) [definitions](https://polkadot.js.org/docs/api/start/types.extend) are required.
 
-Type definitions (`typesBundle`) can be given to squid tools in two forms:
+Subsquid tools include definitions for many chains, however sometimes external 
+definitions are still required.
 
-1. as a name of a known chain (currently only `kusama`)
-2. as a json file of a structure described below.
+You can pass them as a special json file (types bundle) of the following structure:
 
 ```json5
 {
@@ -264,7 +271,7 @@ Type definitions (`typesBundle`) can be given to squid tools in two forms:
   },
   "versions": [
     {
-      "minmax": [0, 1000], // block range with inclusive boundaries
+      "minmax": [0, 1000], // spec version range with inclusive boundaries
       "types": {
         "AccountId": "[u8; 16]"
       },
@@ -282,31 +289,28 @@ Type definitions (`typesBundle`) can be given to squid tools in two forms:
 - `.typesAlias` - similar to [polkadot.js type aliases](https://polkadot.js.org/docs/api/start/types.extend#type-clashes)
 - `.versions` - per-block range overrides/patches for above fields.
 
-All fields in types bundle are optional and applied on top of a fixed set of well known
-frame types.
+All fields in the type bundle are optional and applied on top of a fixed set of well-known frame types.
+
+Note, that although the structure of subsquid types bundle is very similar to the one from polkadot.js,
+those two are not fully compatible.
 
 ## Differences from polkadot.js
 
 Polkadot.js provides lots of [specialized classes](https://polkadot.js.org/docs/api/start/types.basics) for various types of data. 
 Even primitives like `u32` are exposed through special classes.
-In contrast, squid framework works only with plain js primitives and objects.
-This allows to decrease coupling and also simply dictated by the fact, that
-there is not enough information in substrate metadata to distinguish between 
-interesting cases.
+In contrast, the squid framework works only with plain js primitives and objects.
+For instance, account data is passed to the handler context as a plain byte array.  To convert it into a standard human-readable format one should explicitly use a utility lib `@subsquid/ss58`:
 
-Account addresses is one example where such difference shows up.
-From substrate metadata (and squid framework) point of view account address is simply a fixed length
-sequence of bytes. On other hand, polkadot.js creates special wrapper for account addresses which 
-aware not only of address value, but also of its 
-[ss58](https://docs.substrate.io/v3/advanced/ss58/) formatting rules.
-Mapping developers should handle such cases themselves.
+```typescript 
+    // ...
+    from: ss58.codec('kusama').encode(rec.from),
+    to: ss58.codec('kusama').encode(rec.to),
+```
+
+
 
 ## Graphql server extensions
 
 It is possible to extend `squid-graphql-server(1)` with custom
 [type-graphql](https://typegraphql.com) resolvers and to add request validation.
-More details will be added later.
-
-## Disclaimer
-
-This is alpha-quality software. Expect some bugs and incompatible changes in coming weeks.
+For more details, consult [Docs](https://docs.subsquid.io/reference/api-extensions)
