@@ -5,17 +5,23 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 
 ## Summary
 
-- [Quickstart](#quickly-running-the-sample)
-- [Setup for Parachains](#setup-for-parachains)
-- [Setup for Localnets, Devnets and Testnets](#setup-for-devnets-and-testnets)
-- [Development flow](#dev-flow)
-  - [Database Schema](#1-define-database-schema)
-  - [Entity classes](#2-generate-typeorm-classes)
-  - [DB migrations](#3-generate-database-migration)
-  - [Typegen for Events, Extrinsics and Storage Calls](#4-generate-typescript-definitions-for-substrate-events-and-calls)
-- [Deploy the Squid](#deploy-the-squid)
-- [Conventions](#project-conventions)
-- [Type Bundles](#types-bundle)
+- [Squid template project](#squid-template-project)
+  - [Summary](#summary)
+  - [Prerequisites](#prerequisites)
+  - [Quickly running the sample](#quickly-running-the-sample)
+  - [Setup for parachains](#setup-for-parachains)
+  - [Setup for devnets and testnets](#setup-for-devnets-and-testnets)
+  - [Dev flow](#dev-flow)
+    - [1. Define database schema](#1-define-database-schema)
+    - [2. Generate TypeORM classes](#2-generate-typeorm-classes)
+    - [3. Generate database migration](#3-generate-database-migration)
+    - [4. Generate TypeScript definitions for substrate events and calls](#4-generate-typescript-definitions-for-substrate-events-and-calls)
+  - [Deploy the Squid](#deploy-the-squid)
+  - [Project conventions](#project-conventions)
+  - [Types bundle](#types-bundle)
+  - [Differences from polkadot.js](#differences-from-polkadotjs)
+  - [Graphql server extensions](#graphql-server-extensions)
+  - [Disclaimer](#disclaimer)
 
 ## Prerequisites
 
@@ -104,7 +110,7 @@ docker compose -f archive/docker-compose.yml down -v
 
 Start development by defining the schema of the target database via `schema.graphql`.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/reference/openreader-schema).
+Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/docs/query-squid/openreader-schema/).
 
 ### 2. Generate TypeORM classes
 
@@ -222,7 +228,7 @@ Subsquid offers a free hosted service for deploying your Squid. First, build and
 bash scripts/docker-run.sh # optionally specify DB port as an argument
 ```
 
-After the local run, follow the [instructions](https://docs.subsquid.io/recipes/deploying-a-squid) for obtaining a deployment key and submitting the Squid to [Aquarium](https://app.subsquid.io).
+After the local run, follow the [instructions](https://docs.subsquid.io/docs/tutorials/deploy-your-squid) for obtaining a deployment key and submitting the Squid to [Aquarium](https://app.subsquid.io).
 
 ## Project conventions
 
