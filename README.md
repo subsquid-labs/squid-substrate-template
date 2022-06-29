@@ -236,26 +236,23 @@ Next, inspect the Squid CLI help to deploy and manage your squid:
 npx sqd squid --help
 ```
 
-For more information, consult the [Deployment Guide](https://docs.subsquid.io/recipes/deploying-a-squid).
+For more information, consult the [Deployment Tutorial](https://docs.subsquid.io/docs/tutorials/deploy-your-squid) or the detailed [Docs section](https://docs.subsquid.io/docs/deploy-squid/).
 
 ## Project conventions
 
 Squid tools assume a certain project layout.
 
-- All compiled js files must reside in `lib` and all TypeScript sources in `src`.
-The layout of `lib` must reflect `src`.
-* All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
-* Database schema must be defined in `schema.graphql`.
-* Database migrations must reside in `db/migrations` and must be plain js files.
-* `squid-*(1)` executables consult `.env` file for a number of environment variables.
+- All compiled js files must reside in `lib` and all TypeScript sources in `src`. The layout of `lib` must reflect `src`.
+- All TypeORM classes must be exported by `src/model/index.ts` (`lib/model` module).
+- Database schema must be defined in `schema.graphql`.
+- Database migrations must reside in `db/migrations` and must be plain js files.
+- `squid-*(1)` executables consult `.env` file for a number of environment variables.
 
 ## Types bundle
 
-Substrate chains that have blocks with metadata versions below 14 don't provide enough 
-information to decode their data. For those chains, external [type](https://polkadot.js.org/docs/api/start/types.extend) [definitions](https://polkadot.js.org/docs/api/start/types.extend) are required.
+Substrate chains that have blocks with metadata versions below 14 don't provide enough information to decode their data. For those chains, external [type](https://polkadot.js.org/docs/api/start/types.extend) [definitions](https://polkadot.js.org/docs/api/start/types.extend) are required.
 
-Subsquid tools include definitions for many chains, however sometimes external 
-definitions are still required.
+Subsquid tools include definitions for many chains, however sometimes external definitions are still required.
 
 You can pass them as a special json file (types bundle) of the following structure:
 
@@ -301,16 +298,14 @@ Even primitives like `u32` are exposed through special classes.
 In contrast, the squid framework works only with plain js primitives and objects.
 For instance, account data is passed to the handler context as a plain byte array.  To convert it into a standard human-readable format one should explicitly use a utility lib `@subsquid/ss58`:
 
-```typescript 
+```typescript
     // ...
     from: ss58.codec('kusama').encode(rec.from),
     to: ss58.codec('kusama').encode(rec.to),
 ```
 
-
-
 ## Graphql server extensions
 
 It is possible to extend `squid-graphql-server(1)` with custom
 [type-graphql](https://typegraphql.com) resolvers and to add request validation.
-For more details, consult [Docs](https://docs.subsquid.io/reference/api-extensions)
+For more details, consult [Docs](https://docs.subsquid.io/docs/query-squid/api-extensions)
