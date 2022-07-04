@@ -3,9 +3,11 @@
 A starter [Squid](https://subsquid.io) project to demonstrate its structure and conventions.
 It accumulates [kusama](https://kusama.network) account balances and serves them via GraphQL API.
 
+
 ## Summary
 
 - [Quickstart](#quickly-running-the-sample)
+- [Migrate to FireSquid](#migrate-to-firesquid)
 - [Hosted archives for Parachains](#archives-for-parachains)
 - [Self-hosted archive](#setup-your-own-archive)
 - [Development flow](#dev-flow)
@@ -49,6 +51,10 @@ make process
 #    and run
 make serve
 ```
+
+## Migrate to FireSquid
+
+To migrate old (v5) Squids, follow the [Migration Guide](https://docs.subsquid.io/docs/guides/migrate-to-fire-squid/)
 
 ## Hosted archives for Parachains
 
