@@ -6,6 +6,7 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 ## Summary
 
 - [Quickstart](#quickly-running-the-sample)
+- [Migrate to FireSquid](#migrate-to-firesquid)
 - [Hosted archives for Parachains](#hosted-archives-for-parachains)
 - [Self-hosted archive](#self-hosted-archive)
 - [Development flow](#dev-flow)
@@ -49,6 +50,10 @@ make process
 #    and run
 make serve
 ```
+
+## Migrate to FireSquid
+
+To migrate old (v5) Squids to FireSquid, follow the [Migration Guide](https://docs.subsquid.io/docs/guides/migrate-to-fire-squid/)
 
 ## Hosted archives for Parachains
 
