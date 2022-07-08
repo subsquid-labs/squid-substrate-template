@@ -234,7 +234,7 @@ Next, inspect the Squid CLI help to deploy and manage your squid:
 npx sqd squid --help
 ```
 
-For more information, consult the [Deployment Guide](https://docs.subsquid.io/recipes/deploying-a-squid).
+For more information, consult the [Deployment Guide](https://docs.subsquid.io/docs/deploy-squid/).
 
 ## Project conventions
 
