@@ -55,11 +55,11 @@ make serve
 
 To migrate old (v5) Squids to FireSquid, follow the [Migration Guide](https://docs.subsquid.io/docs/guides/migrate-to-fire-squid/)
 
-## Hosted archives for Parachains
+## Public archives for Parachains
 
-Subsquid provides archive data sources for most parachains. 
-Use `lookupArchive(<network name>)` to look up the archive endpoint 
-by the network name, e.g.
+Subsquid provides archive data sources for most parachains, with API playgrounds available on the [Aquarium Archive](https://app.subsquid.io/aquarium/archives) page.
+
+The list of public archive data source endpoints is also maintained in the `@subsquid/archive-registry` npm package for programmatic access. Use `lookupArchive(<network name>, <lookup filters>)` to look up the archive endpoint by the network name, e.g.
 
 ```typescript
 processor.setDataSource({
@@ -68,7 +68,7 @@ processor.setDataSource({
 });
 ```
 
-To make sure you're indexing the right chain one can additionally filter by genesis hash:
+To make sure you're indexing the right chain one can additionally filter by the genesis block hash:
 
 ```typescript
 processor.setDataSource({
@@ -85,7 +85,7 @@ please fill out the [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a requ
 
 ## Self-hosted archive
 
-To run archive locally inspect [archive/docker-compose.yml](archive/docker-compose.yml) 
+To run an archive locally, inspect [archive/docker-compose.yml](archive/docker-compose.yml) 
 and provide the WebSocket endpoint for your node, then start it with
 
 ```bash
