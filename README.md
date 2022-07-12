@@ -22,6 +22,7 @@ It accumulates [kusama](https://kusama.network) account balances and serves them
 
 * node 16.x
 * docker
+* npm -- note that `yarn` package manager is not supported
 
 ## Quickly running the sample
 
