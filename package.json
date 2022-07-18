@@ -8,22 +8,22 @@
     "query-node:start": "squid-graphql-server"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "^1.0.2",
-    "@subsquid/cli": "^0.5.1",
-    "@subsquid/graphql-server": "^1.1.0",
-    "@subsquid/ss58": "^0.1.1",
-    "@subsquid/substrate-processor": "^1.2.0",
-    "@subsquid/typeorm-migration": "^0.1.0",
-    "@subsquid/typeorm-store": "^0.1.0",
-    "dotenv": "^10.0.0",
-    "pg": "^8.7.3",
-    "typeorm": "^0.3.6"
+    "@subsquid/archive-registry": "1.0.2",
+    "@subsquid/cli": "0.5.1",
+    "@subsquid/graphql-server": "1.1.0",
+    "@subsquid/ss58": "0.1.1",
+    "@subsquid/substrate-processor": "1.2.0",
+    "@subsquid/typeorm-migration": "0.1.0",
+    "@subsquid/typeorm-store": "0.1.0",
+    "dotenv": "10.0.0",
+    "pg": "8.7.3",
+    "typeorm": "0.3.6"
   },
   "devDependencies": {
-    "@subsquid/typeorm-codegen": "^0.0.2",
-    "@subsquid/substrate-metadata-explorer": "^1.0.3",
-    "@subsquid/substrate-typegen": "^1.0.2",
-    "@types/node": "^16.11.27",
-    "typescript": "~4.6.2"
+    "@subsquid/typeorm-codegen": "0.0.2",
+    "@subsquid/substrate-metadata-explorer": "1.0.3",
+    "@subsquid/substrate-typegen": "1.0.2",
+    "@types/node": "16.11.41",
+    "typescript": "4.6.4"
   }
 }
