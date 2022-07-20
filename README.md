@@ -217,13 +217,7 @@ npx squid-substrate-metadata-explorer \
 
 ## Deploy the Squid
 
-Subsquid offers a free hosted service for deploying your Squid. First, build and run the docker image locally and fix any errors or missing files in Dockerfile:
-
-```sh
-bash scripts/docker-run.sh # optionally specify DB port as an argument
-```
-
-After the local run, obtain a deployment key by signing into [Aquarium](https://app.subsquid.io/start) and run 
+After a local run, obtain a deployment key by signing into [Aquarium](https://app.subsquid.io/start) and run 
 
 ```sh
 npx sqd auth -k YOUR_DEPLOYMENT_KEY
