@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
     restart: on-failure
-    image: subsquid/substrate-ingest:0
+    image: subsquid/substrate-ingest:firesquid
     command: [
        "-e", "wss://kusama-rpc.polkadot.io",
        "-c", "20", # allow up to 20 pending requests for the above endpoint (default is 5)
@@ -28,7 +28,7 @@ services:
   gateway:
     depends_on:
       - db
-    image: subsquid/substrate-gateway:1
+    image: subsquid/substrate-gateway:firesquid
     environment:
       DATABASE_MAX_CONNECTIONS: 5
       RUST_LOG: "actix_web=info,actix_server=info"
@@ -44,7 +44,7 @@ services:
   # It provides rich GraphQL API for querying archived data.
   # Many developers find it very useful for exploration and debugging.
   explorer:
-    image: subsquid/substrate-explorer:0
+    image: subsquid/substrate-explorer:firesquid
     environment:
       DB_TYPE: postgres # set to `cockroach` for Cockroach DB
       DB_HOST: db
