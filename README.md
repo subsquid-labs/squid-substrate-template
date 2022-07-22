@@ -115,7 +115,7 @@ Additionally, an explorer GraphQL API and a playground will be started at `http:
 
 Start development by defining the schema of the target database via `schema.graphql`.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/schema-spec).
+Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/docs/develop-a-squid/define-a-squid-schema).
 
 ### 2. Generate TypeORM classes
 
