@@ -8,7 +8,7 @@
     "query-node:start": "squid-graphql-server"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "1.0.6",
+    "@subsquid/archive-registry": "1.0.7",
     "@subsquid/cli": "^0.5.1",
     "@subsquid/graphql-server": "^1.1.0",
     "@subsquid/ss58": "^0.1.1",
