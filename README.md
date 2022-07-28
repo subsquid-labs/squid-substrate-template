@@ -54,7 +54,7 @@ make serve
 
 ## Migrate to FireSquid
 
-To migrate old (v5) Squids to FireSquid, follow the [Migration Guide](https://docs.subsquid.io/docs/guides/migrate-to-fire-squid/)
+To migrate old (v5) Squids to FireSquid, follow the [Migration Guide](https://docs.subsquid.io/migrate/migrate-to-fire-squid)
 
 ## Public archives for Parachains
 
