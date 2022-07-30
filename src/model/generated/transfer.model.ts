@@ -13,7 +13,7 @@ export class Transfer {
 
   @Index_()
   @Column_("int4", {nullable: false})
-  block!: number
+  blockNumber!: number
 
   @Index_()
   @Column_("timestamp with time zone", {nullable: false})
@@ -21,7 +21,7 @@ export class Transfer {
 
   @Index_()
   @Column_("text", {nullable: true})
-  extrinsic!: string | undefined | null
+  extrinsicHash!: string | undefined | null
 
   @Index_()
   @ManyToOne_(() => Account, {nullable: true})
@@ -31,6 +31,7 @@ export class Transfer {
   @ManyToOne_(() => Account, {nullable: true})
   to!: Account
 
+  @Index_()
   @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
   amount!: bigint
 
