@@ -49,16 +49,16 @@ processor.run(new TypeormDatabase(), async ctx => {
     let transfers: Transfer[] = []
 
     for (let t of transfersData) {
-        let {id, block, timestamp, extrinsic, amount, fee} = t
+        let {id, blockNumber, timestamp, extrinsicHash, amount, fee} = t
 
         let from = getAccount(accounts, t.from)
         let to = getAccount(accounts, t.to)
 
         transfers.push(new Transfer({
             id,
-            block,
+            blockNumber,
             timestamp,
-            extrinsic,
+            extrinsicHash,
             from,
             to,
             amount,
@@ -73,9 +73,9 @@ processor.run(new TypeormDatabase(), async ctx => {
 
 interface TransferEvent {
     id: string
-    block: number
+    blockNumber: number
     timestamp: Date
-    extrinsic?: string
+    extrinsicHash?: string
     from: string
     to: string
     amount: bigint
@@ -101,9 +101,9 @@ function getTransfers(ctx: Ctx): TransferEvent[] {
                 }
                 transfers.push({
                     id: item.event.id,
-                    block: block.header.height,
+                    blockNumber: block.header.height,
                     timestamp: new Date(block.header.timestamp),
-                    extrinsic: item.event.extrinsic?.hash,
+                    extrinsicHash: item.event.extrinsic?.hash,
                     from: ss58.codec('kusama').encode(rec.from),
                     to: ss58.codec('kusama').encode(rec.to),
                     amount: rec.amount,
