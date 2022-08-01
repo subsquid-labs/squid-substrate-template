@@ -107,7 +107,7 @@ function getTransfers(ctx: Ctx): TransferEvent[] {
                     from: ss58.codec('kusama').encode(rec.from),
                     to: ss58.codec('kusama').encode(rec.to),
                     amount: rec.amount,
-                    fee: item.event.extrinsic?.fee
+                    fee: item.event.extrinsic?.fee || 0n
                 })
             }
         }
