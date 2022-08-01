@@ -13,5 +13,5 @@ type Transfer @entity {
   from: Account!
   to: Account!
   amount: BigInt! @index
-  fee: BigInt
+  fee: BigInt! # fee is calculated at the best effort and may be zero for some old extrinsics
 }
