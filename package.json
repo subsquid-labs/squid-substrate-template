@@ -1,6 +1,9 @@
 {
   "name": "kusama-transfers",
   "private": true,
+  "engines" : { 
+    "node" : ">=16"
+  },
   "scripts": {
     "build": "rm -rf lib && tsc",
     "db:migrate": "npx squid-typeorm-migration apply",
