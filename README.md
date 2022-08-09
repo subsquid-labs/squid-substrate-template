@@ -7,7 +7,7 @@ It accumulates [kusama](https://kusama.network) account transfers and serves the
 
 - [Quickstart](#quickly-running-the-sample)
 - [Migrate to FireSquid](#migrate-to-firesquid)
-- [Hosted archives for Parachains](#hosted-archives-for-parachains)
+- [Public archives for Parachains](#public-archives-for-parachains)
 - [Self-hosted archive](#self-hosted-archive)
 - [Development flow](#dev-flow)
   - [Database Schema](#1-define-database-schema)
