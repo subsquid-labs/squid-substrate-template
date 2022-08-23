@@ -34,8 +34,8 @@ EXPOSE 4000
 
 
 FROM squid AS processor
-CMD ["npm", "run", "processor:start"]
+CMD ["node", "lib/processor.js"]
 
 
 FROM squid AS query-node
-CMD ["npm", "run", "query-node:start"]
+CMD ["npx", "squid-graphql-server", "--subscriptions"]
