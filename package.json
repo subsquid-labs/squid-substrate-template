@@ -11,7 +11,7 @@
     "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "1.0.13",
+    "@subsquid/archive-registry": "1.0.14",
     "@subsquid/graphql-server": "3.0.0",
     "@subsquid/ss58": "^0.1.1",
     "@subsquid/substrate-processor": "1.8.0",
