@@ -8,11 +8,10 @@
     "build": "rm -rf lib && tsc",
     "db:migrate": "npx squid-typeorm-migration apply",
     "processor:start": "node lib/processor.js",
-    "query-node:start": "squid-graphql-server --subscriptions"
+    "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "1.0.13",
-    "@subsquid/cli": "0.7.0",
+    "@subsquid/archive-registry": "1.0.14",
     "@subsquid/graphql-server": "3.0.0",
     "@subsquid/ss58": "^0.1.1",
     "@subsquid/substrate-processor": "1.8.0",
