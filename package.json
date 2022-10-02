@@ -8,7 +8,7 @@
     "build": "rm -rf lib && tsc",
     "db:migrate": "npx squid-typeorm-migration apply",
     "processor:start": "node lib/processor.js",
-    "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000 --dumb-cache in-memory --dumb-cache-ttl 5000 --dumb-cache-max-size 100 --dumb-cache-max-age 5000"
+    "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000 --dumb-cache in-memory --dumb-cache-ttl 5000 --dumb-cache-size 100 --dumb-cache-max-age 5000"
   },
   "dependencies": {
     "@subsquid/archive-registry": "1.0.14",
