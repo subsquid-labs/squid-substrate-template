@@ -15,13 +15,8 @@ services:
     restart: on-failure
     image: subsquid/substrate-ingest:firesquid
     command: [
-       "-e", "wss://kusama-rpc.polkadot.io",
-       "-c", "20", # allow up to 20 pending requests for the above endpoint (default is 5)
-
-       # add another endpoint to increase archiving speed and reliability.
-       "-e", "wss://kusama-rpc.dwellir.com",
-
-       #  "--start-block", "1000000", # uncomment to specify a non-zero start block
+       "-e", "wss://node.dev.sub.zero.io",
+       "-c", "5", # allow up to 20 pending requests for the above endpoint (default is 5)
        "--out", "postgres://postgres:postgres@db:5432/squid-archive"
     ]
 
@@ -34,8 +29,6 @@ services:
       RUST_LOG: "actix_web=info,actix_server=info"
     command: [
        "--database-url", "postgres://postgres:postgres@db:5432/squid-archive",
-       # "--evm-support" # uncomment for chains with Frontier EVM pallet
-                         # (e.g. Moonbeam/Moonriver or Astar/Shiden)
     ]
     ports:
       - "8888:8000"

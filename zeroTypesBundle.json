@@ -1,0 +1,298 @@
+{
+  "types": {},
+  "typesAlias": {},
+  "versions": [
+    {
+      "minmax": [
+        0,
+        18
+      ],
+      "types": {
+        "Address": "MultiAddress",
+        "LookupSource": "MultiAddress",
+        "AccountInfo": "AccountInfoWithDualRefCount",
+        "AccountInfoWithDualRefCount": {
+          "nonce": "Index",
+          "consumers": "RefCount",
+          "providers": "RefCount",
+          "data": "AccountData"
+        },
+        "Timestamp": "Moment",
+        "Entity": {
+          "account": "AccountId",
+          "index": "u128",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "EntityProperty": {
+          "value": "u64",
+          "mutated": "BlockNumber"
+        },
+        "Space": {
+          "id": "H256",
+          "dna": "H256",
+          "price": "Balance",
+          "gen": "u64"
+        },
+        "SpaceId": "Hash",
+        "HypaspaceId": "Hash",
+        "HypaspaceMetadata": {
+          "name": "Vec<u8>"
+        },
+        "Item": {
+          "CommodityId": "CommodityId",
+          "CommodityInfo": "CommodityInfo"
+        },
+        "ItemId": "Hash",
+        "ItemInfo": {
+          "dob": "u64",
+          "dna": "Hash"
+        },
+        "Body": {
+          "id": "Hash",
+          "index": "u128",
+          "creator": "AccountId",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "body": "u8",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "BConfig": {
+          "fee_model": "u8",
+          "fee": "Balance",
+          "gov_asset": "u8",
+          "pay_asset": "u8",
+          "member_limit": "u64",
+          "access": "u8"
+        },
+        "Campaign": {
+          "id": "Hash",
+          "org": "Hash",
+          "name": "Vec<u8>",
+          "owner": "AccountId",
+          "admin": "AccountId",
+          "deposit": "Balance",
+          "expiry": "BlockNumber",
+          "cap": "Balance",
+          "protocol": "u8",
+          "governance": "u8",
+          "cid": "Vec<u8>",
+          "token_symbol": "Vec<u8>",
+          "token_name": "Vec<u8>",
+          "created": "Timestamp"
+        },
+        "Proposal": {
+          "proposal_id": "Hash",
+          "context_id": "Hash",
+          "proposal_type": "u8",
+          "voting_type": "u8",
+          "status": "u8",
+          "start": "BlockNumber",
+          "expiry": "BlockNumber"
+        },
+        "ProposalMetadata": {
+          "title": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "amount": "Balance"
+        },
+        "EventMessage": "Vec<u8>",
+        "Nonce": "u64",
+        "TitleText": "Vec<u8>",
+        "CID": "Vec<u8>",
+        "ProposalType": "u8",
+        "ProposalState": "u8",
+        "VotingType": "u8",
+        "RealmIndex": "u64",
+        "ClassIndex": "u64",
+        "ItemIndex": "u64",
+        "TotalIndex": "u128",
+        "BurnedIndex": "u128",
+        "TangramRealm": {
+          "id": "Hash",
+          "org": "Hash",
+          "index": "u128"
+        },
+        "TangramRealmMetadata": {
+          "id": "Hash",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "TangramClass": {
+          "id": "Hash",
+          "realm": "Hash",
+          "org": "Hash",
+          "index": "u128",
+          "cid": "Vec<u8>"
+        },
+        "TangramClassMetadata": {
+          "id": "Hash",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "Tangram": {
+          "dob": "Moment",
+          "dna": "Hash"
+        },
+        "TangramMetadata": {
+          "name": "Vec<u8>",
+          "owner": "AccountId",
+          "cid": "Vec<u8>"
+        },
+        "TangramId": "Hash",
+        "TangramItemOf": "Tangram"
+      }
+    },
+    {
+      "minmax": [
+        19,
+        null
+      ],
+      "types": {
+        "Address": "MultiAddress",
+        "LookupSource": "MultiAddress",
+        "AccountInfo": "AccountInfoWithDualRefCount",
+        "AccountInfoWithDualRefCount": {
+          "nonce": "Index",
+          "consumers": "RefCount",
+          "providers": "RefCount",
+          "data": "AccountData"
+        },
+        "Timestamp": "Moment",
+        "Entity": {
+          "account": "AccountId",
+          "index": "u128",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "EntityProperty": {
+          "value": "u64",
+          "mutated": "BlockNumber"
+        },
+        "Space": {
+          "id": "H256",
+          "dna": "H256",
+          "price": "Balance",
+          "gen": "u64"
+        },
+        "SpaceId": "Hash",
+        "HypaspaceId": "Hash",
+        "HypaspaceMetadata": {
+          "name": "Vec<u8>"
+        },
+        "Item": {
+          "CommodityId": "CommodityId",
+          "CommodityInfo": "CommodityInfo"
+        },
+        "ItemId": "Hash",
+        "ItemInfo": {
+          "dob": "u64",
+          "dna": "Hash"
+        },
+        "Body": {
+          "id": "Hash",
+          "index": "u128",
+          "creator": "AccountId",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "body": "u8",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "BConfig": {
+          "fee_model": "u8",
+          "fee": "Balance",
+          "gov_asset": "u8",
+          "pay_asset": "u8",
+          "member_limit": "u64",
+          "access": "u8"
+        },
+        "Campaign": {
+          "id": "Hash",
+          "org": "Hash",
+          "name": "Vec<u8>",
+          "owner": "AccountId",
+          "admin": "AccountId",
+          "deposit": "Balance",
+          "expiry": "BlockNumber",
+          "cap": "Balance",
+          "protocol": "u8",
+          "governance": "u8",
+          "cid": "Vec<u8>",
+          "token_symbol": "Vec<u8>",
+          "token_name": "Vec<u8>",
+          "created": "Timestamp"
+        },
+        "Proposal": {
+          "proposal_id": "Hash",
+          "context_id": "Hash",
+          "proposal_type": "u8",
+          "voting_type": "u8",
+          "status": "u8",
+          "start": "BlockNumber",
+          "expiry": "BlockNumber"
+        },
+        "ProposalMetadata": {
+          "title": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "amount": "Balance"
+        },
+        "EventMessage": "Vec<u8>",
+        "Nonce": "u64",
+        "TitleText": "Vec<u8>",
+        "CID": "Vec<u8>",
+        "ProposalType": "u8",
+        "ProposalState": "u8",
+        "VotingType": "u8",
+        "RealmIndex": "u64",
+        "ClassIndex": "u64",
+        "ItemIndex": "u64",
+        "TotalIndex": "u128",
+        "BurnedIndex": "u128",
+        "TangramRealm": {
+          "id": "Hash",
+          "org": "Hash",
+          "index": "u128"
+        },
+        "TangramRealmMetadata": {
+          "id": "Hash",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "TangramClass": {
+          "id": "Hash",
+          "realm": "Hash",
+          "org": "Hash",
+          "index": "u128",
+          "cid": "Vec<u8>"
+        },
+        "TangramClassMetadata": {
+          "id": "Hash",
+          "name": "Vec<u8>",
+          "cid": "Vec<u8>",
+          "created": "BlockNumber",
+          "mutated": "BlockNumber"
+        },
+        "Tangram": {
+          "dob": "Moment",
+          "dna": "Hash"
+        },
+        "TangramMetadata": {
+          "name": "Vec<u8>",
+          "owner": "AccountId",
+          "cid": "Vec<u8>"
+        },
+        "TangramId": "Hash",
+        "TangramItemOf": "Tangram"
+      }
+    }
+  ]
+}
