@@ -90,12 +90,17 @@ function getTransfers(ctx: Ctx): TransferEvent[] {
             if (item.name == "Balances.Transfer") {
                 let e = new BalancesTransferEvent(ctx, item.event)
                 let rec: {from: Uint8Array, to: Uint8Array, amount: bigint}
-                if (e.isV42) {
-                    let {from, to, amount} = e.asV42
-                    rec = {from, to, amount}
+                if (e.isV1020) {
+                    let [from, to, amount] = e.asV1020
+                    rec = { from, to, amount}
+                } else if (e.isV1050) {
+                    let [from, to, amount] = e.asV1050
+                    rec = { from, to, amount}
+                } else if (e.isV9130) {
+                    rec = e.asV9130
                 } else {
                     throw new Error('Unsupported spec')
-                } 
+                }
                 
                 transfers.push({
                     id: item.event.id,
