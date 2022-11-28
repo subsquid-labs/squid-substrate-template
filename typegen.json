@@ -1,6 +1,6 @@
 {
   "outDir": "src/types",
-  "specVersions": "https://kusama.archive.subsquid.io/graphql",
+  "specVersions": "http://localhost:8888/graphql",
   "events": [
     "Balances.Transfer"
   ],

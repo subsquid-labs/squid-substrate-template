@@ -11,10 +11,10 @@ const processor = new SubstrateBatchProcessor()
     .setBatchSize(500)
     .setDataSource({
         // Lookup archive by the network name in the Subsquid registry
-        archive: lookupArchive("kusama", {release: "FireSquid"})
+        //archive: lookupArchive("kusama", {release: "FireSquid"})
 
         // Use archive created by archive/docker-compose.yml
-        // archive: 'http://localhost:8888/graphql'
+        archive: 'http://localhost:8888/graphql'
     })
     .addEvent('Balances.Transfer', {
         data: {
@@ -90,15 +90,13 @@ function getTransfers(ctx: Ctx): TransferEvent[] {
             if (item.name == "Balances.Transfer") {
                 let e = new BalancesTransferEvent(ctx, item.event)
                 let rec: {from: Uint8Array, to: Uint8Array, amount: bigint}
-                if (e.isV1020) {
-                    let [from, to, amount,] = e.asV1020
-                    rec = {from, to, amount}
-                } else if (e.isV1050) {
-                    let [from, to, amount] = e.asV1050
+                if (e.isV42) {
+                    let {from, to, amount} = e.asV42
                     rec = {from, to, amount}
                 } else {
-                    rec = e.asV9130
-                }
+                    throw new Error('Unsupported spec')
+                } 
+                
                 transfers.push({
                     id: item.event.id,
                     blockNumber: block.header.height,
