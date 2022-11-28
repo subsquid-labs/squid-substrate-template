@@ -6,11 +6,7 @@
   },
   "scripts": {
     "build": "rm -rf lib && tsc",
-<<<<<<< HEAD
     "update": "npx npm-check-updates --filter /subsquid/ --upgrade && npm i -f",
-=======
-    "squid:update": "npx npm-check-updates --filter /subsquid/ --upgrade",
->>>>>>> aaeac4f (update libs, add update target)
     "db:migrate": "npx squid-typeorm-migration apply",
     "processor:start": "node lib/processor.js",
     "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000 --dumb-cache in-memory --dumb-cache-ttl 1000 --dumb-cache-size 100 --dumb-cache-max-age 1000"
