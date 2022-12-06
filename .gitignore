@@ -1,5 +1,6 @@
 /node_modules
 /lib
+/builds
 
 /**Versions.json
 /**Versions.jsonl
