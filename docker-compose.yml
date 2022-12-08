@@ -6,7 +6,7 @@ services:
     image: postgres:14
     environment:
       POSTGRES_DB: squid
-      POSTGRES_PASSWORD: squid
+      POSTGRES_PASSWORD: postgres
     ports:
       - "${DB_PORT}:5432"
       # command: ["postgres", "-c", "log_statement=all"]

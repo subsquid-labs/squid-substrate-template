@@ -1,11 +1,77 @@
 {
-  "outDir": "src/types",
-  "specVersions": "https://kusama.archive.subsquid.io/graphql",
+  "outDir": "src/types/generated",
+  "specVersions": "http://localhost:8888/graphql",
   "events": [
-    "Balances.Transfer"
+    "Identity.IdentityCleared",
+
+    "Control.OrgCreated",
+    "Control.OrgEnabled",
+    "Control.OrgDisabled",
+    "Control.OrgUpdated",
+    "Control.MemberAdded",
+    "Control.MemberRemoved",
+    "Control.FundsSpended",
+
+    "Flow.Created",
+    "Flow.Activated",
+    "Flow.Contributed",
+    "Flow.Succeeded",
+    "Flow.Failed",
+
+    "Signal.Voted",
+    "Signal.Created",
+    "Signal.Activated",
+    "Signal.Accepted",
+    "Signal.Rejected",
+    "Signal.Expired",
+    "Signal.Aborted",
+    "Signal.Finalized",
+
+    "Sense.EntityCreated",
+    "Sense.PropertyUpdated",
+
+    "Balances.Transfer",
+    "Balances.Endowed",
+    "Balances.BalanceSet",
+    "Balances.Reserved",
+    "Balances.Unreserved",
+    "Balances.ReserveRepatriated",
+    "Balances.Deposit",
+    "Balances.Withdraw",
+    "Balances.Slashed",
+
+    "Tokens.Transfer",
+    "Tokens.Endowed",
+    "Tokens.BalanceSet",
+    "Tokens.Reserved",
+    "Tokens.Unreserved",
+    "Tokens.ReserveRepatriated",
+    "Tokens.Deposited",
+    "Tokens.Withdrawn",
+    "Tokens.Slashed"
   ],
-  "calls": [ 
+  "calls": [
+    "Identity.set_identity"
   ],
   "storage": [
-  ]
+    "Control.Orgs",
+    "Control.MemberStates",
+    "Control.OrgStates",
+
+    "Flow.CampaignOf",
+    "Flow.CampaignStates",
+
+    "Signal.ProposalOf",
+    "Signal.ProposalStates",
+    "Signal.ProposalVoting",
+
+    "Sense.Entities",
+    "Sense.Properties",
+
+    "System.Account",
+    "Balances.Account",
+    "Balances.TotalIssuance",
+    "Tokens.Accounts"
+  ],
+  "constants": true
 }

@@ -1,0 +1,114 @@
+services:
+
+  db:
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_MULTIPLE_DATABASES="squid-archive","squid","graph","graph-gamedao"
+    volumes:
+      - ./config/init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    ports:
+      - 5432:5432
+
+  ingest:
+    depends_on:
+      - db
+    restart: on-failure
+    image: subsquid/substrate-ingest:firesquid
+    command: [
+       "-e", "wss://node.dev.sub.zero.io",
+       "-c", "5", # allow up to 20 pending requests for the above endpoint (default is 5)
+       "--out", "postgres://postgres:postgres@db:5432/squid-archive"
+    ]
+
+  gateway:
+    depends_on:
+      - db
+    image: subsquid/substrate-gateway:firesquid
+    environment:
+      DATABASE_MAX_CONNECTIONS: 5
+      RUST_LOG: "actix_web=info,actix_server=info"
+    command: [
+       "--database-url", "postgres://postgres:postgres@db:5432/squid-archive",
+    ]
+    ports:
+      - "8888:8000"
+
+  # Explorer service is optional.
+  # It provides rich GraphQL API for querying archived data.
+  # Many developers find it very useful for exploration and debugging.
+  explorer:
+    image: subsquid/substrate-explorer:firesquid
+    environment:
+      DB_TYPE: postgres # set to `cockroach` for Cockroach DB
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: "squid-archive"
+      DB_USER: "postgres"
+      DB_PASS: "postgres"
+    ports:
+      - "4444:3000"
+  
+  # squid:
+  #   image: public.ecr.aws/zero.io/squid:firesquid
+  #   volumes:
+  #     - "./config/squid-config.ts:/squid/lib/config.ts"
+  #   environment:
+  #     DB_HOST: db
+  #     DB_PORT: 5432
+  #     DB_NAME: squid
+  #     DB_USER: postgres
+  #     DB_PASS: postgres
+  #     PROCESSOR_PROMETHEUS_PORT: 3000
+  #     GQL_PORT: 4350
+
+  graph-gamedao:
+    image: public.ecr.aws/zero.io/graph-gamedao:v62
+    restart: always
+    environment:
+      IPFS_API_URL: https://ipfs.infura.io:5001/api/v0
+      IPFS_CLIENT_ID: ${IPFS_CLIENT_ID}
+      IPFS_CLIENT_SECRET: ${IPFS_CLIENT_SECRET}
+      SERVER_PORT: 4000
+      CHAIN_RPC_URL: wss://node.dev.sub.zero.io/
+      CHAIN_RPC_URL_OVERRIDE: wss://node.dev.sub.zero.io/
+      DATABASE_URL: postgres://postgres:postgres@db:5432/graph-gamedao?schema=public
+    expose:
+      - 4000
+
+  graph:
+    image: hasura/graphql-engine:v2.12.0
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@db:5432/graph
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DEV_MODE: "false"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
+      HASURA_GRAPHQL_ADMIN_SECRET: mypassword123
+      PG_DATABASE_URL: postgres://postgres:postgres@db:5432/squid
+      PG_SERVICE_DATABASE_URL: postgres://postgres:postgres@db:5432/graph-gamedao
+
+#   nginx:
+#     image: linuxserver/swag
+#     cap_add:
+#       - NET_ADMIN
+#     volumes:
+#       - SSLCerts:/config
+#       - ./config/graph.subdomain.conf:/config/nginx/proxy-confs/graph.subdomain.conf
+#     ports:
+#       - 443:443
+#       - 80:80
+#     environment:
+#       PUID: 1000
+#       PGID: 1000
+#       TZ: Europe/Zurich
+#       URL: test.graph.dev.sub.zero.io
+#       VALIDATION: http
+#       ONLY_SUBDOMAINS: "false"
+
+# volumes:
+#   SSLCerts:

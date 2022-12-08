@@ -1,0 +1,7 @@
+{
+  "startBlock": -1,
+  "networkAddressPrefix": 25,
+  "chainRPC": "wss://node.dev.sub.zero.io",
+  "archiveGQL": "http://gateway:8000/graphql",
+  "ipfsGateway": "https://gamedao.infura-ipfs.io/ipfs/"
+}

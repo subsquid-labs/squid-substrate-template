@@ -1,17 +1,189 @@
-type Account @entity {
-  "Account address"
-  id: ID!
-  transfersTo: [Transfer!] @derivedFrom(field: "to")
-  transfersFrom: [Transfer!] @derivedFrom(field: "from")
+type ChainState @entity {
+    id: ID!
+    tokenBalance: BigInt!
+    tokenHolders: Int!
+    timestamp: DateTime! @index
+    blockNumber: Int! @index
 }
 
-type Transfer @entity {
-  id: ID!
-  blockNumber: Int! @index
-  timestamp: DateTime! @index
-  extrinsicHash: String @index
-  from: Account!
-  to: Account!
-  amount: BigInt! @index
-  fee: BigInt! # fee is calculated at the best effort and may be zero for some old extrinsics
+type HistoricalBalance @entity {
+    id: ID!
+    block: Int!
+    address: String! @index
+    currencyId: String! @index
+    free: BigInt!
+    reserved: BigInt!
+    total: BigInt!
+}
+
+type AccountBalance @entity {
+    id: ID!
+    balance: HistoricalBalance!
+    identity: Identity!
+}
+
+type Identity @entity {
+    id: ID!
+    address: String!
+    displayName: String
+    legalName: String
+    email: String
+    riot: String
+    image: String
+    twitter: String
+    web: String
+    # Additionals:
+    web3name: String
+    discord: String
+
+    # Latest balances
+    balances: [AccountBalance!]! @derivedFrom(field: "identity") 
+
+    createdOrganizations: [Organization!]! @derivedFrom(field: "creatorIdentity")
+    controllerOrganizations: [Organization!]! @derivedFrom(field: "primeIdentity")
+    organizationMembers: [OrganizationMember!]! @derivedFrom(field: "identity")
+    createdCampaigns: [Campaign!]! @derivedFrom(field: "creatorIdentity")
+    campaignContributors: [CampaignContributor!]! @derivedFrom(field: "identity")
+    createdProposals: [Proposal!]! @derivedFrom(field: "creatorIdentity")
+    proposalVoters: [ProposalVoter!]! @derivedFrom(field: "identity")
+}
+
+type Organization @entity {
+    id: ID!
+    creator: String!
+    creatorIdentity: Identity!
+    prime: String!
+    primeIdentity: Identity!
+    treasury: String!
+    treasuryIdentity: Identity!
+    accessModel: String!
+    feeModel: String!
+    type: String!
+    state: String!
+    membershipFee: BigInt
+    govCurrency: String!
+    payCurrency: String!
+    memberLimit: Int!
+    createdAtBlock: Int!
+    updatedAtBlock: Int!
+    deposit: BigInt!
+    members: [OrganizationMember!] @derivedFrom(field: "organization")
+    campaigns: [Campaign!]! @derivedFrom(field: "organization")
+    proposals: [Proposal]! @derivedFrom(field: "organization")
+    slug: String!
+
+    # Metadata:
+    cid: String!
+    name: String!
+    description: String!
+    website: String!
+    email: String!
+    repo: String!
+    logo: String!
+    header: String!
+}
+
+type OrganizationMember @entity {
+    id: ID!
+    organization: Organization!
+    address: String!
+    identity: Identity!
+    state: String!
+}
+
+type Campaign @entity {
+    id: ID!
+    organization: Organization!
+    creator: String!
+    creatorIdentity: Identity!
+    admin: String!
+    adminIdentity: Identity!
+    target: BigInt!
+    deposit: BigInt!
+    start: Int!
+    expiry: Int!
+    protocol: String!
+    governance: String!
+    tokenSymbol: String
+    tokenName: String
+    state: String!
+    contributors: [CampaignContributor]! @derivedFrom(field: "campaign")
+    proposals: [Proposal]! @derivedFrom(field: "campaign")
+    createdAtBlock: Int!
+    
+    # Metadata:
+    cid: String!
+    name: String!
+    email: String!
+    title: String!
+    description: String!
+    markdown: String!
+    logo: String!
+    header: String!
+}
+
+type CampaignContributor @entity {
+    id: ID!
+    campaign: Campaign!
+    address: String!
+    identity: Identity!
+    contributed: BigInt!
+}
+
+type Proposal @entity {
+    id: ID!
+    creator: String!
+    creatorIdentity: Identity!
+    organization: Organization!
+    campaign: Campaign
+    type: String!
+    deposit: BigInt!
+    state: String!
+    voting: Voting!
+    start: Int!
+    expiry: Int!
+    amount: BigInt
+    currencyId: String
+    beneficiary: String
+    beneficiaryIdentity: Identity
+    slashingRule: String
+    createdAtBlock: Int!
+
+    # Metadata:
+    cid: String!
+    name: String!
+    description: String!
+}
+
+type Voting @entity {
+    id: ID!
+    unit: String!
+    scale: String!
+    yes: BigInt!
+    no: BigInt!
+    quorum: String
+    majority: String!
+}
+
+type ProposalVoter @entity {
+    id: ID!
+    voting: Voting!
+    address: String!
+    identity: Identity!
+    power: BigInt!
+    amount: BigInt
+    voted: Boolean!
+}
+
+type SenseEntity @entity {
+    id: ID!
+    identity: Identity!
+    experience: BigInt!
+    trust: BigInt!
+    reputation: BigInt!
+    createdAtBlock: Int!
+    updatedAtBlock: Int!
+    
+    # Metadata:
+    cid: String!
 }
