@@ -265,6 +265,93 @@ export class BalancesWithdrawEvent {
   }
 }
 
+export class BattlepassBattlepassClaimedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassClaimed')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * BattlePass claimed
+   */
+  get isV64(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassClaimed') === '759c5be711b6d0bfacf0d91415067f1b929fc4ce0f51b35b40731ca145135850'
+  }
+
+  /**
+   * BattlePass claimed
+   */
+  get asV64(): {claimer: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV64)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class BattlepassBattlepassClosedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassClosed')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * BattlePass closed
+   */
+  get isV64(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassClosed') === '0fa51cd501a9f703a217300e60f07f8ed56483b99f84dca81ba6770dd290f8d3'
+  }
+
+  /**
+   * BattlePass closed
+   */
+  get asV64(): {closedBy: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV64)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class BattlepassBattlepassCreatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassCreated')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * New BattlePass created
+   */
+  get isV64(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassCreated') === '545dafcb8ce124c08cb42a6300e91ef56347c87c5f7645f2ab6024315c5c4494'
+  }
+
+  /**
+   * New BattlePass created
+   */
+  get asV64(): {orgId: Uint8Array, battlepassId: Uint8Array, season: number} {
+    assert(this.isV64)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
 export class ControlFundsSpendedEvent {
   private readonly _chain: Chain
   private readonly event: Event

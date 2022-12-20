@@ -81,6 +81,9 @@ type Organization @entity {
     repo: String!
     logo: String!
     header: String!
+    url: String!
+    location: String!
+    tags: [String!]!
 }
 
 type OrganizationMember @entity {
@@ -186,4 +189,26 @@ type SenseEntity @entity {
     
     # Metadata:
     cid: String!
+}
+
+type Battlepass @entity {
+    id: ID!
+    creator: Identity!
+    org: Organization!
+    name: String!
+    state: String!
+    season: String!
+    price: BigInt!
+    createdAtBlock: Int!
+    updatedAtBlock: Int!
+
+    # Metadata:
+    cid: String!
+}
+
+type BattlepassNft @entity {
+    id: ID!
+    owner: Identity!
+    battlepass: Battlepass!
+    collectionId: Int!
 }

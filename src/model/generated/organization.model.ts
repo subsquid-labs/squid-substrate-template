@@ -103,4 +103,13 @@ export class Organization {
 
   @Column_("text", {nullable: false})
   header!: string
+
+  @Column_("text", {nullable: false})
+  url!: string
+
+  @Column_("text", {nullable: false})
+  location!: string
+
+  @Column_("text", {array: true, nullable: false})
+  tags!: (string)[]
 }

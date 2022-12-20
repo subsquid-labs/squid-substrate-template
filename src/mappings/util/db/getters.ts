@@ -6,7 +6,8 @@ import {
 	Proposal,
 	Voting,
 	ProposalVoter,
-	SenseEntity
+	SenseEntity,
+	Battlepass
 } from '../../../model'
 import { Store } from '@subsquid/typeorm-store'
 
@@ -63,6 +64,10 @@ function getSenseEntity(store: Store, accountId: string): Promise<SenseEntity | 
 	return get(store, SenseEntity, accountId);
 }
 
+function getBattlepass(store: Store, battlepassId: string): Promise<Battlepass | null> {
+	return get(store, Battlepass, battlepassId);
+}
+
 export {
 	getOrg,
 	getOrgMember,
@@ -71,5 +76,6 @@ export {
 	getProposal,
 	getVoting,
 	getProposalVoter,
-	getSenseEntity
+	getSenseEntity,
+	getBattlepass
 };

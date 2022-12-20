@@ -30,6 +30,10 @@
     "Sense.EntityCreated",
     "Sense.PropertyUpdated",
 
+    "Battlepass.BattlepassCreated",
+    "Battlepass.BattlepassClaimed",
+    "Battlepass.BattlepassClosed",
+
     "Balances.Transfer",
     "Balances.Endowed",
     "Balances.BalanceSet",
@@ -67,6 +71,10 @@
 
     "Sense.Entities",
     "Sense.Properties",
+
+    "Battlepass.Battlepasses",
+    "Battlepass.ClaimedBattlepass",
+    "Battlepass.BattlepassStates",
 
     "System.Account",
     "Balances.Account",

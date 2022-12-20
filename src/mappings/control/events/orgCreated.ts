@@ -73,6 +73,9 @@ async function handleOrgCreatedEvent(ctx: Context, block: Block, event: Event, n
 	org.repo = metadata?.repo ?? ''
 	org.logo = metadata?.logo ?? ''
 	org.header = metadata?.header ?? ''
+	org.url = metadata?.url ?? ''
+	org.location = metadata?.location ?? ''
+	org.tags = metadata?.tags ?? []
 
 	// TODO: pottential duplicates, there is no uniqueness check implemented
 	// TODO: if the "name" was updated on IPFS, we have no callback to update the slug

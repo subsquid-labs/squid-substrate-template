@@ -128,6 +128,96 @@ export class BalancesMaxReservesConstant {
   }
 }
 
+export class BattlepassPartsLimitConstant {
+  private readonly _chain: Chain
+
+  constructor(ctx: ChainContext) {
+    this._chain = ctx._chain
+  }
+
+  /**
+   *  The maximum number of parts each resource may have
+   */
+  get isV64() {
+    return this._chain.getConstantTypeHash('Battlepass', 'PartsLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
+  }
+
+  /**
+   *  The maximum number of parts each resource may have
+   */
+  get asV64(): number {
+    assert(this.isV64)
+    return this._chain.getConstant('Battlepass', 'PartsLimit')
+  }
+
+  /**
+   * Checks whether the constant is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this._chain.getConstantTypeHash('Battlepass', 'PartsLimit') != null
+  }
+}
+
+export class BattlepassStringLimitConstant {
+  private readonly _chain: Chain
+
+  constructor(ctx: ChainContext) {
+    this._chain = ctx._chain
+  }
+
+  /**
+   *  The maximum length of a name, cid or metadata strings stored on-chain.
+   */
+  get isV64() {
+    return this._chain.getConstantTypeHash('Battlepass', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
+  }
+
+  /**
+   *  The maximum length of a name, cid or metadata strings stored on-chain.
+   */
+  get asV64(): number {
+    assert(this.isV64)
+    return this._chain.getConstant('Battlepass', 'StringLimit')
+  }
+
+  /**
+   * Checks whether the constant is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this._chain.getConstantTypeHash('Battlepass', 'StringLimit') != null
+  }
+}
+
+export class BattlepassSymbolLimitConstant {
+  private readonly _chain: Chain
+
+  constructor(ctx: ChainContext) {
+    this._chain = ctx._chain
+  }
+
+  /**
+   *  The maximum length of a Collection symbol.
+   */
+  get isV64() {
+    return this._chain.getConstantTypeHash('Battlepass', 'SymbolLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
+  }
+
+  /**
+   *  The maximum length of a Collection symbol.
+   */
+  get asV64(): number {
+    assert(this.isV64)
+    return this._chain.getConstant('Battlepass', 'SymbolLimit')
+  }
+
+  /**
+   * Checks whether the constant is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this._chain.getConstantTypeHash('Battlepass', 'SymbolLimit') != null
+  }
+}
+
 export class BountiesBountyDepositBaseConstant {
   private readonly _chain: Chain
 

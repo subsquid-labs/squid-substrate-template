@@ -16,6 +16,9 @@ interface OrganizationMetadata {
 	repo?: string;
 	logo?: string;
 	header?: string;
+	url?: string;
+	location?: string;
+	tags?: [string];
 }
 
 interface ProposalMetadata {
