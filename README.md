@@ -31,7 +31,8 @@ Please, have a look at commands in [Makefile](Makefile) if your platform doesn't
 On Windows we recommend to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
 
 ```bash
-# 1. Install dependencies
+# 1. Update Squid SDK and install dependencies
+npm run update
 npm ci
 
 # 2. Compile typescript files
