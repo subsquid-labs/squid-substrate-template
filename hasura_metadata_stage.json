@@ -1,0 +1,818 @@
+{
+  "resource_version": 26,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "Gamedao",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "Balance",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "balanceId",
+                    "address",
+                    "free",
+                    "frozen",
+                    "reserved"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "ChainInfo",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "blockNumber"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "PG_SERVICE_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        },
+        "customization": {
+          "naming_convention": "hasura-default"
+        }
+      },
+      {
+        "name": "Squid",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "name": "campaign",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "campaign_metadata",
+                "using": {
+                  "foreign_key_constraint_on": "metadata_id"
+                }
+              },
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "admin_identity_id"
+                }
+              },
+              {
+                "name": "identityByCreatorIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": "creator_identity_id"
+                }
+              },
+              {
+                "name": "organization",
+                "using": {
+                  "foreign_key_constraint_on": "organization_id"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "campaign_contributors",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "campaign_id",
+                    "table": {
+                      "name": "campaign_contributor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposals",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "campaign_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "creator",
+                    "admin",
+                    "target",
+                    "deposit",
+                    "start",
+                    "expiry",
+                    "protocol",
+                    "governance",
+                    "token_symbol",
+                    "token_name",
+                    "state",
+                    "created_at_block",
+                    "organization_id",
+                    "creator_identity_id",
+                    "admin_identity_id",
+                    "metadata_id"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "campaign_contributor",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "campaign",
+                "using": {
+                  "foreign_key_constraint_on": "campaign_id"
+                }
+              },
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "identity_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "campaign_id",
+                    "id",
+                    "identity_id",
+                    "contributed",
+                    "address"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "campaign_metadata",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "campaigns",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "metadata_id",
+                    "table": {
+                      "name": "campaign",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "description",
+                    "email",
+                    "header",
+                    "logo",
+                    "markdown",
+                    "name",
+                    "title"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "identity",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "campaign_contributors",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "identity_id",
+                    "table": {
+                      "name": "campaign_contributor",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "campaigns",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "admin_identity_id",
+                    "table": {
+                      "name": "campaign",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "campaignsByCreatorIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "creator_identity_id",
+                    "table": {
+                      "name": "campaign",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "organization_members",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "identity_id",
+                    "table": {
+                      "name": "organization_member",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "organizations",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "prime_identity_id",
+                    "table": {
+                      "name": "organization",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "organizationsByCreatorIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "creator_identity_id",
+                    "table": {
+                      "name": "organization",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "organizationsByTreasuryIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "treasury_identity_id",
+                    "table": {
+                      "name": "organization",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposal_voters",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "identity_id",
+                    "table": {
+                      "name": "proposal_voter",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposals",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "creator_identity_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposalsByBeneficiaryIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "beneficiary_identity_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "address",
+                    "display_name",
+                    "legal_name",
+                    "email",
+                    "riot",
+                    "image",
+                    "twitter",
+                    "web",
+                    "web3name",
+                    "discord"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "migrations",
+              "schema": "public"
+            }
+          },
+          {
+            "table": {
+              "name": "organization",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "prime_identity_id"
+                }
+              },
+              {
+                "name": "identityByCreatorIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": "creator_identity_id"
+                }
+              },
+              {
+                "name": "identityByTreasuryIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": "treasury_identity_id"
+                }
+              },
+              {
+                "name": "organization_metadata",
+                "using": {
+                  "foreign_key_constraint_on": "metadata_id"
+                }
+              }
+            ],
+            "array_relationships": [
+              {
+                "name": "campaigns",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "organization_id",
+                    "table": {
+                      "name": "campaign",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "organization_members",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "organization_id",
+                    "table": {
+                      "name": "organization_member",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposals",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "organization_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "creator_identity_id",
+                    "id",
+                    "metadata_id",
+                    "prime_identity_id",
+                    "treasury_identity_id",
+                    "created_at_block",
+                    "member_limit",
+                    "updated_at_block",
+                    "deposit",
+                    "membership_fee",
+                    "access_model",
+                    "creator",
+                    "fee_model",
+                    "gov_currency",
+                    "pay_currency",
+                    "prime",
+                    "state",
+                    "treasury",
+                    "type"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "organization_member",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "identity_id"
+                }
+              },
+              {
+                "name": "organization",
+                "using": {
+                  "foreign_key_constraint_on": "organization_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "identity_id",
+                    "organization_id",
+                    "address"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "organization_metadata",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "organizations",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "metadata_id",
+                    "table": {
+                      "name": "organization",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "description",
+                    "email",
+                    "header",
+                    "logo",
+                    "name",
+                    "repo",
+                    "website"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "proposal",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "campaign",
+                "using": {
+                  "foreign_key_constraint_on": "campaign_id"
+                }
+              },
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "creator_identity_id"
+                }
+              },
+              {
+                "name": "identityByBeneficiaryIdentityId",
+                "using": {
+                  "foreign_key_constraint_on": "beneficiary_identity_id"
+                }
+              },
+              {
+                "name": "organization",
+                "using": {
+                  "foreign_key_constraint_on": "organization_id"
+                }
+              },
+              {
+                "name": "proposal_metadata",
+                "using": {
+                  "foreign_key_constraint_on": "metadata_id"
+                }
+              },
+              {
+                "name": "voting",
+                "using": {
+                  "foreign_key_constraint_on": "voting_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "creator",
+                    "type",
+                    "deposit",
+                    "state",
+                    "start",
+                    "expiry",
+                    "created_at_block",
+                    "amount",
+                    "currency_id",
+                    "beneficiary",
+                    "slashing_rule",
+                    "creator_identity_id",
+                    "organization_id",
+                    "campaign_id",
+                    "voting_id",
+                    "beneficiary_identity_id",
+                    "metadata_id"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "proposal_metadata",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "proposals",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "metadata_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "description",
+                    "name"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "proposal_voter",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "identity_id"
+                }
+              },
+              {
+                "name": "voting",
+                "using": {
+                  "foreign_key_constraint_on": "voting_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "voted",
+                    "id",
+                    "identity_id",
+                    "voting_id",
+                    "amount",
+                    "power",
+                    "address"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "typeorm_metadata",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "database",
+                    "name",
+                    "schema",
+                    "table",
+                    "type",
+                    "value"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "voting",
+              "schema": "public"
+            },
+            "array_relationships": [
+              {
+                "name": "proposal_voters",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "voting_id",
+                    "table": {
+                      "name": "proposal_voter",
+                      "schema": "public"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "proposals",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "voting_id",
+                    "table": {
+                      "name": "proposal",
+                      "schema": "public"
+                    }
+                  }
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "no",
+                    "yes",
+                    "majority",
+                    "quorum",
+                    "scale",
+                    "unit"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "database_url": {
+              "from_env": "PG_DATABASE_URL"
+            },
+            "isolation_level": "read-committed",
+            "use_prepared_statements": false
+          }
+        },
+        "customization": {
+          "naming_convention": "hasura-default"
+        }
+      }
+    ],
+    "remote_schemas": [
+      {
+        "name": "GameDao",
+        "definition": {
+          "url": "http://graph-gamedao:4000/graphql",
+          "timeout_seconds": 60,
+          "customization": {},
+          "forward_client_headers": true
+        }
+      }
+    ],
+    "custom_types": {
+      "objects": [
+        {
+          "name": "ProposalTypeWithdrawalData",
+          "fields": [
+            {
+              "name": "withdrawAmount",
+              "type": "Int!"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -41,6 +41,7 @@ async function handleBattlepassCreatedEvent(ctx: Context, block: Block, event: E
 
 	let battlepass = new Battlepass()
 	battlepass.id = bpassId
+	battlepass.collectionId = bpassData.collectionId
 	battlepass.creator = creatorIdentity
 	battlepass.org = org
 	battlepass.name = bpassData.name.toString()

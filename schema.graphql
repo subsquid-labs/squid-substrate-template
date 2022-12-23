@@ -201,6 +201,7 @@ type Battlepass @entity {
     price: BigInt!
     createdAtBlock: Int!
     updatedAtBlock: Int!
+    collectionId: Int!
 
     # Metadata:
     cid: String!
@@ -210,5 +211,4 @@ type BattlepassNft @entity {
     id: ID!
     owner: Identity!
     battlepass: Battlepass!
-    collectionId: Int!
 }

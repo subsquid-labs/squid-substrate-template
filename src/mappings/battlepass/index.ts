@@ -1,7 +1,7 @@
 import { Pallet } from '../types/pallet'
 import { handleBattlepassCreatedEvent } from './events/battlepassCreated'
 import { handleBattlepassClaimedEvent } from './events/battlepassClaimed'
-import { handleBattlepassClosedEvent } from './events/battlepassClosed'
+import { handleBattlepassEvent } from './events/battlepass'
 
 export default {
 	name: 'Battlepass',
@@ -9,6 +9,7 @@ export default {
 	eventHandlers: {
 		'BattlepassCreated': handleBattlepassCreatedEvent,
 		'BattlepassClaimed': handleBattlepassClaimedEvent,
-		'BattlepassClosed': handleBattlepassClosedEvent,
+		'BattlepassActivated': handleBattlepassEvent,
+		'BattlepassEnded': handleBattlepassEvent,
 	},
 } as Pallet

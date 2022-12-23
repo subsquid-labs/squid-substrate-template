@@ -1,6 +1,7 @@
 import assert from 'assert'
 import {Chain, ChainContext, EventContext, Event, Result, Option} from './support'
 import * as v63 from './v63'
+import * as v66 from './v66'
 
 export class BalancesBalanceSetEvent {
   private readonly _chain: Chain
@@ -265,6 +266,35 @@ export class BalancesWithdrawEvent {
   }
 }
 
+export class BattlepassBattlepassActivatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassActivated')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * BattlePass activated
+   */
+  get isV66(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassActivated') === 'ed9ce68bcc372a15c62e00f3ce751cb6e3a85f61f6b0120cdf6f66c1b12bd7f4'
+  }
+
+  /**
+   * BattlePass activated
+   */
+  get asV66(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV66)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
 export class BattlepassBattlepassClaimedEvent {
   private readonly _chain: Chain
   private readonly event: Event
@@ -281,44 +311,15 @@ export class BattlepassBattlepassClaimedEvent {
   /**
    * BattlePass claimed
    */
-  get isV64(): boolean {
-    return this._chain.getEventHash('Battlepass.BattlepassClaimed') === '759c5be711b6d0bfacf0d91415067f1b929fc4ce0f51b35b40731ca145135850'
+  get isV66(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassClaimed') === '91b65ec51f0be74163e08c1db4ffd953096cb532abd4723bc59943ae482f0a5c'
   }
 
   /**
    * BattlePass claimed
    */
-  get asV64(): {claimer: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
-    assert(this.isV64)
-    return this._chain.decodeEvent(this.event)
-  }
-}
-
-export class BattlepassBattlepassClosedEvent {
-  private readonly _chain: Chain
-  private readonly event: Event
-
-  constructor(ctx: EventContext)
-  constructor(ctx: ChainContext, event: Event)
-  constructor(ctx: EventContext, event?: Event) {
-    event = event || ctx.event
-    assert(event.name === 'Battlepass.BattlepassClosed')
-    this._chain = ctx._chain
-    this.event = event
-  }
-
-  /**
-   * BattlePass closed
-   */
-  get isV64(): boolean {
-    return this._chain.getEventHash('Battlepass.BattlepassClosed') === '0fa51cd501a9f703a217300e60f07f8ed56483b99f84dca81ba6770dd290f8d3'
-  }
-
-  /**
-   * BattlePass closed
-   */
-  get asV64(): {closedBy: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
-    assert(this.isV64)
+  get asV66(): {byWho: Uint8Array, forWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array, nftId: number} {
+    assert(this.isV66)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -339,15 +340,44 @@ export class BattlepassBattlepassCreatedEvent {
   /**
    * New BattlePass created
    */
-  get isV64(): boolean {
+  get isV66(): boolean {
     return this._chain.getEventHash('Battlepass.BattlepassCreated') === '545dafcb8ce124c08cb42a6300e91ef56347c87c5f7645f2ab6024315c5c4494'
   }
 
   /**
    * New BattlePass created
    */
-  get asV64(): {orgId: Uint8Array, battlepassId: Uint8Array, season: number} {
-    assert(this.isV64)
+  get asV66(): {orgId: Uint8Array, battlepassId: Uint8Array, season: number} {
+    assert(this.isV66)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class BattlepassBattlepassEndedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassEnded')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * BattlePass ended
+   */
+  get isV66(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassEnded') === 'ed9ce68bcc372a15c62e00f3ce751cb6e3a85f61f6b0120cdf6f66c1b12bd7f4'
+  }
+
+  /**
+   * BattlePass ended
+   */
+  get asV66(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV66)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -429,6 +459,35 @@ export class ControlMemberRemovedEvent {
    */
   get asV63(): {orgId: Uint8Array, who: Uint8Array, blockNumber: number} {
     assert(this.isV63)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class ControlMemberUpdatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Control.MemberUpdated')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * A member state has been updated
+   */
+  get isV66(): boolean {
+    return this._chain.getEventHash('Control.MemberUpdated') === '6069a7b283e802eb4c0771681dd9a8b3b907bb28dc8cc80b636d8717f0238e8b'
+  }
+
+  /**
+   * A member state has been updated
+   */
+  get asV66(): {orgId: Uint8Array, who: Uint8Array, state: v66.MemberState, blockNumber: number} {
+    assert(this.isV66)
     return this._chain.decodeEvent(this.event)
   }
 }

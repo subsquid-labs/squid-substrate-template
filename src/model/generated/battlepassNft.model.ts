@@ -18,7 +18,4 @@ export class BattlepassNft {
   @Index_()
   @ManyToOne_(() => Battlepass, {nullable: true})
   battlepass!: Battlepass
-
-  @Column_("int4", {nullable: false})
-  collectionId!: number
 }

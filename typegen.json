@@ -9,6 +9,7 @@
     "Control.OrgDisabled",
     "Control.OrgUpdated",
     "Control.MemberAdded",
+    "Control.MemberUpdated",
     "Control.MemberRemoved",
     "Control.FundsSpended",
 
@@ -32,7 +33,8 @@
 
     "Battlepass.BattlepassCreated",
     "Battlepass.BattlepassClaimed",
-    "Battlepass.BattlepassClosed",
+    "Battlepass.BattlepassActivated",
+    "Battlepass.BattlepassEnded",
 
     "Balances.Transfer",
     "Balances.Endowed",
@@ -73,7 +75,6 @@
     "Sense.Properties",
 
     "Battlepass.Battlepasses",
-    "Battlepass.ClaimedBattlepass",
     "Battlepass.BattlepassStates",
 
     "System.Account",

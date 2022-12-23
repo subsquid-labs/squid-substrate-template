@@ -38,6 +38,9 @@ export class Battlepass {
   @Column_("int4", {nullable: false})
   updatedAtBlock!: number
 
+  @Column_("int4", {nullable: false})
+  collectionId!: number
+
   @Column_("text", {nullable: false})
   cid!: string
 }

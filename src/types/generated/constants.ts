@@ -138,15 +138,15 @@ export class BattlepassPartsLimitConstant {
   /**
    *  The maximum number of parts each resource may have
    */
-  get isV64() {
+  get isV66() {
     return this._chain.getConstantTypeHash('Battlepass', 'PartsLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of parts each resource may have
    */
-  get asV64(): number {
-    assert(this.isV64)
+  get asV66(): number {
+    assert(this.isV66)
     return this._chain.getConstant('Battlepass', 'PartsLimit')
   }
 
@@ -168,15 +168,15 @@ export class BattlepassStringLimitConstant {
   /**
    *  The maximum length of a name, cid or metadata strings stored on-chain.
    */
-  get isV64() {
+  get isV66() {
     return this._chain.getConstantTypeHash('Battlepass', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name, cid or metadata strings stored on-chain.
    */
-  get asV64(): number {
-    assert(this.isV64)
+  get asV66(): number {
+    assert(this.isV66)
     return this._chain.getConstant('Battlepass', 'StringLimit')
   }
 
@@ -198,15 +198,15 @@ export class BattlepassSymbolLimitConstant {
   /**
    *  The maximum length of a Collection symbol.
    */
-  get isV64() {
+  get isV66() {
     return this._chain.getConstantTypeHash('Battlepass', 'SymbolLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a Collection symbol.
    */
-  get asV64(): number {
-    assert(this.isV64)
+  get asV66(): number {
+    assert(this.isV66)
     return this._chain.getConstant('Battlepass', 'SymbolLimit')
   }
 

@@ -1,8 +1,10 @@
-import { Pallet } from '../types/pallet';
-import { handleMemberAddedEvent } from './events/memberAdded';
-import { handleOrgCreatedEvent } from './events/orgCreated';
-import { handleMemberRemovedEvent } from './events/memberRemoved';
-import { handleOrgUpdatedEvent } from './events/orgUpdated';
+import { Pallet } from '../types/pallet'
+import { handleMemberAddedEvent } from './events/memberAdded'
+import { handleOrgCreatedEvent } from './events/orgCreated'
+import { handleMemberRemovedEvent } from './events/memberRemoved'
+import { handleMemberUpdatedEvent } from './events/memberUpdated'
+import { handleOrgUpdatedEvent } from './events/orgUpdated'
+
 
 export default {
 	name: 'Control',
@@ -12,5 +14,6 @@ export default {
 		'OrgUpdated': handleOrgUpdatedEvent,
 		'MemberAdded': handleMemberAddedEvent,
 		'MemberRemoved': handleMemberRemovedEvent,
+		'MemberUpdated': handleMemberUpdatedEvent,
 	},
 } as Pallet

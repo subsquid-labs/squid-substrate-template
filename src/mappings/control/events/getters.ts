@@ -1,9 +1,10 @@
-import { OrgType, AccessModel, FeeModel} from '../../../types/generated/v63'
+import { OrgType, AccessModel, FeeModel, MemberState} from '../../../types/generated/v63'
 import { Event } from '../../../types/generated/support'
 import { Context } from '../../../processor'
 import {
     ControlMemberAddedEvent,
     ControlMemberRemovedEvent,
+    ControlMemberUpdatedEvent,
     ControlOrgCreatedEvent,
     ControlOrgUpdatedEvent
 
@@ -51,6 +52,16 @@ export function getMemberRemovedData(ctx: Context, ev: Event): MemberUpdatedData
     if (event.isV63) {
         const { orgId, who, blockNumber } = event.asV63
         return { orgId, who, blockNumber }
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getMemberUpdatedData(ctx: Context, ev: Event): [Uint8Array, Uint8Array, MemberState] {
+    const event = new ControlMemberUpdatedEvent(ctx, ev)
+    if (event.isV66) {
+        const { orgId, who, state, blockNumber } = event.asV66
+        return [who, orgId, state]
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
