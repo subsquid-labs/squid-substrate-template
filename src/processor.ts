@@ -8,7 +8,6 @@ import { Store, TypeormDatabase } from "@subsquid/typeorm-store"
 import { eventHandlers, callHandlers } from './mappings'
 import config from './config'
 import { saveCurrentChainState, saveRegularChainState, getLastChainState } from './chainState'
-import { ChainState } from './model'
 import { processBalancesEventItem, saveBalancesAccounts } from './balances'
 import { processTokensEventItem, saveTokensAccounts } from './tokens'
 import { CurrencyId } from "./types/generated/v63"
@@ -35,6 +34,7 @@ const processor = new SubstrateBatchProcessor()
     .addEvent('Tokens.Deposited', { data: { event: { args: true } }} as const)
     .addEvent('Tokens.Withdrawn', { data: { event: { args: true } }} as const)
     .addEvent('Tokens.Slashed', { data: { event: { args: true } }} as const)
+    .includeAllBlocks()
 
 for (const eventName in eventHandlers) {
     processor.addEvent(eventName, {data: { event: { args: true } }} as const)
@@ -42,9 +42,6 @@ for (const eventName in eventHandlers) {
 for (const callName in callHandlers) {
     processor.addCall(callName, {data: { call: { origin: true } }} as const)
 }
-processor
-
-processor.includeAllBlocks()
 
 export type Item = BatchProcessorItem<typeof processor>
 export type Context = BatchContext<Store, Item>

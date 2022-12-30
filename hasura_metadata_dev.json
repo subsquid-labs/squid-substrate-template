@@ -380,13 +380,69 @@
             "table": {
               "name": "historical_balance",
               "schema": "public"
-            }
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "block",
+                    "address",
+                    "currency_id",
+                    "free",
+                    "reserved",
+                    "total"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
           },
           {
             "table": {
               "name": "chain_state",
               "schema": "public"
-            }
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "token_balance",
+                    "token_holders",
+                    "timestamp",
+                    "block_number"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "current_chain_state",
+              "schema": "public"
+            },
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "token_balance",
+                    "token_holders",
+                    "timestamp",
+                    "block_number"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
           },
           {
             "table": {
@@ -401,9 +457,28 @@
                 }
               },
               {
-                "name": "identity",
+                "name": "creator",
                 "using": {
                   "foreign_key_constraint_on": "creator_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "name",
+                    "state",
+                    "season",
+                    "price",
+                    "created_at_block",
+                    "updated_at_block",
+                    "cid"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
                 }
               }
             ]
@@ -421,9 +496,27 @@
                 }
               },
               {
-                "name": "identity",
+                "name": "owner",
                 "using": {
                   "foreign_key_constraint_on": "owner_id"
+                }
+              },
+              {
+                "name": "nft",
+                "using": {
+                  "foreign_key_constraint_on": "nft_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
                 }
               }
             ]
@@ -432,7 +525,61 @@
             "table": {
               "name": "sense_entity",
               "schema": "public"
-            }
+            },
+            "object_relationships": [
+              {
+                "name": "identity",
+                "using": {
+                  "foreign_key_constraint_on": "identity_id"
+                }
+              }
+            ],
+            "select_permissions": [
+              {
+                "role": "public",
+                "permission": {
+                  "columns": [
+                    "id",
+                    "experience",
+                    "trust",
+                    "reputation",
+                    "created_at_block",
+                    "updated_at_block",
+                    "cid"
+                  ],
+                  "filter": {},
+                  "allow_aggregations": true
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "nft",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "nft_collection",
+                "using": {
+                  "foreign_key_constraint_on": "collection_id"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "name": "nft_collection",
+              "schema": "public"
+            },
+            "object_relationships": [
+              {
+                "name": "issuer",
+                "using": {
+                  "foreign_key_constraint_on": "issuer_id"
+                }
+              }
+            ]
           },
           {
             "table": {
@@ -441,19 +588,19 @@
             },
             "object_relationships": [
               {
-                "name": "identity",
+                "name": "prime_identity",
                 "using": {
                   "foreign_key_constraint_on": "prime_identity_id"
                 }
               },
               {
-                "name": "identityByCreatorIdentityId",
+                "name": "creator_identity",
                 "using": {
                   "foreign_key_constraint_on": "creator_identity_id"
                 }
               },
               {
-                "name": "identityByTreasuryIdentityId",
+                "name": "treasury_identity",
                 "using": {
                   "foreign_key_constraint_on": "treasury_identity_id"
                 }
@@ -587,13 +734,13 @@
                 }
               },
               {
-                "name": "identity",
+                "name": "creator_identity",
                 "using": {
                   "foreign_key_constraint_on": "creator_identity_id"
                 }
               },
               {
-                "name": "identityByBeneficiaryIdentityId",
+                "name": "beneficiary_identity",
                 "using": {
                   "foreign_key_constraint_on": "beneficiary_identity_id"
                 }

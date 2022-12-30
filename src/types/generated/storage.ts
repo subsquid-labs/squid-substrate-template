@@ -474,6 +474,96 @@ export class FlowCampaignStatesStorage {
   }
 }
 
+export class RmrkCoreCollectionsStorage {
+  private readonly _chain: Chain
+  private readonly blockHash: string
+
+  constructor(ctx: BlockContext)
+  constructor(ctx: ChainContext, block: Block)
+  constructor(ctx: BlockContext, block?: Block) {
+    block = block || ctx.block
+    this.blockHash = block.hash
+    this._chain = ctx._chain
+  }
+
+  /**
+   *  Stores collections info
+   */
+  get isV63() {
+    return this._chain.getStorageItemTypeHash('RmrkCore', 'Collections') === '98c6c8f08737d9b9c0da685e5452629a5e7e8822a0201d5cb81dcbc510781df8'
+  }
+
+  /**
+   *  Stores collections info
+   */
+  async getAsV63(key: number): Promise<v63.CollectionInfo | undefined> {
+    assert(this.isV63)
+    return this._chain.getStorage(this.blockHash, 'RmrkCore', 'Collections', key)
+  }
+
+  async getManyAsV63(keys: number[]): Promise<(v63.CollectionInfo | undefined)[]> {
+    assert(this.isV63)
+    return this._chain.queryStorage(this.blockHash, 'RmrkCore', 'Collections', keys.map(k => [k]))
+  }
+
+  async getAllAsV63(): Promise<(v63.CollectionInfo)[]> {
+    assert(this.isV63)
+    return this._chain.queryStorage(this.blockHash, 'RmrkCore', 'Collections')
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this._chain.getStorageItemTypeHash('RmrkCore', 'Collections') != null
+  }
+}
+
+export class RmrkCoreNftsStorage {
+  private readonly _chain: Chain
+  private readonly blockHash: string
+
+  constructor(ctx: BlockContext)
+  constructor(ctx: ChainContext, block: Block)
+  constructor(ctx: BlockContext, block?: Block) {
+    block = block || ctx.block
+    this.blockHash = block.hash
+    this._chain = ctx._chain
+  }
+
+  /**
+   *  Stores nft info
+   */
+  get isV63() {
+    return this._chain.getStorageItemTypeHash('RmrkCore', 'Nfts') === 'c4e2913806eff6ade6678e07769efe8eb3f22dc1cd3e777f88549d12683c590d'
+  }
+
+  /**
+   *  Stores nft info
+   */
+  async getAsV63(key1: number, key2: number): Promise<v63.NftInfo | undefined> {
+    assert(this.isV63)
+    return this._chain.getStorage(this.blockHash, 'RmrkCore', 'Nfts', key1, key2)
+  }
+
+  async getManyAsV63(keys: [number, number][]): Promise<(v63.NftInfo | undefined)[]> {
+    assert(this.isV63)
+    return this._chain.queryStorage(this.blockHash, 'RmrkCore', 'Nfts', keys)
+  }
+
+  async getAllAsV63(): Promise<(v63.NftInfo)[]> {
+    assert(this.isV63)
+    return this._chain.queryStorage(this.blockHash, 'RmrkCore', 'Nfts')
+  }
+
+  /**
+   * Checks whether the storage item is defined for the current chain version.
+   */
+  get isExists(): boolean {
+    return this._chain.getStorageItemTypeHash('RmrkCore', 'Nfts') != null
+  }
+}
+
 export class SenseEntitiesStorage {
   private readonly _chain: Chain
   private readonly blockHash: string

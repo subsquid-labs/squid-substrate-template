@@ -36,6 +36,9 @@
     "Battlepass.BattlepassActivated",
     "Battlepass.BattlepassEnded",
 
+    "RmrkCore.CollectionCreated",
+    "RmrkCore.NftMinted",
+
     "Balances.Transfer",
     "Balances.Endowed",
     "Balances.BalanceSet",
@@ -76,6 +79,9 @@
 
     "Battlepass.Battlepasses",
     "Battlepass.BattlepassStates",
+
+    "RmrkCore.Nfts",
+    "RmrkCore.Collections",
 
     "System.Account",
     "Balances.Account",

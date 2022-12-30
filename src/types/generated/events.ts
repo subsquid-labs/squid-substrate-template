@@ -770,6 +770,52 @@ export class IdentityIdentityClearedEvent {
   }
 }
 
+export class RmrkCoreCollectionCreatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'RmrkCore.CollectionCreated')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  get isV63(): boolean {
+    return this._chain.getEventHash('RmrkCore.CollectionCreated') === 'dc958f691410878b0d793639bd3f9fb3a8ce970a28347e92a46206ced4d8a51e'
+  }
+
+  get asV63(): {issuer: Uint8Array, collectionId: number} {
+    assert(this.isV63)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class RmrkCoreNftMintedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'RmrkCore.NftMinted')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  get isV63(): boolean {
+    return this._chain.getEventHash('RmrkCore.NftMinted') === '32be929f2001709c6bcec6083e9bd994b08d551dfcc516fd7efe7d2e2c858a63'
+  }
+
+  get asV63(): {owner: v63.AccountIdOrCollectionNftTuple, collectionId: number, nftId: number} {
+    assert(this.isV63)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
 export class SenseEntityCreatedEvent {
   private readonly _chain: Chain
   private readonly event: Event

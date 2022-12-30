@@ -14,7 +14,6 @@ export interface ProcessorConfig {
     prefix: number
     ipfsGateway: string
     dataSource: Parameters<SubstrateProcessor<any>['setDataSource']>[HandlerParams.NAME]
-    // typesBundle: Parameters<SubstrateProcessor<any>['setTypesBundle']>[HandlerParams.NAME]
     port?: Parameters<SubstrateProcessor<any>['setPrometheusPort']>[HandlerParams.NAME]
     blockRange?: Parameters<SubstrateProcessor<any>['setBlockRange']>[HandlerParams.NAME]
 }

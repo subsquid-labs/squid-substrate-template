@@ -68,6 +68,18 @@ export interface FeeModel_Transfer {
   __kind: 'Transfer'
 }
 
+export type AccountIdOrCollectionNftTuple = AccountIdOrCollectionNftTuple_AccountId | AccountIdOrCollectionNftTuple_CollectionAndNftTuple
+
+export interface AccountIdOrCollectionNftTuple_AccountId {
+  __kind: 'AccountId'
+  value: Uint8Array
+}
+
+export interface AccountIdOrCollectionNftTuple_CollectionAndNftTuple {
+  __kind: 'CollectionAndNftTuple'
+  value: [number, number]
+}
+
 export type PropertyType = PropertyType_Experience | PropertyType_Trust | PropertyType_Reputation
 
 export interface PropertyType_Experience {
@@ -200,6 +212,23 @@ export interface CampaignState_Failed {
 
 export interface CampaignState_Locked {
   __kind: 'Locked'
+}
+
+export interface CollectionInfo {
+  issuer: Uint8Array
+  metadata: Uint8Array
+  max: (number | undefined)
+  symbol: Uint8Array
+  nftsCount: number
+}
+
+export interface NftInfo {
+  owner: AccountIdOrCollectionNftTuple
+  royalty: (RoyaltyInfo | undefined)
+  metadata: Uint8Array
+  equipped: boolean
+  pending: boolean
+  transferable: boolean
 }
 
 export interface Entity {
@@ -564,6 +593,11 @@ export interface FlowGovernance_No {
 
 export interface FlowGovernance_Yes {
   __kind: 'Yes'
+}
+
+export interface RoyaltyInfo {
+  recipient: Uint8Array
+  amount: number
 }
 
 export type ProposalType = ProposalType_General | ProposalType_Withdrawal | ProposalType_Spending

@@ -18,7 +18,7 @@ import { getCurrencyValue } from './common/tools'
 import { Context } from './processor'
 import { HistoricalBalance, AccountBalance } from './model'
 import { encodeId } from './common/tools'
-import { upsertIdentity } from './mappings/util/db/identity'
+import { upsertIdentity } from './common/db/identity'
 
 
 export async function saveTokensAccounts(ctx: Context, block: SubstrateBlock, accountIdTokens: Record<string, Set<CurrencyId>>) {
