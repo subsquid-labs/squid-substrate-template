@@ -473,6 +473,8 @@
                     "state",
                     "season",
                     "price",
+                    "active_from_block",
+                    "active_to_block",
                     "created_at_block",
                     "updated_at_block",
                     "cid"

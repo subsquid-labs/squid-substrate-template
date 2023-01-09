@@ -35,6 +35,11 @@ async function handleBattlepassEvent(ctx: Context, block: Block, event: Event, n
     }
 
     battlepass.state = state.__kind
+    if (name.endsWith('BattlepassActivated')) {
+        battlepass.activeFromBlock = block.header.height
+    } else if (name.endsWith('BattlepassEnded')) {
+        battlepass.activeToBlock = block.header.height
+    }
 
     await ctx.store.save(battlepass)
 }

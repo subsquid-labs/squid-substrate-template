@@ -199,6 +199,8 @@ type Battlepass @entity {
     state: String!
     season: String!
     price: BigInt!
+    activeFromBlock: Int
+    activeToBlock: Int
     createdAtBlock: Int!
     updatedAtBlock: Int!
 
