@@ -32,6 +32,12 @@ export class Battlepass {
   @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
   price!: bigint
 
+  @Column_("int4", {nullable: true})
+  activeFromBlock!: number | undefined | null
+
+  @Column_("int4", {nullable: true})
+  activeToBlock!: number | undefined | null
+
   @Column_("int4", {nullable: false})
   createdAtBlock!: number
 
