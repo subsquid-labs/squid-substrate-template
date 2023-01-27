@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:14  # CockroachDB cluster might be a better fit for production deployment
+    image: postgres:15  # CockroachDB cluster might be a better fit for production deployment
     restart: always
     volumes:
       - /var/lib/postgresql/data
