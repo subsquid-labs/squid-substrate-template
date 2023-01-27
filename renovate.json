@@ -5,9 +5,20 @@
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^@subsquid/"],
       "groupName": "@subsquid",
-      "automerge": true
+      "matchPackagePatterns": [
+        "^@subsquid/"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ]
     }
-  ]
+  ],
+  "automerge": true,
+  "automergeType": "pr",
+  "automergeStrategy": "squash",
+  "ignoreTests": true
 }
