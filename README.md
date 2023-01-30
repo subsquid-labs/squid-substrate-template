@@ -36,13 +36,13 @@ npm run update
 npm ci
 
 # 2. Compile typescript files
-make build
+sqd build
 
 # 3. Start target Postgres database and detach
-make up
+sqd up
 
 # 4. Start the processor
-make process
+sqd process
 
 # 5. The command above will block the terminal
 #    being busy with fetching the chain data, 
@@ -50,7 +50,7 @@ make process
 #
 #    To start the graphql server open the separate terminal
 #    and run
-make serve
+sqd serve
 ```
 
 ## Migrate to FireSquid
