@@ -23,14 +23,15 @@ async function handleNftMintedEvent(ctx: Context, block: Block, event: Event, na
         ctx.log.warn(StorageNotExistsWarn(name, 'Nft', collectionId.toString() + ' - ' + nftId.toString()))
         return
     }
+    let [metadata, pending, transferable] = nftData
 
     let nft = new Nft()
     nft.id = nftId.toString()
     nft.owner = getNftOwnerValue(owner)
-    nft.metadata = nftData.metadata.toString()
-    nft.equipped = nftData.equipped
-    nft.pending = nftData.pending
-    nft.transferable = nftData.transferable
+    nft.metadata = metadata.toString()
+    // nft.equipped = nftData.equipped
+    nft.pending = pending
+    nft.transferable = transferable
     nft.collection = collection
 
     await ctx.store.save(nft)

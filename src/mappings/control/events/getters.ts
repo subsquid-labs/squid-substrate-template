@@ -1,4 +1,4 @@
-import { OrgType, AccessModel, FeeModel, MemberState} from '../../../types/generated/v63'
+import { OrgType, AccessModel, FeeModel, MemberState} from '../../../types/generated/v68'
 import { Event } from '../../../types/generated/support'
 import { Context } from '../../../processor'
 import {
@@ -39,8 +39,8 @@ interface OrgUpdatedData {
 
 export function getMemberAddedData(ctx: Context, ev: Event): MemberUpdatedData {
     const event = new ControlMemberAddedEvent(ctx, ev)
-    if (event.isV63) {
-        const { orgId, who, blockNumber } = event.asV63
+    if (event.isV68) {
+        const { orgId, who, blockNumber } = event.asV68
         return { orgId, who, blockNumber }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -49,8 +49,8 @@ export function getMemberAddedData(ctx: Context, ev: Event): MemberUpdatedData {
 
 export function getMemberRemovedData(ctx: Context, ev: Event): MemberUpdatedData {
     const event = new ControlMemberRemovedEvent(ctx, ev)
-    if (event.isV63) {
-        const { orgId, who, blockNumber } = event.asV63
+    if (event.isV68) {
+        const { orgId, who, blockNumber } = event.asV68
         return { orgId, who, blockNumber }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -59,8 +59,8 @@ export function getMemberRemovedData(ctx: Context, ev: Event): MemberUpdatedData
 
 export function getMemberUpdatedData(ctx: Context, ev: Event): [Uint8Array, Uint8Array, MemberState] {
     const event = new ControlMemberUpdatedEvent(ctx, ev)
-    if (event.isV66) {
-        const { orgId, who, state, blockNumber } = event.asV66
+    if (event.isV68) {
+        const { orgId, who, state, blockNumber } = event.asV68
         return [who, orgId, state]
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -69,8 +69,8 @@ export function getMemberUpdatedData(ctx: Context, ev: Event): [Uint8Array, Uint
 
 export function getOrgCreatedData(ctx: Context, ev: Event): OrgCreatedData {
     const event = new ControlOrgCreatedEvent(ctx, ev)
-    if (event.isV63) {
-        const { orgId, creator, treasuryId, createdAt, realmIndex } = event.asV63
+    if (event.isV68) {
+        const { orgId, creator, treasuryId, createdAt, realmIndex } = event.asV68
         return { orgId, creator, treasuryId, createdAt, realmIndex }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -79,11 +79,11 @@ export function getOrgCreatedData(ctx: Context, ev: Event): OrgCreatedData {
 
 export function getOrgUpdatedData(ctx: Context, ev: Event): OrgUpdatedData {
     const event = new ControlOrgUpdatedEvent(ctx, ev)
-    if (event.isV63) {
+    if (event.isV68) {
         const {
             orgId, primeId, orgType, accessModel, memberLimit,
             feeModel, membershipFee, blockNumber
-        } = event.asV63
+        } = event.asV68
         return {
             orgId, primeId, orgType, accessModel,
             memberLimit, feeModel, membershipFee, blockNumber

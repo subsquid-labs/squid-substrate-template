@@ -10,7 +10,7 @@ import config from './config'
 import { saveCurrentChainState, saveRegularChainState, getLastChainState } from './chainState'
 import { processBalancesEventItem, saveBalancesAccounts } from './balances'
 import { processTokensEventItem, saveTokensAccounts } from './tokens'
-import { CurrencyId } from "./types/generated/v63"
+import { CurrencyId } from "./types/generated/v68"
 
 
 const processor = new SubstrateBatchProcessor()

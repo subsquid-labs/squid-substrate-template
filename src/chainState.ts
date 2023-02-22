@@ -43,8 +43,8 @@ async function getTotalIssuance(ctx: ChainContext, block: Block) {
     const storage = new BalancesTotalIssuanceStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV63) {
-        return await storage.getAsV63()
+    if (storage.isV68) {
+        return await storage.getAsV68()
     }
 
     throw new UnknownVersionError(storage.constructor.name)

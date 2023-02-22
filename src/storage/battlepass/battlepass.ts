@@ -5,14 +5,14 @@ import {
 } from '../../types/generated/storage'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
-import { Battlepass, BattlepassState } from '../../types/generated/v66'
+import { Battlepass, BattlepassState } from '../../types/generated/v68'
 
 export async function getBattlepassStorageData(ctx: Context, block: Block, id: Uint8Array): Promise<Battlepass | undefined> {
     const storage = new BattlepassBattlepassesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV66) {
-        return await storage.getAsV66(id)
+    if (storage.isV68) {
+        return await storage.getAsV68(id)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -22,8 +22,8 @@ export async function getBattlepassStateStorageData(ctx: Context, block: Block, 
     const storage = new BattlepassBattlepassStatesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV66) {
-        return await storage.getAsV66(id)
+    if (storage.isV68) {
+        return await storage.getAsV68(id)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
