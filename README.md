@@ -26,9 +26,8 @@ It accumulates [kusama](https://kusama.network) account transfers and serves the
 
 ## Quickly running the sample
 
-Example commands below use [make(1)](https://www.gnu.org/software/make/).
-Please, have a look at commands in [Makefile](Makefile) if your platform doesn't support it.
-On Windows we recommend to use [WSL](https://docs.microsoft.com/en-us/windows/wsl/).
+Example commands below use [sqd](/squid-cli).
+Please install it before proceeding.
 
 ```bash
 # 1. Update Squid SDK and install dependencies
@@ -53,13 +52,9 @@ sqd process
 sqd serve
 ```
 
-## Migrate to FireSquid
-
-To migrate old (v5) Squids to FireSquid, follow the [Migration Guide](https://docs.subsquid.io/migrate/migrate-to-fire-squid)
-
 ## Public archives for Parachains
 
-Subsquid provides archive data sources for most parachains, with API playgrounds available on the [Aquarium Archive](https://app.subsquid.io/aquarium/archives) page.
+Subsquid provides archive data sources for most parachains, with API playgrounds available at `https://graphql-console.subsquid.io/?graphql_api=<archive_endpoint_url>`.
 
 The list of public archive data source endpoints is also maintained in the `@subsquid/archive-registry` npm package for programmatic access. Use `lookupArchive(<network name>, <lookup filters>)` to look up the archive endpoint by the network name, e.g.
 
@@ -116,7 +111,7 @@ Additionally, an explorer GraphQL API and a playground will be started at `http:
 
 Start development by defining the schema of the target database via `schema.graphql`.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/docs/develop-a-squid/define-a-squid-schema).
+Full description of `schema.graphql` dialect is available [here](https://docs.subsquid.io/schema-file).
 
 ### 2. Generate TypeORM classes
 
@@ -307,4 +302,4 @@ For instance, account data is passed to the handler context as a plain byte arra
 
 It is possible to extend `squid-graphql-server(1)` with custom
 [type-graphql](https://typegraphql.com) resolvers and to add request validation.
-For more details, consult [Docs](https://docs.subsquid.io/reference/api-extensions)
+For more details, consult [docs](https://docs.subsquid.io/graphql-api/custom-resolvers)
