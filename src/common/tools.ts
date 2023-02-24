@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as ss58 from '@subsquid/ss58'
-import { AccountIdOrCollectionNftTuple, CurrencyId } from '../types/generated/v63'
+import { AccountIdOrCollectionNftTuple, CurrencyId } from '../types/generated/v68'
 import { decodeHex } from '@subsquid/util-internal-hex'
 import config from '../config'
 

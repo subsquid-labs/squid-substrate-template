@@ -1,6 +1,6 @@
 import assert from 'assert'
 import {Chain, ChainContext, CallContext, Call, Result, Option} from './support'
-import * as v63 from './v63'
+import * as v68 from './v68'
 
 export class IdentitySetIdentityCall {
   private readonly _chain: Chain
@@ -36,7 +36,7 @@ export class IdentitySetIdentityCall {
    * - One event.
    * # </weight>
    */
-  get isV63(): boolean {
+  get isV68(): boolean {
     return this._chain.getCallHash('Identity.set_identity') === 'ab457704fd8cda5fee32e84ab7782778f4117cd54400c364cf7597eee5bc60ca'
   }
 
@@ -61,8 +61,8 @@ export class IdentitySetIdentityCall {
    * - One event.
    * # </weight>
    */
-  get asV63(): {info: v63.IdentityInfo} {
-    assert(this.isV63)
+  get asV68(): {info: v68.IdentityInfo} {
+    assert(this.isV68)
     return this._chain.decodeCall(this.call)
   }
 }

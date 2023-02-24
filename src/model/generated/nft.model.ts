@@ -16,9 +16,6 @@ export class Nft {
   @Column_("text", {nullable: false})
   metadata!: string
 
-  @Column_("bool", {nullable: true})
-  equipped!: boolean | undefined | null
-
   @Column_("bool", {nullable: false})
   pending!: boolean
 

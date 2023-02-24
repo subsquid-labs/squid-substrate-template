@@ -219,7 +219,7 @@ type Nft @entity {
     id: ID!
     owner: String!
     metadata: String!
-    equipped: Boolean
+    # equipped: Boolean
     pending: Boolean!
     transferable: Boolean!
     collection: NftCollection!

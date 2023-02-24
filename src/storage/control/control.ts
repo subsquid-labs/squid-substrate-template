@@ -4,7 +4,7 @@ import {
     ControlOrgStatesStorage,
     ControlMemberStatesStorage
 } from '../../types/generated/storage'
-import { MemberState, Org, OrgState } from '../../types/generated/v63'
+import { MemberState, Org, OrgState } from '../../types/generated/v68'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 
@@ -12,8 +12,8 @@ export async function getOrgStorageData(ctx: Context, block: Block, id: Uint8Arr
     const storage = new ControlOrgsStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV63) {
-        return await storage.getAsV63(id)
+    if (storage.isV68) {
+        return await storage.getAsV68(id)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -23,8 +23,8 @@ export async function getOrgStateStorageData(ctx: Context, block: Block, id: Uin
     const storage = new ControlOrgStatesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV63) {
-        return await storage.getAsV63(id)
+    if (storage.isV68) {
+        return await storage.getAsV68(id)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -34,8 +34,8 @@ export async function getMemberStateStorageData(ctx: Context, block: Block, orgI
     const storage = new ControlMemberStatesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV63) {
-        return await storage.getAsV63(orgId, accountId)
+    if (storage.isV68) {
+        return await storage.getAsV68(orgId, accountId)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
