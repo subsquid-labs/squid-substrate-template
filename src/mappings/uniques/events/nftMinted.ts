@@ -3,11 +3,11 @@ import { Event } from '../../../types/generated/support'
 
 import { getNftMintedData } from './getters'
 import { getNftCollection } from '../../../common/db/getters'
-import { storage } from '../../../storage'
 
-import { StorageNotExistsWarn, ObjectNotExistsWarn } from '../../../common/errors'
-import { getNftOwnerValue } from '../../../common/tools'
+import { ObjectNotExistsWarn } from '../../../common/errors'
+import { addressCodec } from '../../../common/tools'
 import { Nft } from '../../../model/generated/nft.model'
+import { upsertIdentity } from '../../../common/db/identity'
 
 
 async function handleNftMintedEvent(ctx: Context, block: Block, event: Event, name: string) {
@@ -18,20 +18,13 @@ async function handleNftMintedEvent(ctx: Context, block: Block, event: Event, na
         ctx.log.warn(ObjectNotExistsWarn(name, 'Collection', collectionId))
         return
     }
-    const nftData = await storage.rmrkCore.getNftStorageData(ctx, block.header, nftId, collectionId)
-    if (!nftData) {
-        ctx.log.warn(StorageNotExistsWarn(name, 'Nft', collectionId.toString() + ' - ' + nftId.toString()))
-        return
-    }
-    let [metadata, pending, transferable] = nftData
+
+    let ownerString = addressCodec.encode(owner)
+    let ownerIdentity = await upsertIdentity(ctx.store, ownerString, null)
 
     let nft = new Nft()
     nft.id = nftId.toString()
-    nft.owner = getNftOwnerValue(owner)
-    nft.metadata = metadata.toString()
-    // nft.equipped = nftData.equipped
-    nft.pending = pending
-    nft.transferable = transferable
+    nft.owner = ownerIdentity
     nft.collection = collection
 
     await ctx.store.save(nft)

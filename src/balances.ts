@@ -129,8 +129,8 @@ export function processBalancesEventItem(ctx: Context, event: any, name: string,
 function getBalanceSetAccount(ctx: Context, event: Event) {
     const data = new BalancesBalanceSetEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -139,8 +139,8 @@ function getBalanceSetAccount(ctx: Context, event: Event) {
 function getTransferAccounts(ctx: Context, event: Event) {
     const data = new BalancesTransferEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.from), toHex(data.asV68.to)]
+    if (data.isV70) {
+        return [toHex(data.asV70.from), toHex(data.asV70.to)]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -149,8 +149,8 @@ function getTransferAccounts(ctx: Context, event: Event) {
 function getEndowedAccount(ctx: Context, event: Event) {
     const data = new BalancesEndowedEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.account)
+    if (data.isV70) {
+        return toHex(data.asV70.account)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -159,8 +159,8 @@ function getEndowedAccount(ctx: Context, event: Event) {
 function getDepositAccount(ctx: Context, event: Event) {
     const data = new BalancesDepositEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -169,8 +169,8 @@ function getDepositAccount(ctx: Context, event: Event) {
 function getReservedAccount(ctx: Context, event: Event) {
     const data = new BalancesReservedEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -179,8 +179,8 @@ function getReservedAccount(ctx: Context, event: Event) {
 function getUnreservedAccount(ctx: Context, event: Event) {
     const data = new BalancesUnreservedEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -189,8 +189,8 @@ function getUnreservedAccount(ctx: Context, event: Event) {
 function getWithdrawAccount(ctx: Context, event: Event) {
     const data = new BalancesWithdrawEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -199,8 +199,8 @@ function getWithdrawAccount(ctx: Context, event: Event) {
 function getSlashedAccount(ctx: Context, event: Event) {
     const data = new BalancesSlashedEvent(ctx, event)
 
-    if (data.isV68) {
-        return toHex(data.asV68.who)
+    if (data.isV70) {
+        return toHex(data.asV70.who)
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -209,8 +209,8 @@ function getSlashedAccount(ctx: Context, event: Event) {
 function getReserveRepatriatedAccounts(ctx: Context, event: Event) {
     const data = new BalancesReserveRepatriatedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.from), toHex(data.asV68.to)]
+    if (data.isV70) {
+        return [toHex(data.asV70.from), toHex(data.asV70.to)]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }

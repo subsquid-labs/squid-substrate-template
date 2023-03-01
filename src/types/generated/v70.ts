@@ -22,6 +22,32 @@ export interface CurrencyId_ForeignAsset {
   value: number
 }
 
+export type MemberState = MemberState_Inactive | MemberState_Active | MemberState_Pending | MemberState_Kicked | MemberState_Banned | MemberState_Exited
+
+export interface MemberState_Inactive {
+  __kind: 'Inactive'
+}
+
+export interface MemberState_Active {
+  __kind: 'Active'
+}
+
+export interface MemberState_Pending {
+  __kind: 'Pending'
+}
+
+export interface MemberState_Kicked {
+  __kind: 'Kicked'
+}
+
+export interface MemberState_Banned {
+  __kind: 'Banned'
+}
+
+export interface MemberState_Exited {
+  __kind: 'Exited'
+}
+
 export type OrgType = OrgType_Individual | OrgType_Company | OrgType_Dao | OrgType_Hybrid
 
 export interface OrgType_Individual {
@@ -68,18 +94,6 @@ export interface FeeModel_Transfer {
   __kind: 'Transfer'
 }
 
-export type AccountIdOrCollectionNftTuple = AccountIdOrCollectionNftTuple_AccountId | AccountIdOrCollectionNftTuple_CollectionAndNftTuple
-
-export interface AccountIdOrCollectionNftTuple_AccountId {
-  __kind: 'AccountId'
-  value: Uint8Array
-}
-
-export interface AccountIdOrCollectionNftTuple_CollectionAndNftTuple {
-  __kind: 'CollectionAndNftTuple'
-  value: [number, number]
-}
-
 export type PropertyType = PropertyType_Experience | PropertyType_Trust | PropertyType_Reputation
 
 export interface PropertyType_Experience {
@@ -113,30 +127,28 @@ export interface AccountData {
   feeFrozen: bigint
 }
 
-export type MemberState = MemberState_Inactive | MemberState_Active | MemberState_Pending | MemberState_Kicked | MemberState_Banned | MemberState_Exited
+export type BattlepassState = BattlepassState_DRAFT | BattlepassState_ACTIVE | BattlepassState_ENDED
 
-export interface MemberState_Inactive {
-  __kind: 'Inactive'
+export interface BattlepassState_DRAFT {
+  __kind: 'DRAFT'
 }
 
-export interface MemberState_Active {
-  __kind: 'Active'
+export interface BattlepassState_ACTIVE {
+  __kind: 'ACTIVE'
 }
 
-export interface MemberState_Pending {
-  __kind: 'Pending'
+export interface BattlepassState_ENDED {
+  __kind: 'ENDED'
 }
 
-export interface MemberState_Kicked {
-  __kind: 'Kicked'
-}
-
-export interface MemberState_Banned {
-  __kind: 'Banned'
-}
-
-export interface MemberState_Exited {
-  __kind: 'Exited'
+export interface Battlepass {
+  creator: Uint8Array
+  orgId: Uint8Array
+  name: Uint8Array
+  cid: Uint8Array
+  season: number
+  price: number
+  collectionId: number
 }
 
 export type OrgState = OrgState_Inactive | OrgState_Active | OrgState_Locked
@@ -214,23 +226,6 @@ export interface CampaignState_Locked {
   __kind: 'Locked'
 }
 
-export interface CollectionInfo {
-  issuer: Uint8Array
-  metadata: Uint8Array
-  max: (number | undefined)
-  symbol: Uint8Array
-  nftsCount: number
-}
-
-export interface NftInfo {
-  owner: AccountIdOrCollectionNftTuple
-  royalty: (RoyaltyInfo | undefined)
-  metadata: Uint8Array
-  equipped: boolean
-  pending: boolean
-  transferable: boolean
-}
-
 export interface Entity {
   account: Uint8Array
   index: bigint
@@ -244,7 +239,7 @@ export interface EntityProperty {
   mutated: number
 }
 
-export interface Type_544 {
+export interface Type_746 {
   index: number
   owner: Uint8Array
   title: Uint8Array
@@ -291,7 +286,7 @@ export interface ProposalState_Finalized {
   __kind: 'Finalized'
 }
 
-export interface Type_549 {
+export interface Type_752 {
   index: number
   unit: Unit
   ayes: [Uint8Array, bigint, (bigint | undefined)][]
@@ -313,20 +308,43 @@ export interface AccountInfo {
   data: AccountData
 }
 
-export interface Type_517 {
+export interface Type_714 {
   free: bigint
   reserved: bigint
   frozen: bigint
 }
 
+export interface Weight {
+  refTime: bigint
+  proofSize: bigint
+}
+
+export interface Schedule {
+  limits: Limits
+  instructionWeights: InstructionWeights
+  hostFnWeights: HostFnWeights
+}
+
+export interface TrackInfo {
+  name: string
+  maxDeciding: number
+  decisionDeposit: bigint
+  preparePeriod: number
+  decisionPeriod: number
+  confirmPeriod: number
+  minEnactmentPeriod: number
+  minApproval: Curve
+  minSupport: Curve
+}
+
 export interface BlockLength {
-  max: Type_158
+  max: Type_420
 }
 
 export interface BlockWeights {
-  baseBlock: bigint
-  maxBlock: bigint
-  perClass: Type_154
+  baseBlock: Weight
+  maxBlock: Weight
+  perClass: Type_417
 }
 
 export interface RuntimeDbWeight {
@@ -343,11 +361,6 @@ export interface RuntimeVersion {
   apis: [Uint8Array, number][]
   transactionVersion: number
   stateVersion: number
-}
-
-export interface V1MultiLocation {
-  parents: number
-  interior: V1Junctions
 }
 
 export type TokenSymbol = TokenSymbol_ZERO | TokenSymbol_PLAY | TokenSymbol_GAME | TokenSymbol_DOT
@@ -595,11 +608,6 @@ export interface FlowGovernance_Yes {
   __kind: 'Yes'
 }
 
-export interface RoyaltyInfo {
-  recipient: Uint8Array
-  amount: number
-}
-
 export type ProposalType = ProposalType_General | ProposalType_Withdrawal | ProposalType_Spending
 
 export interface ProposalType_General {
@@ -658,197 +666,176 @@ export interface Majority_Absolute {
   __kind: 'Absolute'
 }
 
-export interface Type_158 {
+export interface Limits {
+  eventTopics: number
+  stackHeight: (number | undefined)
+  globals: number
+  locals: number
+  parameters: number
+  memoryPages: number
+  tableSize: number
+  brTableSize: number
+  subjectLen: number
+  callDepth: number
+  payloadLen: number
+}
+
+export interface InstructionWeights {
+  version: number
+  fallback: number
+  i64Const: number
+  i64Load: number
+  i64Store: number
+  select: number
+  if: number
+  br: number
+  brIf: number
+  brTable: number
+  brTablePerEntry: number
+  call: number
+  callIndirect: number
+  callIndirectPerParam: number
+  callPerLocal: number
+  localGet: number
+  localSet: number
+  localTee: number
+  globalGet: number
+  globalSet: number
+  memoryCurrent: number
+  memoryGrow: number
+  i64Clz: number
+  i64Ctz: number
+  i64Popcnt: number
+  i64Eqz: number
+  i64Extendsi32: number
+  i64Extendui32: number
+  i32Wrapi64: number
+  i64Eq: number
+  i64Ne: number
+  i64Lts: number
+  i64Ltu: number
+  i64Gts: number
+  i64Gtu: number
+  i64Les: number
+  i64Leu: number
+  i64Ges: number
+  i64Geu: number
+  i64Add: number
+  i64Sub: number
+  i64Mul: number
+  i64Divs: number
+  i64Divu: number
+  i64Rems: number
+  i64Remu: number
+  i64And: number
+  i64Or: number
+  i64Xor: number
+  i64Shl: number
+  i64Shrs: number
+  i64Shru: number
+  i64Rotl: number
+  i64Rotr: number
+}
+
+export interface HostFnWeights {
+  caller: bigint
+  isContract: bigint
+  codeHash: bigint
+  ownCodeHash: bigint
+  callerIsOrigin: bigint
+  address: bigint
+  gasLeft: bigint
+  balance: bigint
+  valueTransferred: bigint
+  minimumBalance: bigint
+  blockNumber: bigint
+  now: bigint
+  weightToFee: bigint
+  gas: bigint
+  input: bigint
+  inputPerByte: bigint
+  return: bigint
+  returnPerByte: bigint
+  terminate: bigint
+  random: bigint
+  depositEvent: bigint
+  depositEventPerTopic: bigint
+  depositEventPerByte: bigint
+  debugMessage: bigint
+  setStorage: bigint
+  setStoragePerNewByte: bigint
+  setStoragePerOldByte: bigint
+  setCodeHash: bigint
+  clearStorage: bigint
+  clearStoragePerByte: bigint
+  containsStorage: bigint
+  containsStoragePerByte: bigint
+  getStorage: bigint
+  getStoragePerByte: bigint
+  takeStorage: bigint
+  takeStoragePerByte: bigint
+  transfer: bigint
+  call: bigint
+  delegateCall: bigint
+  callTransferSurcharge: bigint
+  callPerClonedByte: bigint
+  instantiate: bigint
+  instantiateTransferSurcharge: bigint
+  instantiatePerSaltByte: bigint
+  hashSha2256: bigint
+  hashSha2256PerByte: bigint
+  hashKeccak256: bigint
+  hashKeccak256PerByte: bigint
+  hashBlake2256: bigint
+  hashBlake2256PerByte: bigint
+  hashBlake2128: bigint
+  hashBlake2128PerByte: bigint
+  ecdsaRecover: bigint
+  ecdsaToEthAddress: bigint
+  reentranceCount: bigint
+  accountReentranceCount: bigint
+  instantiationNonce: bigint
+}
+
+export type Curve = Curve_LinearDecreasing | Curve_SteppedDecreasing | Curve_Reciprocal
+
+export interface Curve_LinearDecreasing {
+  __kind: 'LinearDecreasing'
+  length: number
+  floor: number
+  ceil: number
+}
+
+export interface Curve_SteppedDecreasing {
+  __kind: 'SteppedDecreasing'
+  begin: number
+  end: number
+  step: number
+  period: number
+}
+
+export interface Curve_Reciprocal {
+  __kind: 'Reciprocal'
+  factor: bigint
+  xOffset: bigint
+  yOffset: bigint
+}
+
+export interface Type_420 {
   normal: number
   operational: number
   mandatory: number
 }
 
-export interface Type_154 {
+export interface Type_417 {
   normal: WeightsPerClass
   operational: WeightsPerClass
   mandatory: WeightsPerClass
 }
 
-export type V1Junctions = V1Junctions_Here | V1Junctions_X1 | V1Junctions_X2 | V1Junctions_X3 | V1Junctions_X4 | V1Junctions_X5 | V1Junctions_X6 | V1Junctions_X7 | V1Junctions_X8
-
-export interface V1Junctions_Here {
-  __kind: 'Here'
-}
-
-export interface V1Junctions_X1 {
-  __kind: 'X1'
-  value: V1Junction
-}
-
-export interface V1Junctions_X2 {
-  __kind: 'X2'
-  value: [V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X3 {
-  __kind: 'X3'
-  value: [V1Junction, V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X4 {
-  __kind: 'X4'
-  value: [V1Junction, V1Junction, V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X5 {
-  __kind: 'X5'
-  value: [V1Junction, V1Junction, V1Junction, V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X6 {
-  __kind: 'X6'
-  value: [V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X7 {
-  __kind: 'X7'
-  value: [V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction]
-}
-
-export interface V1Junctions_X8 {
-  __kind: 'X8'
-  value: [V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction, V1Junction]
-}
-
 export interface WeightsPerClass {
-  baseExtrinsic: bigint
-  maxExtrinsic: (bigint | undefined)
-  maxTotal: (bigint | undefined)
-  reserved: (bigint | undefined)
-}
-
-export type V1Junction = V1Junction_Parachain | V1Junction_AccountId32 | V1Junction_AccountIndex64 | V1Junction_AccountKey20 | V1Junction_PalletInstance | V1Junction_GeneralIndex | V1Junction_GeneralKey | V1Junction_OnlyChild | V1Junction_Plurality
-
-export interface V1Junction_Parachain {
-  __kind: 'Parachain'
-  value: number
-}
-
-export interface V1Junction_AccountId32 {
-  __kind: 'AccountId32'
-  network: V0NetworkId
-  id: Uint8Array
-}
-
-export interface V1Junction_AccountIndex64 {
-  __kind: 'AccountIndex64'
-  network: V0NetworkId
-  index: bigint
-}
-
-export interface V1Junction_AccountKey20 {
-  __kind: 'AccountKey20'
-  network: V0NetworkId
-  key: Uint8Array
-}
-
-export interface V1Junction_PalletInstance {
-  __kind: 'PalletInstance'
-  value: number
-}
-
-export interface V1Junction_GeneralIndex {
-  __kind: 'GeneralIndex'
-  value: bigint
-}
-
-export interface V1Junction_GeneralKey {
-  __kind: 'GeneralKey'
-  value: Uint8Array
-}
-
-export interface V1Junction_OnlyChild {
-  __kind: 'OnlyChild'
-}
-
-export interface V1Junction_Plurality {
-  __kind: 'Plurality'
-  id: V0BodyId
-  part: V0BodyPart
-}
-
-export type V0NetworkId = V0NetworkId_Any | V0NetworkId_Named | V0NetworkId_Polkadot | V0NetworkId_Kusama
-
-export interface V0NetworkId_Any {
-  __kind: 'Any'
-}
-
-export interface V0NetworkId_Named {
-  __kind: 'Named'
-  value: Uint8Array
-}
-
-export interface V0NetworkId_Polkadot {
-  __kind: 'Polkadot'
-}
-
-export interface V0NetworkId_Kusama {
-  __kind: 'Kusama'
-}
-
-export type V0BodyId = V0BodyId_Unit | V0BodyId_Named | V0BodyId_Index | V0BodyId_Executive | V0BodyId_Technical | V0BodyId_Legislative | V0BodyId_Judicial
-
-export interface V0BodyId_Unit {
-  __kind: 'Unit'
-}
-
-export interface V0BodyId_Named {
-  __kind: 'Named'
-  value: Uint8Array
-}
-
-export interface V0BodyId_Index {
-  __kind: 'Index'
-  value: number
-}
-
-export interface V0BodyId_Executive {
-  __kind: 'Executive'
-}
-
-export interface V0BodyId_Technical {
-  __kind: 'Technical'
-}
-
-export interface V0BodyId_Legislative {
-  __kind: 'Legislative'
-}
-
-export interface V0BodyId_Judicial {
-  __kind: 'Judicial'
-}
-
-export type V0BodyPart = V0BodyPart_Voice | V0BodyPart_Members | V0BodyPart_Fraction | V0BodyPart_AtLeastProportion | V0BodyPart_MoreThanProportion
-
-export interface V0BodyPart_Voice {
-  __kind: 'Voice'
-}
-
-export interface V0BodyPart_Members {
-  __kind: 'Members'
-  count: number
-}
-
-export interface V0BodyPart_Fraction {
-  __kind: 'Fraction'
-  nom: number
-  denom: number
-}
-
-export interface V0BodyPart_AtLeastProportion {
-  __kind: 'AtLeastProportion'
-  nom: number
-  denom: number
-}
-
-export interface V0BodyPart_MoreThanProportion {
-  __kind: 'MoreThanProportion'
-  nom: number
-  denom: number
+  baseExtrinsic: Weight
+  maxExtrinsic: (Weight | undefined)
+  maxTotal: (Weight | undefined)
+  reserved: (Weight | undefined)
 }

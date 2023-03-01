@@ -1,4 +1,5 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, ManyToOne as ManyToOne_, Index as Index_} from "typeorm"
+import {Identity} from "./identity.model"
 import {NftCollection} from "./nftCollection.model"
 
 @Entity_()
@@ -10,17 +11,9 @@ export class Nft {
   @PrimaryColumn_()
   id!: string
 
-  @Column_("text", {nullable: false})
-  owner!: string
-
-  @Column_("text", {nullable: false})
-  metadata!: string
-
-  @Column_("bool", {nullable: false})
-  pending!: boolean
-
-  @Column_("bool", {nullable: false})
-  transferable!: boolean
+  @Index_()
+  @ManyToOne_(() => Identity, {nullable: true})
+  owner!: Identity
 
   @Index_()
   @ManyToOne_(() => NftCollection, {nullable: true})

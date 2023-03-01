@@ -29,8 +29,8 @@ interface CampaignContributedData {
 
 export function getCampaignCreatedData(ctx: Context, ev: Event): CampaignCreatedData {
     const event = new FlowCreatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { campaignId, creator, admin, target, deposit, expiry, name } = event.asV68
+    if (event.isV70) {
+        const { campaignId, creator, admin, target, deposit, expiry, name } = event.asV70
         return { campaignId, creator, admin, target, deposit, expiry, name }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -39,8 +39,8 @@ export function getCampaignCreatedData(ctx: Context, ev: Event): CampaignCreated
 
 export function getCampaignContributedData(ctx: Context, ev: Event): CampaignContributedData {
     const event = new FlowContributedEvent(ctx, ev)
-    if (event.isV68) {
-        const { campaignId, sender, contribution, blockNumber } = event.asV68
+    if (event.isV70) {
+        const { campaignId, sender, contribution, blockNumber } = event.asV70
         return { campaignId, sender, contribution, blockNumber }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -49,8 +49,8 @@ export function getCampaignContributedData(ctx: Context, ev: Event): CampaignCon
 
 export function getCampaignActivatedData(ctx: Context, ev: Event): Uint8Array {
     const event = new FlowActivatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { campaignId } = event.asV68
+    if (event.isV70) {
+        const { campaignId } = event.asV70
         return campaignId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -59,8 +59,8 @@ export function getCampaignActivatedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getCampaignFailedData(ctx: Context, ev: Event): Uint8Array {
     const event = new FlowFailedEvent(ctx, ev)
-    if (event.isV68) {
-        const { campaignId, campaignBalance, blockNumber } = event.asV68
+    if (event.isV70) {
+        const { campaignId, campaignBalance, blockNumber } = event.asV70
         return campaignId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -69,8 +69,8 @@ export function getCampaignFailedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getCampaignSucceededData(ctx: Context, ev: Event): Uint8Array {
     const event = new FlowSucceededEvent(ctx, ev)
-    if (event.isV68) {
-        const { campaignId, campaignBalance, blockNumber } = event.asV68
+    if (event.isV70) {
+        const { campaignId, campaignBalance, blockNumber } = event.asV70
         return campaignId
     } else {
         throw new UnknownVersionError(event.constructor.name)

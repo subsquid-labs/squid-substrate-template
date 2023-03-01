@@ -1,6 +1,6 @@
 import assert from 'assert'
 import {Chain, ChainContext, EventContext, Event, Result, Option} from './support'
-import * as v68 from './v68'
+import * as v70 from './v70'
 
 export class BalancesBalanceSetEvent {
   private readonly _chain: Chain
@@ -18,15 +18,15 @@ export class BalancesBalanceSetEvent {
   /**
    * A balance was set by root.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.BalanceSet') === '1e2b5d5a07046e6d6e5507661d3f3feaddfb41fc609a2336b24957322080ca77'
   }
 
   /**
    * A balance was set by root.
    */
-  get asV68(): {who: Uint8Array, free: bigint, reserved: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, free: bigint, reserved: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -47,15 +47,15 @@ export class BalancesDepositEvent {
   /**
    * Some amount was deposited (e.g. for transaction fees).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Deposit') === 'e84a34a6a3d577b31f16557bd304282f4fe4cbd7115377f4687635dc48e52ba5'
   }
 
   /**
    * Some amount was deposited (e.g. for transaction fees).
    */
-  get asV68(): {who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -76,15 +76,15 @@ export class BalancesEndowedEvent {
   /**
    * An account was created with some free balance.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Endowed') === '75951f685df19cbb5fdda09cf928a105518ceca9576d95bd18d4fac8802730ca'
   }
 
   /**
    * An account was created with some free balance.
    */
-  get asV68(): {account: Uint8Array, freeBalance: bigint} {
-    assert(this.isV68)
+  get asV70(): {account: Uint8Array, freeBalance: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -106,7 +106,7 @@ export class BalancesReserveRepatriatedEvent {
    * Some balance was moved from the reserve of the first account to the second account.
    * Final argument indicates the destination balance type.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.ReserveRepatriated') === '6232d50d422cea3a6fd21da36387df36d1d366405d0c589566c6de85c9cf541f'
   }
 
@@ -114,8 +114,8 @@ export class BalancesReserveRepatriatedEvent {
    * Some balance was moved from the reserve of the first account to the second account.
    * Final argument indicates the destination balance type.
    */
-  get asV68(): {from: Uint8Array, to: Uint8Array, amount: bigint, destinationStatus: v68.BalanceStatus} {
-    assert(this.isV68)
+  get asV70(): {from: Uint8Array, to: Uint8Array, amount: bigint, destinationStatus: v70.BalanceStatus} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -136,15 +136,15 @@ export class BalancesReservedEvent {
   /**
    * Some balance was reserved (moved from free to reserved).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Reserved') === 'e84a34a6a3d577b31f16557bd304282f4fe4cbd7115377f4687635dc48e52ba5'
   }
 
   /**
    * Some balance was reserved (moved from free to reserved).
    */
-  get asV68(): {who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -165,15 +165,15 @@ export class BalancesSlashedEvent {
   /**
    * Some amount was removed from the account (e.g. for misbehavior).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Slashed') === 'e84a34a6a3d577b31f16557bd304282f4fe4cbd7115377f4687635dc48e52ba5'
   }
 
   /**
    * Some amount was removed from the account (e.g. for misbehavior).
    */
-  get asV68(): {who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -194,15 +194,15 @@ export class BalancesTransferEvent {
   /**
    * Transfer succeeded.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Transfer') === '0ffdf35c495114c2d42a8bf6c241483fd5334ca0198662e14480ad040f1e3a66'
   }
 
   /**
    * Transfer succeeded.
    */
-  get asV68(): {from: Uint8Array, to: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {from: Uint8Array, to: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -223,15 +223,15 @@ export class BalancesUnreservedEvent {
   /**
    * Some balance was unreserved (moved from reserved to free).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Unreserved') === 'e84a34a6a3d577b31f16557bd304282f4fe4cbd7115377f4687635dc48e52ba5'
   }
 
   /**
    * Some balance was unreserved (moved from reserved to free).
    */
-  get asV68(): {who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -252,15 +252,15 @@ export class BalancesWithdrawEvent {
   /**
    * Some amount was withdrawn from the account (e.g. for transaction fees).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Balances.Withdraw') === 'e84a34a6a3d577b31f16557bd304282f4fe4cbd7115377f4687635dc48e52ba5'
   }
 
   /**
    * Some amount was withdrawn from the account (e.g. for transaction fees).
    */
-  get asV68(): {who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -281,15 +281,15 @@ export class BattlepassBattlepassActivatedEvent {
   /**
    * BattlePass activated
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Battlepass.BattlepassActivated') === 'ed9ce68bcc372a15c62e00f3ce751cb6e3a85f61f6b0120cdf6f66c1b12bd7f4'
   }
 
   /**
    * BattlePass activated
    */
-  get asV68(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -310,15 +310,15 @@ export class BattlepassBattlepassClaimedEvent {
   /**
    * BattlePass claimed
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Battlepass.BattlepassClaimed') === '91b65ec51f0be74163e08c1db4ffd953096cb532abd4723bc59943ae482f0a5c'
   }
 
   /**
    * BattlePass claimed
    */
-  get asV68(): {byWho: Uint8Array, forWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array, nftId: number} {
-    assert(this.isV68)
+  get asV70(): {byWho: Uint8Array, forWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array, nftId: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -339,15 +339,15 @@ export class BattlepassBattlepassCreatedEvent {
   /**
    * New BattlePass created
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Battlepass.BattlepassCreated') === '545dafcb8ce124c08cb42a6300e91ef56347c87c5f7645f2ab6024315c5c4494'
   }
 
   /**
    * New BattlePass created
    */
-  get asV68(): {orgId: Uint8Array, battlepassId: Uint8Array, season: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, battlepassId: Uint8Array, season: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -368,15 +368,44 @@ export class BattlepassBattlepassEndedEvent {
   /**
    * BattlePass ended
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Battlepass.BattlepassEnded') === 'ed9ce68bcc372a15c62e00f3ce751cb6e3a85f61f6b0120cdf6f66c1b12bd7f4'
   }
 
   /**
    * BattlePass ended
    */
-  get asV68(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {byWho: Uint8Array, orgId: Uint8Array, battlepassId: Uint8Array} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class BattlepassBattlepassUpdatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Battlepass.BattlepassUpdated')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * BattlePass updated
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Battlepass.BattlepassUpdated') === 'c42e6eb126d7c581b6815d40882d669d25a54d0c8d877a077e981d793f673b26'
+  }
+
+  /**
+   * BattlePass updated
+   */
+  get asV70(): {battlepassId: Uint8Array, name: (Uint8Array | undefined), cid: (Uint8Array | undefined), price: (number | undefined)} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -394,12 +423,12 @@ export class ControlFundsSpendedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.FundsSpended') === '099c5be51a66396abb273e830e2058b941aad39f3071d1634c96f9b293f58a04'
   }
 
-  get asV68(): {orgId: Uint8Array, beneficiary: Uint8Array, amount: bigint, currencyId: v68.CurrencyId, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, beneficiary: Uint8Array, amount: bigint, currencyId: v70.CurrencyId, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -420,15 +449,15 @@ export class ControlMemberAddedEvent {
   /**
    * A member has been added to the Org.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.MemberAdded') === 'c57cca31f3dcf3e0516f54aad1cbcd104d3e4afc717e4fb5667c8c9e8b1d1e27'
   }
 
   /**
    * A member has been added to the Org.
    */
-  get asV68(): {orgId: Uint8Array, who: Uint8Array, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, who: Uint8Array, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -449,15 +478,15 @@ export class ControlMemberRemovedEvent {
   /**
    * A member has been removed from the Org.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.MemberRemoved') === 'c57cca31f3dcf3e0516f54aad1cbcd104d3e4afc717e4fb5667c8c9e8b1d1e27'
   }
 
   /**
    * A member has been removed from the Org.
    */
-  get asV68(): {orgId: Uint8Array, who: Uint8Array, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, who: Uint8Array, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -478,15 +507,15 @@ export class ControlMemberUpdatedEvent {
   /**
    * A member state has been updated
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.MemberUpdated') === '6069a7b283e802eb4c0771681dd9a8b3b907bb28dc8cc80b636d8717f0238e8b'
   }
 
   /**
    * A member state has been updated
    */
-  get asV68(): {orgId: Uint8Array, who: Uint8Array, state: v68.MemberState, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, who: Uint8Array, state: v70.MemberState, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -507,15 +536,15 @@ export class ControlOrgCreatedEvent {
   /**
    * Org was successfully created.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.OrgCreated') === '6dc87039cf7ad8828c149f473dd3d7aabd1dd4c9e85e2f729bf294df9474ccc1'
   }
 
   /**
    * Org was successfully created.
    */
-  get asV68(): {orgId: Uint8Array, creator: Uint8Array, treasuryId: Uint8Array, createdAt: number, realmIndex: bigint} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, creator: Uint8Array, treasuryId: Uint8Array, createdAt: number, realmIndex: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -536,15 +565,15 @@ export class ControlOrgDisabledEvent {
   /**
    * Org was disabled and it's state become Inactive.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.OrgDisabled') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
    * Org was disabled and it's state become Inactive.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -565,15 +594,15 @@ export class ControlOrgEnabledEvent {
   /**
    * Org was enabled and it's state become Active.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.OrgEnabled') === '21ea0c8f2488eafafdea1de92b54cd17d8b1caff525e37616abf0ff93f11531d'
   }
 
   /**
    * Org was enabled and it's state become Active.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -591,12 +620,12 @@ export class ControlOrgUpdatedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Control.OrgUpdated') === '56e286ff0883c501a4abbab304815f66e27195e490410248f38fdd3ec39562a4'
   }
 
-  get asV68(): {orgId: Uint8Array, primeId: (Uint8Array | undefined), orgType: (v68.OrgType | undefined), accessModel: (v68.AccessModel | undefined), memberLimit: (number | undefined), feeModel: (v68.FeeModel | undefined), membershipFee: (bigint | undefined), blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {orgId: Uint8Array, primeId: (Uint8Array | undefined), orgType: (v70.OrgType | undefined), accessModel: (v70.AccessModel | undefined), memberLimit: (number | undefined), feeModel: (v70.FeeModel | undefined), membershipFee: (bigint | undefined), blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -614,12 +643,12 @@ export class FlowActivatedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Flow.Activated') === '1298080916d3502103b1b010f17c51ff90da4cfa7278463486275e928c258bc5'
   }
 
-  get asV68(): {campaignId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {campaignId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -640,15 +669,15 @@ export class FlowContributedEvent {
   /**
    * Campaign was contributed.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Flow.Contributed') === 'd8db14008bc916744d2223c9ae64c77e900996ff702695e41ec566ede7ee72db'
   }
 
   /**
    * Campaign was contributed.
    */
-  get asV68(): {campaignId: Uint8Array, sender: Uint8Array, contribution: bigint, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {campaignId: Uint8Array, sender: Uint8Array, contribution: bigint, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -669,15 +698,15 @@ export class FlowCreatedEvent {
   /**
    * Campaign was successfully created.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Flow.Created') === 'ff2ecea79f1fe30537e2d7e89f486cb3705ec64411ac17525c02b4c7369601c4'
   }
 
   /**
    * Campaign was successfully created.
    */
-  get asV68(): {campaignId: Uint8Array, creator: Uint8Array, admin: Uint8Array, target: bigint, deposit: bigint, expiry: number, name: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {campaignId: Uint8Array, creator: Uint8Array, admin: Uint8Array, target: bigint, deposit: bigint, expiry: number, name: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -698,15 +727,15 @@ export class FlowFailedEvent {
   /**
    * Campaign failed - successfully reverted.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Flow.Failed') === '8c26af8c0dbcf4eedccfc26b2eaa166ab0f2b6cd9cb14b67768380ced0d0251b'
   }
 
   /**
    * Campaign failed - successfully reverted.
    */
-  get asV68(): {campaignId: Uint8Array, campaignBalance: bigint, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {campaignId: Uint8Array, campaignBalance: bigint, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -727,15 +756,15 @@ export class FlowSucceededEvent {
   /**
    * Campaign was finalized.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Flow.Succeeded') === '8c26af8c0dbcf4eedccfc26b2eaa166ab0f2b6cd9cb14b67768380ced0d0251b'
   }
 
   /**
    * Campaign was finalized.
    */
-  get asV68(): {campaignId: Uint8Array, campaignBalance: bigint, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {campaignId: Uint8Array, campaignBalance: bigint, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -756,61 +785,15 @@ export class IdentityIdentityClearedEvent {
   /**
    * A name was cleared, and the given balance returned.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Identity.IdentityCleared') === '569627bf2a8105e3949fd62dcaae8174fb02f8afedb8e5d8a7fecda5d63b25c3'
   }
 
   /**
    * A name was cleared, and the given balance returned.
    */
-  get asV68(): {who: Uint8Array, deposit: bigint} {
-    assert(this.isV68)
-    return this._chain.decodeEvent(this.event)
-  }
-}
-
-export class RmrkCoreCollectionCreatedEvent {
-  private readonly _chain: Chain
-  private readonly event: Event
-
-  constructor(ctx: EventContext)
-  constructor(ctx: ChainContext, event: Event)
-  constructor(ctx: EventContext, event?: Event) {
-    event = event || ctx.event
-    assert(event.name === 'RmrkCore.CollectionCreated')
-    this._chain = ctx._chain
-    this.event = event
-  }
-
-  get isV68(): boolean {
-    return this._chain.getEventHash('RmrkCore.CollectionCreated') === 'dc958f691410878b0d793639bd3f9fb3a8ce970a28347e92a46206ced4d8a51e'
-  }
-
-  get asV68(): {issuer: Uint8Array, collectionId: number} {
-    assert(this.isV68)
-    return this._chain.decodeEvent(this.event)
-  }
-}
-
-export class RmrkCoreNftMintedEvent {
-  private readonly _chain: Chain
-  private readonly event: Event
-
-  constructor(ctx: EventContext)
-  constructor(ctx: ChainContext, event: Event)
-  constructor(ctx: EventContext, event?: Event) {
-    event = event || ctx.event
-    assert(event.name === 'RmrkCore.NftMinted')
-    this._chain = ctx._chain
-    this.event = event
-  }
-
-  get isV68(): boolean {
-    return this._chain.getEventHash('RmrkCore.NftMinted') === '32be929f2001709c6bcec6083e9bd994b08d551dfcc516fd7efe7d2e2c858a63'
-  }
-
-  get asV68(): {owner: v68.AccountIdOrCollectionNftTuple, collectionId: number, nftId: number} {
-    assert(this.isV68)
+  get asV70(): {who: Uint8Array, deposit: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -831,15 +814,15 @@ export class SenseEntityCreatedEvent {
   /**
    * New Sense Entity was created.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Sense.EntityCreated') === 'd3f988a96c009c7a300ad9d1a0a932132d9cf8dea1768ddfe92a0cb29894fe4a'
   }
 
   /**
    * New Sense Entity was created.
    */
-  get asV68(): {accountId: Uint8Array, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {accountId: Uint8Array, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -860,15 +843,15 @@ export class SensePropertyUpdatedEvent {
   /**
    * Property was updated.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Sense.PropertyUpdated') === '0157fb72fdc70f6e0e7ea46a8962076e41d58d3a328d02f9a1c027127ad8d048'
   }
 
   /**
    * Property was updated.
    */
-  get asV68(): {propertyType: v68.PropertyType, accountId: Uint8Array, blockNumber: number} {
-    assert(this.isV68)
+  get asV70(): {propertyType: v70.PropertyType, accountId: Uint8Array, blockNumber: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -886,12 +869,12 @@ export class SignalAbortedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Aborted') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -909,12 +892,12 @@ export class SignalAcceptedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Accepted') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -932,12 +915,12 @@ export class SignalActivatedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Activated') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -955,12 +938,12 @@ export class SignalCreatedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Created') === 'a32001d595a80cd793e2fb41d5441290f20cdb8b2c9e5bccb6809adc21ae606a'
   }
 
-  get asV68(): {account: Uint8Array, proposalId: Uint8Array, orgId: Uint8Array, campaignId: (Uint8Array | undefined), amount: (bigint | undefined), start: number, expiry: number} {
-    assert(this.isV68)
+  get asV70(): {account: Uint8Array, proposalId: Uint8Array, orgId: Uint8Array, campaignId: (Uint8Array | undefined), amount: (bigint | undefined), start: number, expiry: number} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -978,12 +961,12 @@ export class SignalExpiredEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Expired') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1001,12 +984,12 @@ export class SignalFinalizedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Finalized') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1024,12 +1007,12 @@ export class SignalRejectedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Rejected') === '6e72a97ae5b806677fe57a7494d12e2b9c7eb6bf41b48bb46554771f71d3e1cc'
   }
 
-  get asV68(): {proposalId: Uint8Array} {
-    assert(this.isV68)
+  get asV70(): {proposalId: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1047,12 +1030,12 @@ export class SignalVotedEvent {
     this.event = event
   }
 
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Signal.Voted') === 'c017b1f31028a2d6a927c9c9de81e8be0f84cc28fdc5daba87b671932d1be3be'
   }
 
-  get asV68(): {account: Uint8Array, proposalId: Uint8Array, voted: boolean, yes: bigint, no: bigint, votePower: bigint} {
-    assert(this.isV68)
+  get asV70(): {account: Uint8Array, proposalId: Uint8Array, voted: boolean, yes: bigint, no: bigint, votePower: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1073,15 +1056,15 @@ export class TokensBalanceSetEvent {
   /**
    * A balance was set by root.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.BalanceSet') === '3f56a4a163d9a349f4c507f05504bcd8f7406e05ee2cf2afb71a1c95fe6e7d1c'
   }
 
   /**
    * A balance was set by root.
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, free: bigint, reserved: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, free: bigint, reserved: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1102,15 +1085,15 @@ export class TokensDepositedEvent {
   /**
    * Deposited some balance into an account
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Deposited') === '35102e9f3a659dee57ab6c44339be31cb90f32cda97fce9385fc2d7a377f802c'
   }
 
   /**
    * Deposited some balance into an account
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1131,15 +1114,15 @@ export class TokensEndowedEvent {
   /**
    * An account was created with some free balance.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Endowed') === '35102e9f3a659dee57ab6c44339be31cb90f32cda97fce9385fc2d7a377f802c'
   }
 
   /**
    * An account was created with some free balance.
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1161,7 +1144,7 @@ export class TokensReserveRepatriatedEvent {
    * Some reserved balance was repatriated (moved from reserved to
    * another account).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.ReserveRepatriated') === 'a93dbb961e7f37d006d3220134514ba1066319d31be02d782186e789abcfc997'
   }
 
@@ -1169,8 +1152,8 @@ export class TokensReserveRepatriatedEvent {
    * Some reserved balance was repatriated (moved from reserved to
    * another account).
    */
-  get asV68(): {currencyId: v68.CurrencyId, from: Uint8Array, to: Uint8Array, amount: bigint, status: v68.BalanceStatus} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, from: Uint8Array, to: Uint8Array, amount: bigint, status: v70.BalanceStatus} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1191,15 +1174,15 @@ export class TokensReservedEvent {
   /**
    * Some balance was reserved (moved from free to reserved).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Reserved') === '35102e9f3a659dee57ab6c44339be31cb90f32cda97fce9385fc2d7a377f802c'
   }
 
   /**
    * Some balance was reserved (moved from free to reserved).
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1220,15 +1203,15 @@ export class TokensSlashedEvent {
   /**
    * Some balances were slashed (e.g. due to mis-behavior)
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Slashed') === '611c8b13cd678a091c12c056524c777a2fa70819508e6433c85e94de0ee4fa98'
   }
 
   /**
    * Some balances were slashed (e.g. due to mis-behavior)
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, freeAmount: bigint, reservedAmount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, freeAmount: bigint, reservedAmount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1249,15 +1232,15 @@ export class TokensTransferEvent {
   /**
    * Transfer succeeded.
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Transfer') === '0f49550afefd50a4550d665734a88abea6cef833393aac4878f8f5f4a1c23321'
   }
 
   /**
    * Transfer succeeded.
    */
-  get asV68(): {currencyId: v68.CurrencyId, from: Uint8Array, to: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, from: Uint8Array, to: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1278,15 +1261,15 @@ export class TokensUnreservedEvent {
   /**
    * Some balance was unreserved (moved from reserved to free).
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Unreserved') === '35102e9f3a659dee57ab6c44339be31cb90f32cda97fce9385fc2d7a377f802c'
   }
 
   /**
    * Some balance was unreserved (moved from reserved to free).
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }
@@ -1307,15 +1290,73 @@ export class TokensWithdrawnEvent {
   /**
    * Some balances were withdrawn (e.g. pay for transaction fee)
    */
-  get isV68(): boolean {
+  get isV70(): boolean {
     return this._chain.getEventHash('Tokens.Withdrawn') === '35102e9f3a659dee57ab6c44339be31cb90f32cda97fce9385fc2d7a377f802c'
   }
 
   /**
    * Some balances were withdrawn (e.g. pay for transaction fee)
    */
-  get asV68(): {currencyId: v68.CurrencyId, who: Uint8Array, amount: bigint} {
-    assert(this.isV68)
+  get asV70(): {currencyId: v70.CurrencyId, who: Uint8Array, amount: bigint} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class UniquesCreatedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.Created')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * A `collection` was created.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.Created') === 'a5c293082b1f3ffb16eaecc5b8d430ca1bb8c7bd090079ebcefcbf303cbfec61'
+  }
+
+  /**
+   * A `collection` was created.
+   */
+  get asV70(): {collection: number, creator: Uint8Array, owner: Uint8Array} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class UniquesIssuedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.Issued')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * An `item` was issued.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.Issued') === '281c96f4233cbe042ed549cfca1fafa833d625f8d832ed29682ac34cdceb017d'
+  }
+
+  /**
+   * An `item` was issued.
+   */
+  get asV70(): {collection: number, item: number, owner: Uint8Array} {
+    assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }
 }

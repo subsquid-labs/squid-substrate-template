@@ -4,7 +4,7 @@ import {
     SenseEntityCreatedEvent,
     SensePropertyUpdatedEvent
 } from '../../../types/generated/events'
-import { PropertyType } from '../../../types/generated/v68'
+import { PropertyType } from '../../../types/generated/V70'
 import { UnknownVersionError } from '../../../common/errors'
 
 
@@ -21,8 +21,8 @@ interface PropertyUpdatedData {
 
 export function getEntityCreatedData(ctx: Context, ev: Event): EntityCreatedData {
     const event = new SenseEntityCreatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { accountId, blockNumber } = event.asV68
+    if (event.isV70) {
+        const { accountId, blockNumber } = event.asV70
         return { accountId, blockNumber }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -31,8 +31,8 @@ export function getEntityCreatedData(ctx: Context, ev: Event): EntityCreatedData
 
 export function getPropertyUpdatedData(ctx: Context, ev: Event): PropertyUpdatedData {
     const event = new SensePropertyUpdatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { propertyType, accountId, blockNumber } = event.asV68
+    if (event.isV70) {
+        const { propertyType, accountId, blockNumber } = event.asV70
         return { propertyType, accountId, blockNumber }
     } else {
         throw new UnknownVersionError(event.constructor.name)

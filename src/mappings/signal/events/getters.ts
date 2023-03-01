@@ -35,8 +35,8 @@ interface ProposalVotedData {
 
 export function getProposalCreatedData(ctx: Context, ev: Event): ProposalCreatedData {
     const event = new SignalCreatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { account, proposalId, orgId, campaignId, amount, start, expiry } = event.asV68
+    if (event.isV70) {
+        const { account, proposalId, orgId, campaignId, amount, start, expiry } = event.asV70
         return { account, proposalId, orgId, campaignId, amount, start, expiry }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -45,8 +45,8 @@ export function getProposalCreatedData(ctx: Context, ev: Event): ProposalCreated
 
 export function getProposalVotedData(ctx: Context, ev: Event): ProposalVotedData {
     const event = new SignalVotedEvent(ctx, ev)
-    if (event.isV68) {
-        const { account, proposalId, voted, yes, no, votePower } = event.asV68
+    if (event.isV70) {
+        const { account, proposalId, voted, yes, no, votePower } = event.asV70
         return { account, proposalId, voted, yes, no, votePower }
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -55,8 +55,8 @@ export function getProposalVotedData(ctx: Context, ev: Event): ProposalVotedData
 
 export function getProposalActivatedData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalActivatedEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -65,8 +65,8 @@ export function getProposalActivatedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getProposalAbortedData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalAbortedEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -75,8 +75,8 @@ export function getProposalAbortedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getProposalAcceptedData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalAcceptedEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -85,8 +85,8 @@ export function getProposalAcceptedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getProposalExpiredData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalExpiredEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -95,8 +95,8 @@ export function getProposalExpiredData(ctx: Context, ev: Event): Uint8Array {
 
 export function getProposalFinalizedData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalFinalizedEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)
@@ -105,8 +105,8 @@ export function getProposalFinalizedData(ctx: Context, ev: Event): Uint8Array {
 
 export function getProposalRejectedData(ctx: Context, ev: Event): Uint8Array {
     const event = new SignalRejectedEvent(ctx, ev)
-    if (event.isV68) {
-        const { proposalId } = event.asV68
+    if (event.isV70) {
+        const { proposalId } = event.asV70
         return proposalId
     } else {
         throw new UnknownVersionError(event.constructor.name)

@@ -562,6 +562,12 @@
             },
             "object_relationships": [
               {
+                "name": "owner",
+                "using": {
+                  "foreign_key_constraint_on": "owner_id"
+                }
+              },
+              {
                 "name": "nft_collection",
                 "using": {
                   "foreign_key_constraint_on": "collection_id"
@@ -576,9 +582,9 @@
             },
             "object_relationships": [
               {
-                "name": "issuer",
+                "name": "owner",
                 "using": {
-                  "foreign_key_constraint_on": "issuer_id"
+                  "foreign_key_constraint_on": "owner_id"
                 }
               }
             ]
