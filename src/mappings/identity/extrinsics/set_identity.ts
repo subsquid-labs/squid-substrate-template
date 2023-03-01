@@ -1,6 +1,6 @@
 import { Context, Block } from '../../../processor'
 import { Call } from '../../../types/generated/support'
-import { Data } from '../../../types/generated/v68'
+import { Data } from '../../../types/generated/V70'
 
 
 import { SubstrateCall } from '@subsquid/substrate-processor'

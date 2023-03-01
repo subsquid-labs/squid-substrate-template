@@ -1,6 +1,6 @@
 import assert from 'assert'
 import {Block, Chain, ChainContext, BlockContext, Result, Option} from './support'
-import * as v68 from './v68'
+import * as v70 from './v70'
 
 export class AllianceAllyDepositConstant {
   private readonly _chain: Chain
@@ -12,15 +12,15 @@ export class AllianceAllyDepositConstant {
   /**
    *  The deposit required for submitting candidacy.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Alliance', 'AllyDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The deposit required for submitting candidacy.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Alliance', 'AllyDeposit')
   }
 
@@ -42,15 +42,15 @@ export class AllianceMaxAnnouncementsCountConstant {
   /**
    *  The maximum number of announcements.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Alliance', 'MaxAnnouncementsCount') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of announcements.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Alliance', 'MaxAnnouncementsCount')
   }
 
@@ -72,15 +72,15 @@ export class AllianceMaxMembersCountConstant {
   /**
    *  The maximum number of members per member role.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Alliance', 'MaxMembersCount') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of members per member role.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Alliance', 'MaxMembersCount')
   }
 
@@ -102,15 +102,15 @@ export class AllianceMaxUnscrupulousItemsConstant {
   /**
    *  The maximum number of the unscrupulous items supported by the pallet.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Alliance', 'MaxUnscrupulousItems') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of the unscrupulous items supported by the pallet.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Alliance', 'MaxUnscrupulousItems')
   }
 
@@ -132,15 +132,15 @@ export class AllianceMaxWebsiteUrlLengthConstant {
   /**
    *  The maximum length of a website URL.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Alliance', 'MaxWebsiteUrlLength') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a website URL.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Alliance', 'MaxWebsiteUrlLength')
   }
 
@@ -162,15 +162,15 @@ export class AssetsApprovalDepositConstant {
   /**
    *  The amount of funds that must be reserved when creating a new approval.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'ApprovalDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount of funds that must be reserved when creating a new approval.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'ApprovalDeposit')
   }
 
@@ -193,7 +193,7 @@ export class AssetsAssetAccountDepositConstant {
    *  The amount of funds that must be reserved for a non-provider asset account to be
    *  maintained.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'AssetAccountDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -201,8 +201,8 @@ export class AssetsAssetAccountDepositConstant {
    *  The amount of funds that must be reserved for a non-provider asset account to be
    *  maintained.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'AssetAccountDeposit')
   }
 
@@ -224,15 +224,15 @@ export class AssetsAssetDepositConstant {
   /**
    *  The basic amount of funds that must be reserved for an asset.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'AssetDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved for an asset.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'AssetDeposit')
   }
 
@@ -254,15 +254,15 @@ export class AssetsMetadataDepositBaseConstant {
   /**
    *  The basic amount of funds that must be reserved when adding metadata to your asset.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'MetadataDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved when adding metadata to your asset.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'MetadataDepositBase')
   }
 
@@ -285,7 +285,7 @@ export class AssetsMetadataDepositPerByteConstant {
    *  The additional funds that must be reserved for the number of bytes you store in your
    *  metadata.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'MetadataDepositPerByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -293,8 +293,8 @@ export class AssetsMetadataDepositPerByteConstant {
    *  The additional funds that must be reserved for the number of bytes you store in your
    *  metadata.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'MetadataDepositPerByte')
   }
 
@@ -318,7 +318,7 @@ export class AssetsRemoveItemsLimitConstant {
    * 
    *  Must be configured to result in a weight that makes each call fit in a block.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'RemoveItemsLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -327,8 +327,8 @@ export class AssetsRemoveItemsLimitConstant {
    * 
    *  Must be configured to result in a weight that makes each call fit in a block.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'RemoveItemsLimit')
   }
 
@@ -350,15 +350,15 @@ export class AssetsStringLimitConstant {
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Assets', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Assets', 'StringLimit')
   }
 
@@ -382,7 +382,7 @@ export class AuthorshipUncleGenerationsConstant {
    *  This means that we will deal with uncle-parents that are
    *  `UncleGenerations + 1` before `now`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Authorship', 'UncleGenerations') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -391,8 +391,8 @@ export class AuthorshipUncleGenerationsConstant {
    *  This means that we will deal with uncle-parents that are
    *  `UncleGenerations + 1` before `now`.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Authorship', 'UncleGenerations')
   }
 
@@ -416,7 +416,7 @@ export class BabeEpochDurationConstant {
    *  NOTE: Currently it is not possible to change the epoch duration after
    *  the chain has started. Attempting to do so will brick block production.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Babe', 'EpochDuration') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
@@ -425,8 +425,8 @@ export class BabeEpochDurationConstant {
    *  NOTE: Currently it is not possible to change the epoch duration after
    *  the chain has started. Attempting to do so will brick block production.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Babe', 'EpochDuration')
   }
 
@@ -452,7 +452,7 @@ export class BabeExpectedBlockTimeConstant {
    *  duration and the security parameter `c` (where `1 - c` represents
    *  the probability of a slot being empty).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Babe', 'ExpectedBlockTime') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
@@ -463,8 +463,8 @@ export class BabeExpectedBlockTimeConstant {
    *  duration and the security parameter `c` (where `1 - c` represents
    *  the probability of a slot being empty).
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Babe', 'ExpectedBlockTime')
   }
 
@@ -486,15 +486,15 @@ export class BabeMaxAuthoritiesConstant {
   /**
    *  Max number of authorities allowed
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Babe', 'MaxAuthorities') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Max number of authorities allowed
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Babe', 'MaxAuthorities')
   }
 
@@ -516,15 +516,15 @@ export class BalancesExistentialDepositConstant {
   /**
    *  The minimum amount required to keep an account open.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Balances', 'ExistentialDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount required to keep an account open.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Balances', 'ExistentialDeposit')
   }
 
@@ -547,7 +547,7 @@ export class BalancesMaxLocksConstant {
    *  The maximum number of locks that should exist on an account.
    *  Not strictly enforced, but used for weight estimation.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Balances', 'MaxLocks') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -555,8 +555,8 @@ export class BalancesMaxLocksConstant {
    *  The maximum number of locks that should exist on an account.
    *  Not strictly enforced, but used for weight estimation.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Balances', 'MaxLocks')
   }
 
@@ -578,15 +578,15 @@ export class BalancesMaxReservesConstant {
   /**
    *  The maximum number of named reserves that can exist on an account.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Balances', 'MaxReserves') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of named reserves that can exist on an account.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Balances', 'MaxReserves')
   }
 
@@ -608,15 +608,15 @@ export class BattlepassNativeTokenIdConstant {
   /**
    *  The CurrencyId which is used as a native token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Battlepass', 'NativeTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a native token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Battlepass', 'NativeTokenId')
   }
 
@@ -625,36 +625,6 @@ export class BattlepassNativeTokenIdConstant {
    */
   get isExists(): boolean {
     return this._chain.getConstantTypeHash('Battlepass', 'NativeTokenId') != null
-  }
-}
-
-export class BattlepassPartsLimitConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum number of parts each resource may have
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('Battlepass', 'PartsLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum number of parts each resource may have
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('Battlepass', 'PartsLimit')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('Battlepass', 'PartsLimit') != null
   }
 }
 
@@ -668,15 +638,15 @@ export class BattlepassProtocolTokenIdConstant {
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Battlepass', 'ProtocolTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Battlepass', 'ProtocolTokenId')
   }
 
@@ -698,15 +668,15 @@ export class BattlepassStringLimitConstant {
   /**
    *  The maximum length of a name, cid or metadata strings stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Battlepass', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name, cid or metadata strings stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Battlepass', 'StringLimit')
   }
 
@@ -715,36 +685,6 @@ export class BattlepassStringLimitConstant {
    */
   get isExists(): boolean {
     return this._chain.getConstantTypeHash('Battlepass', 'StringLimit') != null
-  }
-}
-
-export class BattlepassSymbolLimitConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum length of a Collection symbol.
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('Battlepass', 'SymbolLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum length of a Collection symbol.
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('Battlepass', 'SymbolLimit')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('Battlepass', 'SymbolLimit') != null
   }
 }
 
@@ -758,15 +698,15 @@ export class BountiesBountyDepositBaseConstant {
   /**
    *  The amount held on deposit for placing a bounty proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'BountyDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit for placing a bounty proposal.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'BountyDepositBase')
   }
 
@@ -788,15 +728,15 @@ export class BountiesBountyDepositPayoutDelayConstant {
   /**
    *  The delay period for which a bounty beneficiary need to wait before claim the payout.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'BountyDepositPayoutDelay') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The delay period for which a bounty beneficiary need to wait before claim the payout.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'BountyDepositPayoutDelay')
   }
 
@@ -818,15 +758,15 @@ export class BountiesBountyUpdatePeriodConstant {
   /**
    *  Bounty duration in blocks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'BountyUpdatePeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Bounty duration in blocks.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'BountyUpdatePeriod')
   }
 
@@ -848,15 +788,15 @@ export class BountiesBountyValueMinimumConstant {
   /**
    *  Minimum value for a bounty.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'BountyValueMinimum') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Minimum value for a bounty.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'BountyValueMinimum')
   }
 
@@ -878,15 +818,15 @@ export class BountiesCuratorDepositMaxConstant {
   /**
    *  Maximum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'CuratorDepositMax') === 'bfdfd10c88945fb3fe1590ea01f6a3e70d37a6e37ae5abf44fdde45ecc525302'
   }
 
   /**
    *  Maximum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get asV68(): (bigint | undefined) {
-    assert(this.isV68)
+  get asV70(): (bigint | undefined) {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'CuratorDepositMax')
   }
 
@@ -908,15 +848,15 @@ export class BountiesCuratorDepositMinConstant {
   /**
    *  Minimum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'CuratorDepositMin') === 'bfdfd10c88945fb3fe1590ea01f6a3e70d37a6e37ae5abf44fdde45ecc525302'
   }
 
   /**
    *  Minimum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get asV68(): (bigint | undefined) {
-    assert(this.isV68)
+  get asV70(): (bigint | undefined) {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'CuratorDepositMin')
   }
 
@@ -941,7 +881,7 @@ export class BountiesCuratorDepositMultiplierConstant {
    *  This deposit has optional upper and lower bounds with `CuratorDepositMax` and
    *  `CuratorDepositMin`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'CuratorDepositMultiplier') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -951,8 +891,8 @@ export class BountiesCuratorDepositMultiplierConstant {
    *  This deposit has optional upper and lower bounds with `CuratorDepositMax` and
    *  `CuratorDepositMin`.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'CuratorDepositMultiplier')
   }
 
@@ -974,15 +914,15 @@ export class BountiesDataDepositPerByteConstant {
   /**
    *  The amount held on deposit per byte within the tip report reason or bounty description.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'DataDepositPerByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit per byte within the tip report reason or bounty description.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'DataDepositPerByte')
   }
 
@@ -1006,7 +946,7 @@ export class BountiesMaximumReasonLengthConstant {
    * 
    *  Benchmarks depend on this value, be sure to update weights file when changing this value
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Bounties', 'MaximumReasonLength') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1015,8 +955,8 @@ export class BountiesMaximumReasonLengthConstant {
    * 
    *  Benchmarks depend on this value, be sure to update weights file when changing this value
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Bounties', 'MaximumReasonLength')
   }
 
@@ -1038,15 +978,15 @@ export class ChildBountiesChildBountyValueMinimumConstant {
   /**
    *  Minimum value for a child-bounty.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ChildBounties', 'ChildBountyValueMinimum') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Minimum value for a child-bounty.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ChildBounties', 'ChildBountyValueMinimum')
   }
 
@@ -1068,15 +1008,15 @@ export class ChildBountiesMaxActiveChildBountyCountConstant {
   /**
    *  Maximum number of child bounties that can be added to a parent bounty.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ChildBounties', 'MaxActiveChildBountyCount') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Maximum number of child bounties that can be added to a parent bounty.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ChildBounties', 'MaxActiveChildBountyCount')
   }
 
@@ -1112,7 +1052,7 @@ export class ContractsDeletionQueueDepthConstant {
    * 		it at the end of each block. Longer queues take more weight to decode and hence
    * 		limit the amount of items that can be deleted per block.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'DeletionQueueDepth') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1133,8 +1073,8 @@ export class ContractsDeletionQueueDepthConstant {
    * 		it at the end of each block. Longer queues take more weight to decode and hence
    * 		limit the amount of items that can be deleted per block.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'DeletionQueueDepth')
   }
 
@@ -1161,7 +1101,7 @@ export class ContractsDeletionWeightLimitConstant {
    *  weight that is left for transactions. See [`Self::DeletionQueueDepth`] for more
    *  information about the deletion queue.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'DeletionWeightLimit') === 'c92b1d8d51239cdf34de2cc7cfa9141c62b02aaf420c1b8dfaf8d16d158d95b5'
   }
 
@@ -1173,8 +1113,8 @@ export class ContractsDeletionWeightLimitConstant {
    *  weight that is left for transactions. See [`Self::DeletionQueueDepth`] for more
    *  information about the deletion queue.
    */
-  get asV68(): v68.Weight {
-    assert(this.isV68)
+  get asV70(): v70.Weight {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'DeletionWeightLimit')
   }
 
@@ -1200,7 +1140,7 @@ export class ContractsDepositPerByteConstant {
    * 
    *  Changing this value for an existing chain might need a storage migration.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'DepositPerByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -1211,8 +1151,8 @@ export class ContractsDepositPerByteConstant {
    * 
    *  Changing this value for an existing chain might need a storage migration.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'DepositPerByte')
   }
 
@@ -1238,7 +1178,7 @@ export class ContractsDepositPerItemConstant {
    * 
    *  Changing this value for an existing chain might need a storage migration.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'DepositPerItem') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -1249,8 +1189,8 @@ export class ContractsDepositPerItemConstant {
    * 
    *  Changing this value for an existing chain might need a storage migration.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'DepositPerItem')
   }
 
@@ -1274,7 +1214,7 @@ export class ContractsMaxCodeLenConstant {
    *  version of the code. Therefore `instantiate_with_code` can fail even when supplying
    *  a wasm binary below this maximum size.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'MaxCodeLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1283,8 +1223,8 @@ export class ContractsMaxCodeLenConstant {
    *  version of the code. Therefore `instantiate_with_code` can fail even when supplying
    *  a wasm binary below this maximum size.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'MaxCodeLen')
   }
 
@@ -1306,15 +1246,15 @@ export class ContractsMaxDebugBufferLenConstant {
   /**
    *  The maximum length of the debug buffer in bytes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'MaxDebugBufferLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of the debug buffer in bytes.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'MaxDebugBufferLen')
   }
 
@@ -1336,15 +1276,15 @@ export class ContractsMaxStorageKeyLenConstant {
   /**
    *  The maximum allowable length in bytes for storage keys.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'MaxStorageKeyLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum allowable length in bytes for storage keys.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'MaxStorageKeyLen')
   }
 
@@ -1366,15 +1306,15 @@ export class ContractsScheduleConstant {
   /**
    *  Cost schedule and limits.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'Schedule') === 'bcd850ceb84a6ede641f824675f946047b1ee3ee10f12912dde970d562583391'
   }
 
   /**
    *  Cost schedule and limits.
    */
-  get asV68(): v68.Schedule {
-    assert(this.isV68)
+  get asV70(): v70.Schedule {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'Schedule')
   }
 
@@ -1404,7 +1344,7 @@ export class ContractsUnsafeUnstableInterfaceConstant {
    * 
    *  Do **not** set to `true` on productions chains.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Contracts', 'UnsafeUnstableInterface') === 'ad6087d319c50ed2bab855d7787007597248f7ed5d13382638d7da078264028b'
   }
 
@@ -1419,8 +1359,8 @@ export class ContractsUnsafeUnstableInterfaceConstant {
    * 
    *  Do **not** set to `true` on productions chains.
    */
-  get asV68(): boolean {
-    assert(this.isV68)
+  get asV70(): boolean {
+    assert(this.isV70)
     return this._chain.getConstant('Contracts', 'UnsafeUnstableInterface')
   }
 
@@ -1442,15 +1382,15 @@ export class ControlMaxMembersConstant {
   /**
    *  The max number of members per one org.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'MaxMembers') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The max number of members per one org.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'MaxMembers')
   }
 
@@ -1472,15 +1412,15 @@ export class ControlMinimumDepositConstant {
   /**
    *  The min amount of the deposit which is locked during Org creation (in Protocol tokens).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'MinimumDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The min amount of the deposit which is locked during Org creation (in Protocol tokens).
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'MinimumDeposit')
   }
 
@@ -1502,15 +1442,15 @@ export class ControlPalletIdConstant {
   /**
    *  The ID for this pallet.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  The ID for this pallet.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'PalletId')
   }
 
@@ -1532,15 +1472,15 @@ export class ControlPaymentTokenIdConstant {
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'PaymentTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'PaymentTokenId')
   }
 
@@ -1562,15 +1502,15 @@ export class ControlProtocolTokenIdConstant {
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'ProtocolTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'ProtocolTokenId')
   }
 
@@ -1592,15 +1532,15 @@ export class ControlStringLimitConstant {
   /**
    *  The maximum length of a name or cid stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Control', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name or cid stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Control', 'StringLimit')
   }
 
@@ -1625,7 +1565,7 @@ export class ConvictionVotingMaxVotesConstant {
    *  Also used to compute weight, an overly large value can lead to extrinsics with large
    *  weight estimation: see `delegate` for instance.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ConvictionVoting', 'MaxVotes') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1635,8 +1575,8 @@ export class ConvictionVotingMaxVotesConstant {
    *  Also used to compute weight, an overly large value can lead to extrinsics with large
    *  weight estimation: see `delegate` for instance.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ConvictionVoting', 'MaxVotes')
   }
 
@@ -1661,7 +1601,7 @@ export class ConvictionVotingVoteLockingPeriodConstant {
    *  It should be no shorter than enactment period to ensure that in the case of an approval,
    *  those successful voters are locked into the consequences that their votes entail.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ConvictionVoting', 'VoteLockingPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1671,8 +1611,8 @@ export class ConvictionVotingVoteLockingPeriodConstant {
    *  It should be no shorter than enactment period to ensure that in the case of an approval,
    *  those successful voters are locked into the consequences that their votes entail.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ConvictionVoting', 'VoteLockingPeriod')
   }
 
@@ -1691,12 +1631,12 @@ export class CurrenciesGetNativeCurrencyIdConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Currencies', 'GetNativeCurrencyId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Currencies', 'GetNativeCurrencyId')
   }
 
@@ -1718,15 +1658,15 @@ export class DemocracyCooloffPeriodConstant {
   /**
    *  Period in blocks where an external proposal may not be re-submitted after being vetoed.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'CooloffPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Period in blocks where an external proposal may not be re-submitted after being vetoed.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'CooloffPeriod')
   }
 
@@ -1752,7 +1692,7 @@ export class DemocracyEnactmentPeriodConstant {
    *  voting stakers have an opportunity to remove themselves from the system in the case
    *  where they are on the losing side of a vote.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'EnactmentPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1763,8 +1703,8 @@ export class DemocracyEnactmentPeriodConstant {
    *  voting stakers have an opportunity to remove themselves from the system in the case
    *  where they are on the losing side of a vote.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'EnactmentPeriod')
   }
 
@@ -1786,15 +1726,15 @@ export class DemocracyFastTrackVotingPeriodConstant {
   /**
    *  Minimum voting period allowed for a fast-track referendum.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'FastTrackVotingPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Minimum voting period allowed for a fast-track referendum.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'FastTrackVotingPeriod')
   }
 
@@ -1818,7 +1758,7 @@ export class DemocracyInstantAllowedConstant {
    *  want to set this permanently to `false`, others may want to condition it on things such
    *  as an upgrade having happened recently.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'InstantAllowed') === 'ad6087d319c50ed2bab855d7787007597248f7ed5d13382638d7da078264028b'
   }
 
@@ -1827,8 +1767,8 @@ export class DemocracyInstantAllowedConstant {
    *  want to set this permanently to `false`, others may want to condition it on things such
    *  as an upgrade having happened recently.
    */
-  get asV68(): boolean {
-    assert(this.isV68)
+  get asV70(): boolean {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'InstantAllowed')
   }
 
@@ -1850,15 +1790,15 @@ export class DemocracyLaunchPeriodConstant {
   /**
    *  How often (in blocks) new public referenda are launched.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'LaunchPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  How often (in blocks) new public referenda are launched.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'LaunchPeriod')
   }
 
@@ -1880,15 +1820,15 @@ export class DemocracyMaxBlacklistedConstant {
   /**
    *  The maximum number of items which can be blacklisted.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'MaxBlacklisted') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of items which can be blacklisted.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'MaxBlacklisted')
   }
 
@@ -1910,15 +1850,15 @@ export class DemocracyMaxDepositsConstant {
   /**
    *  The maximum number of deposits a public proposal may have at any time.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'MaxDeposits') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of deposits a public proposal may have at any time.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'MaxDeposits')
   }
 
@@ -1940,15 +1880,15 @@ export class DemocracyMaxProposalsConstant {
   /**
    *  The maximum number of public proposals that can exist at any time.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'MaxProposals') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of public proposals that can exist at any time.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'MaxProposals')
   }
 
@@ -1973,7 +1913,7 @@ export class DemocracyMaxVotesConstant {
    *  Also used to compute weight, an overly big value can
    *  lead to extrinsic with very big weight: see `delegate` for instance.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'MaxVotes') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -1983,8 +1923,8 @@ export class DemocracyMaxVotesConstant {
    *  Also used to compute weight, an overly big value can
    *  lead to extrinsic with very big weight: see `delegate` for instance.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'MaxVotes')
   }
 
@@ -2006,15 +1946,15 @@ export class DemocracyMinimumDepositConstant {
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'MinimumDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'MinimumDeposit')
   }
 
@@ -2039,7 +1979,7 @@ export class DemocracyVoteLockingPeriodConstant {
    *  It should be no shorter than enactment period to ensure that in the case of an approval,
    *  those successful voters are locked into the consequences that their votes entail.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'VoteLockingPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2049,8 +1989,8 @@ export class DemocracyVoteLockingPeriodConstant {
    *  It should be no shorter than enactment period to ensure that in the case of an approval,
    *  those successful voters are locked into the consequences that their votes entail.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'VoteLockingPeriod')
   }
 
@@ -2072,15 +2012,15 @@ export class DemocracyVotingPeriodConstant {
   /**
    *  How often (in blocks) to check for new votes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Democracy', 'VotingPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  How often (in blocks) to check for new votes.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Democracy', 'VotingPeriod')
   }
 
@@ -2103,7 +2043,7 @@ export class ElectionProviderMultiPhaseBetterSignedThresholdConstant {
    *  The minimum amount of improvement to the solution score that defines a solution as
    *  "better" in the Signed phase.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'BetterSignedThreshold') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2111,8 +2051,8 @@ export class ElectionProviderMultiPhaseBetterSignedThresholdConstant {
    *  The minimum amount of improvement to the solution score that defines a solution as
    *  "better" in the Signed phase.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'BetterSignedThreshold')
   }
 
@@ -2135,7 +2075,7 @@ export class ElectionProviderMultiPhaseBetterUnsignedThresholdConstant {
    *  The minimum amount of improvement to the solution score that defines a solution as
    *  "better" in the Unsigned phase.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'BetterUnsignedThreshold') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2143,8 +2083,8 @@ export class ElectionProviderMultiPhaseBetterUnsignedThresholdConstant {
    *  The minimum amount of improvement to the solution score that defines a solution as
    *  "better" in the Unsigned phase.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'BetterUnsignedThreshold')
   }
 
@@ -2166,15 +2106,15 @@ export class ElectionProviderMultiPhaseMaxElectableTargetsConstant {
   /**
    *  The maximum number of electable targets to put in the snapshot.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MaxElectableTargets') === '32def12560ecd411fe2fc796552e97d0d5ee0ea10e059b3d8918c9e94dfdb334'
   }
 
   /**
    *  The maximum number of electable targets to put in the snapshot.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MaxElectableTargets')
   }
 
@@ -2198,7 +2138,7 @@ export class ElectionProviderMultiPhaseMaxElectingVotersConstant {
    *  are only over a single block, but once multi-block elections are introduced they will
    *  take place over multiple blocks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MaxElectingVoters') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2207,8 +2147,8 @@ export class ElectionProviderMultiPhaseMaxElectingVotersConstant {
    *  are only over a single block, but once multi-block elections are introduced they will
    *  take place over multiple blocks.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MaxElectingVoters')
   }
 
@@ -2233,7 +2173,7 @@ export class ElectionProviderMultiPhaseMaxWinnersConstant {
    * 
    *  Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MaxWinners') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2243,8 +2183,8 @@ export class ElectionProviderMultiPhaseMaxWinnersConstant {
    * 
    *  Note: This must always be greater or equal to `T::DataProvider::desired_targets()`.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MaxWinners')
   }
 
@@ -2263,12 +2203,12 @@ export class ElectionProviderMultiPhaseMinerMaxLengthConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MinerMaxLength') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MinerMaxLength')
   }
 
@@ -2287,12 +2227,12 @@ export class ElectionProviderMultiPhaseMinerMaxVotesPerVoterConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MinerMaxVotesPerVoter') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MinerMaxVotesPerVoter')
   }
 
@@ -2311,12 +2251,12 @@ export class ElectionProviderMultiPhaseMinerMaxWeightConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MinerMaxWeight') === 'c92b1d8d51239cdf34de2cc7cfa9141c62b02aaf420c1b8dfaf8d16d158d95b5'
   }
 
-  get asV68(): v68.Weight {
-    assert(this.isV68)
+  get asV70(): v70.Weight {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MinerMaxWeight')
   }
 
@@ -2338,15 +2278,15 @@ export class ElectionProviderMultiPhaseMinerTxPriorityConstant {
   /**
    *  The priority of the unsigned transaction submitted in the unsigned-phase
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'MinerTxPriority') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
   /**
    *  The priority of the unsigned transaction submitted in the unsigned-phase
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'MinerTxPriority')
   }
 
@@ -2371,7 +2311,7 @@ export class ElectionProviderMultiPhaseOffchainRepeatConstant {
    *  For example, if it is 5, that means that at least 5 blocks will elapse between attempts
    *  to submit the worker's solution.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'OffchainRepeat') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2381,8 +2321,8 @@ export class ElectionProviderMultiPhaseOffchainRepeatConstant {
    *  For example, if it is 5, that means that at least 5 blocks will elapse between attempts
    *  to submit the worker's solution.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'OffchainRepeat')
   }
 
@@ -2404,15 +2344,15 @@ export class ElectionProviderMultiPhaseSignedDepositBaseConstant {
   /**
    *  Base deposit for a signed solution.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Base deposit for a signed solution.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedDepositBase')
   }
 
@@ -2434,15 +2374,15 @@ export class ElectionProviderMultiPhaseSignedDepositByteConstant {
   /**
    *  Per-byte deposit for a signed solution.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedDepositByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Per-byte deposit for a signed solution.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedDepositByte')
   }
 
@@ -2464,15 +2404,15 @@ export class ElectionProviderMultiPhaseSignedDepositWeightConstant {
   /**
    *  Per-weight deposit for a signed solution.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedDepositWeight') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Per-weight deposit for a signed solution.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedDepositWeight')
   }
 
@@ -2494,15 +2434,15 @@ export class ElectionProviderMultiPhaseSignedMaxRefundsConstant {
   /**
    *  The maximum amount of unchecked solutions to refund the call fee for.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedMaxRefunds') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum amount of unchecked solutions to refund the call fee for.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedMaxRefunds')
   }
 
@@ -2530,7 +2470,7 @@ export class ElectionProviderMultiPhaseSignedMaxSubmissionsConstant {
    *  `SignedSubmissionIndices.len()` is less than or equal to the new value. Otherwise,
    *  attempts to submit new solutions may cause a runtime panic.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedMaxSubmissions') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2543,8 +2483,8 @@ export class ElectionProviderMultiPhaseSignedMaxSubmissionsConstant {
    *  `SignedSubmissionIndices.len()` is less than or equal to the new value. Otherwise,
    *  attempts to submit new solutions may cause a runtime panic.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedMaxSubmissions')
   }
 
@@ -2570,7 +2510,7 @@ export class ElectionProviderMultiPhaseSignedMaxWeightConstant {
    *  this pallet), then [`MinerConfig::solution_weight`] is used to compare against
    *  this value.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedMaxWeight') === 'c92b1d8d51239cdf34de2cc7cfa9141c62b02aaf420c1b8dfaf8d16d158d95b5'
   }
 
@@ -2581,8 +2521,8 @@ export class ElectionProviderMultiPhaseSignedMaxWeightConstant {
    *  this pallet), then [`MinerConfig::solution_weight`] is used to compare against
    *  this value.
    */
-  get asV68(): v68.Weight {
-    assert(this.isV68)
+  get asV70(): v70.Weight {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedMaxWeight')
   }
 
@@ -2604,15 +2544,15 @@ export class ElectionProviderMultiPhaseSignedPhaseConstant {
   /**
    *  Duration of the signed phase.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedPhase') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Duration of the signed phase.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedPhase')
   }
 
@@ -2634,15 +2574,15 @@ export class ElectionProviderMultiPhaseSignedRewardBaseConstant {
   /**
    *  Base reward for a signed solution
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'SignedRewardBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Base reward for a signed solution
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'SignedRewardBase')
   }
 
@@ -2664,15 +2604,15 @@ export class ElectionProviderMultiPhaseUnsignedPhaseConstant {
   /**
    *  Duration of the unsigned phase.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ElectionProviderMultiPhase', 'UnsignedPhase') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Duration of the unsigned phase.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('ElectionProviderMultiPhase', 'UnsignedPhase')
   }
 
@@ -2694,15 +2634,15 @@ export class ElectionsCandidacyBondConstant {
   /**
    *  How much should be locked up in order to submit one's candidacy.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'CandidacyBond') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  How much should be locked up in order to submit one's candidacy.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'CandidacyBond')
   }
 
@@ -2724,15 +2664,15 @@ export class ElectionsDesiredMembersConstant {
   /**
    *  Number of members to elect.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'DesiredMembers') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Number of members to elect.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'DesiredMembers')
   }
 
@@ -2754,15 +2694,15 @@ export class ElectionsDesiredRunnersUpConstant {
   /**
    *  Number of runners_up to keep.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'DesiredRunnersUp') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Number of runners_up to keep.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'DesiredRunnersUp')
   }
 
@@ -2788,7 +2728,7 @@ export class ElectionsMaxCandidatesConstant {
    *  the size of the election. When this limit is reached no more
    *  candidates are accepted in the election.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'MaxCandidates') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2799,8 +2739,8 @@ export class ElectionsMaxCandidatesConstant {
    *  the size of the election. When this limit is reached no more
    *  candidates are accepted in the election.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'MaxCandidates')
   }
 
@@ -2825,7 +2765,7 @@ export class ElectionsMaxVotersConstant {
    *  Warning: This impacts the size of the election which is run onchain.
    *  When the limit is reached the new voters are ignored.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'MaxVoters') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2835,8 +2775,8 @@ export class ElectionsMaxVotersConstant {
    *  Warning: This impacts the size of the election which is run onchain.
    *  When the limit is reached the new voters are ignored.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'MaxVoters')
   }
 
@@ -2858,15 +2798,15 @@ export class ElectionsPalletIdConstant {
   /**
    *  Identifier for the elections-phragmen pallet's lock
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  Identifier for the elections-phragmen pallet's lock
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'PalletId')
   }
 
@@ -2890,7 +2830,7 @@ export class ElectionsTermDurationConstant {
    *  round will happen. If set to zero, no elections are ever triggered and the module will
    *  be in passive mode.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'TermDuration') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -2899,8 +2839,8 @@ export class ElectionsTermDurationConstant {
    *  round will happen. If set to zero, no elections are ever triggered and the module will
    *  be in passive mode.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'TermDuration')
   }
 
@@ -2925,7 +2865,7 @@ export class ElectionsVotingBondBaseConstant {
    *  This should be sensibly high to economically ensure the pallet cannot be attacked by
    *  creating a gigantic number of votes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'VotingBondBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -2935,8 +2875,8 @@ export class ElectionsVotingBondBaseConstant {
    *  This should be sensibly high to economically ensure the pallet cannot be attacked by
    *  creating a gigantic number of votes.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'VotingBondBase')
   }
 
@@ -2958,15 +2898,15 @@ export class ElectionsVotingBondFactorConstant {
   /**
    *  The amount of bond that need to be locked for each vote (32 bytes).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Elections', 'VotingBondFactor') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount of bond that need to be locked for each vote (32 bytes).
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Elections', 'VotingBondFactor')
   }
 
@@ -2988,15 +2928,15 @@ export class FlowCampaignDurationLimitsConstant {
   /**
    *  Default time limit for a campaign in blocks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'CampaignDurationLimits') === '89667797236ba996cee700097e48264fab1c5603dc68df58a8ff56acf2809f5c'
   }
 
   /**
    *  Default time limit for a campaign in blocks.
    */
-  get asV68(): [number, number] {
-    assert(this.isV68)
+  get asV70(): [number, number] {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'CampaignDurationLimits')
   }
 
@@ -3019,7 +2959,7 @@ export class FlowCampaignFeeConstant {
    *  The amount of comission to be paid from the Org treasury to GameDAO treasury
    *  after successfull Campaign finalization
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'CampaignFee') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3027,8 +2967,8 @@ export class FlowCampaignFeeConstant {
    *  The amount of comission to be paid from the Org treasury to GameDAO treasury
    *  after successfull Campaign finalization
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'CampaignFee')
   }
 
@@ -3050,15 +2990,15 @@ export class FlowGameDAOTreasuryConstant {
   /**
    *  The GameDAO Treasury AccountId.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'GameDAOTreasury') === 'cc28a7f7046ec4d0eb3419e4aa142bf25c25992e58d0e8646eb029c7c6b4c0c8'
   }
 
   /**
    *  The GameDAO Treasury AccountId.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'GameDAOTreasury')
   }
 
@@ -3080,15 +3020,15 @@ export class FlowMaxCampaignContributorsConstant {
   /**
    *  The max number of contributors per one Campaign.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MaxCampaignContributors') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The max number of contributors per one Campaign.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MaxCampaignContributors')
   }
 
@@ -3110,15 +3050,15 @@ export class FlowMaxCampaignsPerBlockConstant {
   /**
    *  The max number of campaigns per one block.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MaxCampaignsPerBlock') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The max number of campaigns per one block.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MaxCampaignsPerBlock')
   }
 
@@ -3141,7 +3081,7 @@ export class FlowMaxContributorsProcessingConstant {
    *  The max number of contributors for processing in one block (batch size)
    *  during Campaign finalization.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MaxContributorsProcessing') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3149,8 +3089,8 @@ export class FlowMaxContributorsProcessingConstant {
    *  The max number of contributors for processing in one block (batch size)
    *  during Campaign finalization.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MaxContributorsProcessing')
   }
 
@@ -3172,15 +3112,15 @@ export class FlowMinCampaignDepositConstant {
   /**
    *  The min campaign deposit - fraction of a target, default 10%
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MinCampaignDeposit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The min campaign deposit - fraction of a target, default 10%
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MinCampaignDeposit')
   }
 
@@ -3202,15 +3142,15 @@ export class FlowMinContributionConstant {
   /**
    *  The min contribution amount in payment tokens
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MinContribution') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The min contribution amount in payment tokens
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MinContribution')
   }
 
@@ -3232,15 +3172,15 @@ export class FlowMinNameLengthConstant {
   /**
    *  The min length of a campaign name.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'MinNameLength') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The min length of a campaign name.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'MinNameLength')
   }
 
@@ -3262,15 +3202,15 @@ export class FlowPaymentTokenIdConstant {
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'PaymentTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'PaymentTokenId')
   }
 
@@ -3292,15 +3232,15 @@ export class FlowProtocolTokenIdConstant {
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'ProtocolTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'ProtocolTokenId')
   }
 
@@ -3322,15 +3262,15 @@ export class FlowStringLimitConstant {
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Flow', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Flow', 'StringLimit')
   }
 
@@ -3352,15 +3292,15 @@ export class GrandpaMaxAuthoritiesConstant {
   /**
    *  Max Authorities in use
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Grandpa', 'MaxAuthorities') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Max Authorities in use
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Grandpa', 'MaxAuthorities')
   }
 
@@ -3382,15 +3322,15 @@ export class IdentityBasicDepositConstant {
   /**
    *  The amount held on deposit for a registered identity
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'BasicDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit for a registered identity
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'BasicDeposit')
   }
 
@@ -3412,15 +3352,15 @@ export class IdentityFieldDepositConstant {
   /**
    *  The amount held on deposit per additional field for a registered identity.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'FieldDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit per additional field for a registered identity.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'FieldDeposit')
   }
 
@@ -3443,7 +3383,7 @@ export class IdentityMaxAdditionalFieldsConstant {
    *  Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
    *  required to access an identity, but can be pretty high.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'MaxAdditionalFields') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3451,8 +3391,8 @@ export class IdentityMaxAdditionalFieldsConstant {
    *  Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
    *  required to access an identity, but can be pretty high.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'MaxAdditionalFields')
   }
 
@@ -3475,7 +3415,7 @@ export class IdentityMaxRegistrarsConstant {
    *  Maxmimum number of registrars allowed in the system. Needed to bound the complexity
    *  of, e.g., updating judgements.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'MaxRegistrars') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3483,8 +3423,8 @@ export class IdentityMaxRegistrarsConstant {
    *  Maxmimum number of registrars allowed in the system. Needed to bound the complexity
    *  of, e.g., updating judgements.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'MaxRegistrars')
   }
 
@@ -3506,15 +3446,15 @@ export class IdentityMaxSubAccountsConstant {
   /**
    *  The maximum number of sub-accounts allowed per identified account.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'MaxSubAccounts') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of sub-accounts allowed per identified account.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'MaxSubAccounts')
   }
 
@@ -3538,7 +3478,7 @@ export class IdentitySubAccountDepositConstant {
    *  that one storage item's value will increase by the size of an account ID, and there will
    *  be another trie item whose value is the size of an account ID plus 32 bytes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Identity', 'SubAccountDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -3547,8 +3487,8 @@ export class IdentitySubAccountDepositConstant {
    *  that one storage item's value will increase by the size of an account ID, and there will
    *  be another trie item whose value is the size of an account ID plus 32 bytes.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Identity', 'SubAccountDeposit')
   }
 
@@ -3573,7 +3513,7 @@ export class ImOnlineUnsignedPriorityConstant {
    *  This is exposed so that it can be tuned for particular runtime, when
    *  multiple pallets send unsigned transactions.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('ImOnline', 'UnsignedPriority') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
@@ -3583,8 +3523,8 @@ export class ImOnlineUnsignedPriorityConstant {
    *  This is exposed so that it can be tuned for particular runtime, when
    *  multiple pallets send unsigned transactions.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('ImOnline', 'UnsignedPriority')
   }
 
@@ -3606,15 +3546,15 @@ export class IndicesDepositConstant {
   /**
    *  The deposit needed for reserving an index.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Indices', 'Deposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The deposit needed for reserving an index.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Indices', 'Deposit')
   }
 
@@ -3623,100 +3563,6 @@ export class IndicesDepositConstant {
    */
   get isExists(): boolean {
     return this._chain.getConstantTypeHash('Indices', 'Deposit') != null
-  }
-}
-
-export class LotteryMaxCallsConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The max number of calls available in a single lottery.
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('Lottery', 'MaxCalls') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The max number of calls available in a single lottery.
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('Lottery', 'MaxCalls')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('Lottery', 'MaxCalls') != null
-  }
-}
-
-export class LotteryMaxGenerateRandomConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  Number of time we should try to generate a random number that has no modulo bias.
-   *  The larger this number, the more potential computation is used for picking the winner,
-   *  but also the more likely that the chosen winner is done fairly.
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('Lottery', 'MaxGenerateRandom') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  Number of time we should try to generate a random number that has no modulo bias.
-   *  The larger this number, the more potential computation is used for picking the winner,
-   *  but also the more likely that the chosen winner is done fairly.
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('Lottery', 'MaxGenerateRandom')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('Lottery', 'MaxGenerateRandom') != null
-  }
-}
-
-export class LotteryPalletIdConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The Lottery's pallet id
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('Lottery', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
-  }
-
-  /**
-   *  The Lottery's pallet id
-   */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
-    return this._chain.getConstant('Lottery', 'PalletId')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('Lottery', 'PalletId') != null
   }
 }
 
@@ -3735,7 +3581,7 @@ export class MultisigDepositBaseConstant {
    *  `4 + sizeof((BlockNumber, Balance, AccountId))` bytes and whose key size is
    *  `32 + sizeof(AccountId)` bytes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Multisig', 'DepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -3747,8 +3593,8 @@ export class MultisigDepositBaseConstant {
    *  `4 + sizeof((BlockNumber, Balance, AccountId))` bytes and whose key size is
    *  `32 + sizeof(AccountId)` bytes.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Multisig', 'DepositBase')
   }
 
@@ -3772,7 +3618,7 @@ export class MultisigDepositFactorConstant {
    * 
    *  This is held for adding 32 bytes more into a pre-existing storage value.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Multisig', 'DepositFactor') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -3781,8 +3627,8 @@ export class MultisigDepositFactorConstant {
    * 
    *  This is held for adding 32 bytes more into a pre-existing storage value.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Multisig', 'DepositFactor')
   }
 
@@ -3804,15 +3650,15 @@ export class MultisigMaxSignatoriesConstant {
   /**
    *  The maximum amount of signatories allowed in the multisig.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Multisig', 'MaxSignatories') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum amount of signatories allowed in the multisig.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Multisig', 'MaxSignatories')
   }
 
@@ -3835,7 +3681,7 @@ export class NisBasePeriodConstant {
    *  The base period for the duration queues. This is the common multiple across all
    *  supported freezing durations that can be bid upon.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'BasePeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3843,8 +3689,8 @@ export class NisBasePeriodConstant {
    *  The base period for the duration queues. This is the common multiple across all
    *  supported freezing durations that can be bid upon.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'BasePeriod')
   }
 
@@ -3868,7 +3714,7 @@ export class NisFifoQueueLenConstant {
    * 
    *  Must be no greater than `MaxQueueLen`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'FifoQueueLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3877,8 +3723,8 @@ export class NisFifoQueueLenConstant {
    * 
    *  Must be no greater than `MaxQueueLen`.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'FifoQueueLen')
   }
 
@@ -3903,7 +3749,7 @@ export class NisIntakePeriodConstant {
    *  A larger value results in fewer storage hits each block, but a slower period to get to
    *  the target.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'IntakePeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3913,8 +3759,8 @@ export class NisIntakePeriodConstant {
    *  A larger value results in fewer storage hits each block, but a slower period to get to
    *  the target.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'IntakePeriod')
   }
 
@@ -3938,7 +3784,7 @@ export class NisMaxIntakeWeightConstant {
    *  larger value here means less of the block available for transactions should there be a
    *  glut of bids.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'MaxIntakeWeight') === 'c92b1d8d51239cdf34de2cc7cfa9141c62b02aaf420c1b8dfaf8d16d158d95b5'
   }
 
@@ -3947,8 +3793,8 @@ export class NisMaxIntakeWeightConstant {
    *  larger value here means less of the block available for transactions should there be a
    *  glut of bids.
    */
-  get asV68(): v68.Weight {
-    assert(this.isV68)
+  get asV70(): v70.Weight {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'MaxIntakeWeight')
   }
 
@@ -3972,7 +3818,7 @@ export class NisMaxQueueLenConstant {
    * 
    *  Must be larger than zero.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'MaxQueueLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -3981,8 +3827,8 @@ export class NisMaxQueueLenConstant {
    * 
    *  Must be larger than zero.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'MaxQueueLen')
   }
 
@@ -4009,7 +3855,7 @@ export class NisMinBidConstant {
    *  It should be at least big enough to ensure that there is no possible storage spam attack
    *  or queue-filling attack.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'MinBid') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4021,8 +3867,8 @@ export class NisMinBidConstant {
    *  It should be at least big enough to ensure that there is no possible storage spam attack
    *  or queue-filling attack.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'MinBid')
   }
 
@@ -4045,7 +3891,7 @@ export class NisMinReceiptConstant {
    *  The minimum amount of funds which may intentionally be left remaining under a single
    *  receipt.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'MinReceipt') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
@@ -4053,8 +3899,8 @@ export class NisMinReceiptConstant {
    *  The minimum amount of funds which may intentionally be left remaining under a single
    *  receipt.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'MinReceipt')
   }
 
@@ -4076,15 +3922,15 @@ export class NisPalletIdConstant {
   /**
    *  The treasury's pallet id, used for deriving its sovereign account ID.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  The treasury's pallet id, used for deriving its sovereign account ID.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'PalletId')
   }
 
@@ -4107,7 +3953,7 @@ export class NisQueueCountConstant {
    *  Number of duration queues in total. This sets the maximum duration supported, which is
    *  this value multiplied by `Period`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'QueueCount') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4115,8 +3961,8 @@ export class NisQueueCountConstant {
    *  Number of duration queues in total. This sets the maximum duration supported, which is
    *  this value multiplied by `Period`.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'QueueCount')
   }
 
@@ -4138,15 +3984,15 @@ export class NisThawThrottleConstant {
   /**
    *  The maximum proportion which may be thawed and the period over which it is reset.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Nis', 'ThawThrottle') === '8e9655b626359e6cd2897fc37d5361e515ecf3af5d7acb495b324de311171c80'
   }
 
   /**
    *  The maximum proportion which may be thawed and the period over which it is reset.
    */
-  get asV68(): [bigint, number] {
-    assert(this.isV68)
+  get asV70(): [bigint, number] {
+    assert(this.isV70)
     return this._chain.getConstant('Nis', 'ThawThrottle')
   }
 
@@ -4179,7 +4025,7 @@ export class NominationPoolsMaxPointsToBalanceConstant {
    *  For a value of 10, the threshold would be a pool points-to-balance ratio of 10:1.
    *  Such a scenario would also be the equivalent of the pool being 90% slashed.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('NominationPools', 'MaxPointsToBalance') === 'afecacff3b029831d50a478055aa405254e6579585f9617d2a2f34743b4aff83'
   }
 
@@ -4197,8 +4043,8 @@ export class NominationPoolsMaxPointsToBalanceConstant {
    *  For a value of 10, the threshold would be a pool points-to-balance ratio of 10:1.
    *  Such a scenario would also be the equivalent of the pool being 90% slashed.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('NominationPools', 'MaxPointsToBalance')
   }
 
@@ -4220,15 +4066,15 @@ export class NominationPoolsPalletIdConstant {
   /**
    *  The nomination pool's pallet id.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('NominationPools', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  The nomination pool's pallet id.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('NominationPools', 'PalletId')
   }
 
@@ -4253,7 +4099,7 @@ export class ProxyAnnouncementDepositBaseConstant {
    *  This is held when a new storage item holding a `Balance` is created (typically 16
    *  bytes).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'AnnouncementDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4263,8 +4109,8 @@ export class ProxyAnnouncementDepositBaseConstant {
    *  This is held when a new storage item holding a `Balance` is created (typically 16
    *  bytes).
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'AnnouncementDepositBase')
   }
 
@@ -4289,7 +4135,7 @@ export class ProxyAnnouncementDepositFactorConstant {
    *  This is held for adding an `AccountId`, `Hash` and `BlockNumber` (typically 68 bytes)
    *  into a pre-existing storage value.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'AnnouncementDepositFactor') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4299,8 +4145,8 @@ export class ProxyAnnouncementDepositFactorConstant {
    *  This is held for adding an `AccountId`, `Hash` and `BlockNumber` (typically 68 bytes)
    *  into a pre-existing storage value.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'AnnouncementDepositFactor')
   }
 
@@ -4322,15 +4168,15 @@ export class ProxyMaxPendingConstant {
   /**
    *  The maximum amount of time-delayed announcements that are allowed to be pending.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'MaxPending') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum amount of time-delayed announcements that are allowed to be pending.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'MaxPending')
   }
 
@@ -4352,15 +4198,15 @@ export class ProxyMaxProxiesConstant {
   /**
    *  The maximum amount of proxies allowed for a single account.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'MaxProxies') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum amount of proxies allowed for a single account.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'MaxProxies')
   }
 
@@ -4385,7 +4231,7 @@ export class ProxyProxyDepositBaseConstant {
    *  This is held for an additional storage item whose value size is
    *  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'ProxyDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4395,8 +4241,8 @@ export class ProxyProxyDepositBaseConstant {
    *  This is held for an additional storage item whose value size is
    *  `sizeof(Balance)` bytes and whose key size is `sizeof(AccountId)` bytes.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'ProxyDepositBase')
   }
 
@@ -4422,7 +4268,7 @@ export class ProxyProxyDepositFactorConstant {
    *  pre-existing storage value. Thus, when configuring `ProxyDepositFactor` one should take
    *  into account `32 + proxy_type.encode().len()` bytes of data.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Proxy', 'ProxyDepositFactor') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4433,8 +4279,8 @@ export class ProxyProxyDepositFactorConstant {
    *  pre-existing storage value. Thus, when configuring `ProxyDepositFactor` one should take
    *  into account `32 + proxy_type.encode().len()` bytes of data.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Proxy', 'ProxyDepositFactor')
   }
 
@@ -4458,7 +4304,7 @@ export class RankedPollsAlarmIntervalConstant {
    *  fewer storage reads/writes needed for smaller voters, but also result in delays to the
    *  automatic referendum status changes. Explicit servicing instructions are unaffected.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('RankedPolls', 'AlarmInterval') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4467,8 +4313,8 @@ export class RankedPollsAlarmIntervalConstant {
    *  fewer storage reads/writes needed for smaller voters, but also result in delays to the
    *  automatic referendum status changes. Explicit servicing instructions are unaffected.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('RankedPolls', 'AlarmInterval')
   }
 
@@ -4490,15 +4336,15 @@ export class RankedPollsMaxQueuedConstant {
   /**
    *  Maximum size of the referendum queue for a single track.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('RankedPolls', 'MaxQueued') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Maximum size of the referendum queue for a single track.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('RankedPolls', 'MaxQueued')
   }
 
@@ -4520,15 +4366,15 @@ export class RankedPollsSubmissionDepositConstant {
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('RankedPolls', 'SubmissionDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('RankedPolls', 'SubmissionDeposit')
   }
 
@@ -4550,15 +4396,15 @@ export class RankedPollsTracksConstant {
   /**
    *  Information concerning the different referendum tracks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('RankedPolls', 'Tracks') === '63884ac795662e8d9557bdfe0dc31ae592692e4763012ecde5062436b8e902b7'
   }
 
   /**
    *  Information concerning the different referendum tracks.
    */
-  get asV68(): [number, v68.TrackInfo][] {
-    assert(this.isV68)
+  get asV70(): [number, v70.TrackInfo][] {
+    assert(this.isV70)
     return this._chain.getConstant('RankedPolls', 'Tracks')
   }
 
@@ -4581,7 +4427,7 @@ export class RankedPollsUndecidingTimeoutConstant {
    *  The number of blocks after submission that a referendum must begin being decided by.
    *  Once this passes, then anyone may cancel the referendum.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('RankedPolls', 'UndecidingTimeout') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4589,8 +4435,8 @@ export class RankedPollsUndecidingTimeoutConstant {
    *  The number of blocks after submission that a referendum must begin being decided by.
    *  Once this passes, then anyone may cancel the referendum.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('RankedPolls', 'UndecidingTimeout')
   }
 
@@ -4615,7 +4461,7 @@ export class RecoveryConfigDepositBaseConstant {
    *  This is held for an additional storage item whose value size is
    *  `2 + sizeof(BlockNumber, Balance)` bytes.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Recovery', 'ConfigDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4625,8 +4471,8 @@ export class RecoveryConfigDepositBaseConstant {
    *  This is held for an additional storage item whose value size is
    *  `2 + sizeof(BlockNumber, Balance)` bytes.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Recovery', 'ConfigDepositBase')
   }
 
@@ -4652,7 +4498,7 @@ export class RecoveryFriendDepositFactorConstant {
    *  This is held for adding `sizeof(AccountId)` bytes more into a pre-existing storage
    *  value.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Recovery', 'FriendDepositFactor') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4663,8 +4509,8 @@ export class RecoveryFriendDepositFactorConstant {
    *  This is held for adding `sizeof(AccountId)` bytes more into a pre-existing storage
    *  value.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Recovery', 'FriendDepositFactor')
   }
 
@@ -4691,7 +4537,7 @@ export class RecoveryMaxFriendsConstant {
    *  But also, that is a lot more than you should probably set this value
    *  to anyway...
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Recovery', 'MaxFriends') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4703,8 +4549,8 @@ export class RecoveryMaxFriendsConstant {
    *  But also, that is a lot more than you should probably set this value
    *  to anyway...
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Recovery', 'MaxFriends')
   }
 
@@ -4732,7 +4578,7 @@ export class RecoveryRecoveryDepositConstant {
    *  `sizeof(BlockNumber, Balance + T * AccountId)` bytes. Where T is a configurable
    *  threshold.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Recovery', 'RecoveryDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -4745,8 +4591,8 @@ export class RecoveryRecoveryDepositConstant {
    *  `sizeof(BlockNumber, Balance + T * AccountId)` bytes. Where T is a configurable
    *  threshold.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Recovery', 'RecoveryDeposit')
   }
 
@@ -4770,7 +4616,7 @@ export class ReferendaAlarmIntervalConstant {
    *  fewer storage reads/writes needed for smaller voters, but also result in delays to the
    *  automatic referendum status changes. Explicit servicing instructions are unaffected.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Referenda', 'AlarmInterval') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4779,8 +4625,8 @@ export class ReferendaAlarmIntervalConstant {
    *  fewer storage reads/writes needed for smaller voters, but also result in delays to the
    *  automatic referendum status changes. Explicit servicing instructions are unaffected.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Referenda', 'AlarmInterval')
   }
 
@@ -4802,15 +4648,15 @@ export class ReferendaMaxQueuedConstant {
   /**
    *  Maximum size of the referendum queue for a single track.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Referenda', 'MaxQueued') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Maximum size of the referendum queue for a single track.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Referenda', 'MaxQueued')
   }
 
@@ -4832,15 +4678,15 @@ export class ReferendaSubmissionDepositConstant {
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Referenda', 'SubmissionDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount to be used as a deposit for a public referendum proposal.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Referenda', 'SubmissionDeposit')
   }
 
@@ -4862,15 +4708,15 @@ export class ReferendaTracksConstant {
   /**
    *  Information concerning the different referendum tracks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Referenda', 'Tracks') === '63884ac795662e8d9557bdfe0dc31ae592692e4763012ecde5062436b8e902b7'
   }
 
   /**
    *  Information concerning the different referendum tracks.
    */
-  get asV68(): [number, v68.TrackInfo][] {
-    assert(this.isV68)
+  get asV70(): [number, v70.TrackInfo][] {
+    assert(this.isV70)
     return this._chain.getConstant('Referenda', 'Tracks')
   }
 
@@ -4893,7 +4739,7 @@ export class ReferendaUndecidingTimeoutConstant {
    *  The number of blocks after submission that a referendum must begin being decided by.
    *  Once this passes, then anyone may cancel the referendum.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Referenda', 'UndecidingTimeout') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -4901,8 +4747,8 @@ export class ReferendaUndecidingTimeoutConstant {
    *  The number of blocks after submission that a referendum must begin being decided by.
    *  Once this passes, then anyone may cancel the referendum.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Referenda', 'UndecidingTimeout')
   }
 
@@ -4911,216 +4757,6 @@ export class ReferendaUndecidingTimeoutConstant {
    */
   get isExists(): boolean {
     return this._chain.getConstantTypeHash('Referenda', 'UndecidingTimeout') != null
-  }
-}
-
-export class RmrkCoreMaxPrioritiesConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum number of resources that can be included in a setpriority extrinsic
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkCore', 'MaxPriorities') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum number of resources that can be included in a setpriority extrinsic
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkCore', 'MaxPriorities')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkCore', 'MaxPriorities') != null
-  }
-}
-
-export class RmrkCoreNestingBudgetConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum nesting allowed in the pallet extrinsics.
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkCore', 'NestingBudget') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum nesting allowed in the pallet extrinsics.
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkCore', 'NestingBudget')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkCore', 'NestingBudget') != null
-  }
-}
-
-export class RmrkCorePartsLimitConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum number of parts each resource may have
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkCore', 'PartsLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum number of parts each resource may have
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkCore', 'PartsLimit')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkCore', 'PartsLimit') != null
-  }
-}
-
-export class RmrkCoreResourceSymbolLimitConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  The maximum resource symbol length
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkCore', 'ResourceSymbolLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  The maximum resource symbol length
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkCore', 'ResourceSymbolLimit')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkCore', 'ResourceSymbolLimit') != null
-  }
-}
-
-export class RmrkEquipMaxCollectionsEquippablePerPartConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  Maximum number of Properties allowed for any Theme
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkEquip', 'MaxCollectionsEquippablePerPart') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  Maximum number of Properties allowed for any Theme
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkEquip', 'MaxCollectionsEquippablePerPart')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkEquip', 'MaxCollectionsEquippablePerPart') != null
-  }
-}
-
-export class RmrkEquipMaxPropertiesPerThemeConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  Maximum allowed Parts (either Fixed or Slot) per Base
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkEquip', 'MaxPropertiesPerTheme') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
-  }
-
-  /**
-   *  Maximum allowed Parts (either Fixed or Slot) per Base
-   */
-  get asV68(): number {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkEquip', 'MaxPropertiesPerTheme')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkEquip', 'MaxPropertiesPerTheme') != null
-  }
-}
-
-export class RmrkMarketMinimumOfferAmountConstant {
-  private readonly _chain: Chain
-
-  constructor(ctx: ChainContext) {
-    this._chain = ctx._chain
-  }
-
-  /**
-   *  Minimum offer amount as a valid offer
-   */
-  get isV68() {
-    return this._chain.getConstantTypeHash('RmrkMarket', 'MinimumOfferAmount') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
-  }
-
-  /**
-   *  Minimum offer amount as a valid offer
-   */
-  get asV68(): bigint {
-    assert(this.isV68)
-    return this._chain.getConstant('RmrkMarket', 'MinimumOfferAmount')
-  }
-
-  /**
-   * Checks whether the constant is defined for the current chain version.
-   */
-  get isExists(): boolean {
-    return this._chain.getConstantTypeHash('RmrkMarket', 'MinimumOfferAmount') != null
   }
 }
 
@@ -5134,15 +4770,15 @@ export class SchedulerMaxScheduledPerBlockConstant {
   /**
    *  The maximum number of scheduled calls in the queue for a single block.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Scheduler', 'MaxScheduledPerBlock') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of scheduled calls in the queue for a single block.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Scheduler', 'MaxScheduledPerBlock')
   }
 
@@ -5164,15 +4800,15 @@ export class SchedulerMaximumWeightConstant {
   /**
    *  The maximum weight that may be scheduled per block for any dispatchables.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Scheduler', 'MaximumWeight') === 'c92b1d8d51239cdf34de2cc7cfa9141c62b02aaf420c1b8dfaf8d16d158d95b5'
   }
 
   /**
    *  The maximum weight that may be scheduled per block for any dispatchables.
    */
-  get asV68(): v68.Weight {
-    assert(this.isV68)
+  get asV70(): v70.Weight {
+    assert(this.isV70)
     return this._chain.getConstant('Scheduler', 'MaximumWeight')
   }
 
@@ -5194,15 +4830,15 @@ export class SenseStringLimitConstant {
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Sense', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a name or symbol stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Sense', 'StringLimit')
   }
 
@@ -5224,15 +4860,15 @@ export class SignalGameDAOGetsFromSlashingConstant {
   /**
    *  This part of slashing goes to GameDAO treasury (default: 1/4).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'GameDAOGetsFromSlashing') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  This part of slashing goes to GameDAO treasury (default: 1/4).
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'GameDAOGetsFromSlashing')
   }
 
@@ -5254,15 +4890,15 @@ export class SignalGameDAOTreasuryConstant {
   /**
    *  The GameDAO Treasury AccountId.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'GameDAOTreasury') === 'cc28a7f7046ec4d0eb3419e4aa142bf25c25992e58d0e8646eb029c7c6b4c0c8'
   }
 
   /**
    *  The GameDAO Treasury AccountId.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'GameDAOTreasury')
   }
 
@@ -5284,15 +4920,15 @@ export class SignalMaxMembersConstant {
   /**
    *  Max number of members per organization
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'MaxMembers') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Max number of members per organization
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'MaxMembers')
   }
 
@@ -5314,15 +4950,15 @@ export class SignalMaxProposalsPerBlockConstant {
   /**
    *  The max number of proposals per one block.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'MaxProposalsPerBlock') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The max number of proposals per one block.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'MaxProposalsPerBlock')
   }
 
@@ -5344,15 +4980,15 @@ export class SignalMinProposalDepositConstant {
   /**
    *  Min deposit for Proposal creation
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'MinProposalDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Min deposit for Proposal creation
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'MinProposalDeposit')
   }
 
@@ -5374,15 +5010,15 @@ export class SignalPaymentTokenIdConstant {
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'PaymentTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a payment token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'PaymentTokenId')
   }
 
@@ -5404,15 +5040,15 @@ export class SignalProposalDurationLimitsConstant {
   /**
    *  Default time limit for a proposal in blocks.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'ProposalDurationLimits') === '89667797236ba996cee700097e48264fab1c5603dc68df58a8ff56acf2809f5c'
   }
 
   /**
    *  Default time limit for a proposal in blocks.
    */
-  get asV68(): [number, number] {
-    assert(this.isV68)
+  get asV70(): [number, number] {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'ProposalDurationLimits')
   }
 
@@ -5434,15 +5070,15 @@ export class SignalProtocolTokenIdConstant {
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'ProtocolTokenId') === '86bfb6fcd70ec00dd5e7c9cd581374602768dbd15c90e1ff08b05b8bfde79617'
   }
 
   /**
    *  The CurrencyId which is used as a protokol token.
    */
-  get asV68(): v68.CurrencyId {
-    assert(this.isV68)
+  get asV70(): v70.CurrencyId {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'ProtocolTokenId')
   }
 
@@ -5464,15 +5100,15 @@ export class SignalSlashingMajorityConstant {
   /**
    *  Majority of rejection >= {this value} * eligible voters --> slash deposit (default: 2/3).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'SlashingMajority') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Majority of rejection >= {this value} * eligible voters --> slash deposit (default: 2/3).
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'SlashingMajority')
   }
 
@@ -5494,15 +5130,15 @@ export class SignalStringLimitConstant {
   /**
    *  The maximum length of a string, stored on chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Signal', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of a string, stored on chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Signal', 'StringLimit')
   }
 
@@ -5524,15 +5160,15 @@ export class SocietyCandidateDepositConstant {
   /**
    *  The minimum amount of a deposit required for a bid to be made.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'CandidateDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount of a deposit required for a bid to be made.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'CandidateDeposit')
   }
 
@@ -5554,15 +5190,15 @@ export class SocietyChallengePeriodConstant {
   /**
    *  The number of blocks between membership challenges.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'ChallengePeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The number of blocks between membership challenges.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'ChallengePeriod')
   }
 
@@ -5584,15 +5220,15 @@ export class SocietyMaxCandidateIntakeConstant {
   /**
    *  The maximum number of candidates that we accept per round.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'MaxCandidateIntake') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of candidates that we accept per round.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'MaxCandidateIntake')
   }
 
@@ -5614,15 +5250,15 @@ export class SocietyMaxLockDurationConstant {
   /**
    *  The maximum duration of the payout lock.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'MaxLockDuration') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum duration of the payout lock.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'MaxLockDuration')
   }
 
@@ -5645,7 +5281,7 @@ export class SocietyMaxStrikesConstant {
    *  The number of times a member may vote the wrong way (or not at all, when they are a
    *  skeptic) before they become suspended.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'MaxStrikes') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -5653,8 +5289,8 @@ export class SocietyMaxStrikesConstant {
    *  The number of times a member may vote the wrong way (or not at all, when they are a
    *  skeptic) before they become suspended.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'MaxStrikes')
   }
 
@@ -5676,15 +5312,15 @@ export class SocietyPalletIdConstant {
   /**
    *  The societies's pallet id
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  The societies's pallet id
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'PalletId')
   }
 
@@ -5706,15 +5342,15 @@ export class SocietyPeriodSpendConstant {
   /**
    *  The amount of incentive paid within each period. Doesn't include VoterTip.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'PeriodSpend') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount of incentive paid within each period. Doesn't include VoterTip.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'PeriodSpend')
   }
 
@@ -5736,15 +5372,15 @@ export class SocietyRotationPeriodConstant {
   /**
    *  The number of blocks between candidate/membership rotation periods.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'RotationPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The number of blocks between candidate/membership rotation periods.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'RotationPeriod')
   }
 
@@ -5767,7 +5403,7 @@ export class SocietyWrongSideDeductionConstant {
    *  The amount of the unpaid reward that gets deducted in the case that either a skeptic
    *  doesn't vote or someone votes in the wrong way.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Society', 'WrongSideDeduction') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -5775,8 +5411,8 @@ export class SocietyWrongSideDeductionConstant {
    *  The amount of the unpaid reward that gets deducted in the case that either a skeptic
    *  doesn't vote or someone votes in the wrong way.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Society', 'WrongSideDeduction')
   }
 
@@ -5798,15 +5434,15 @@ export class StakingBondingDurationConstant {
   /**
    *  Number of eras that staked funds must remain bonded for.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'BondingDuration') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Number of eras that staked funds must remain bonded for.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'BondingDuration')
   }
 
@@ -5847,7 +5483,7 @@ export class StakingHistoryDepthConstant {
    *  `StakingLedger` and will need to be handled properly in a migration.
    *  The test `reducing_history_depth_abrupt` shows this effect.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'HistoryDepth') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -5873,8 +5509,8 @@ export class StakingHistoryDepthConstant {
    *  `StakingLedger` and will need to be handled properly in a migration.
    *  The test `reducing_history_depth_abrupt` shows this effect.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'HistoryDepth')
   }
 
@@ -5896,15 +5532,15 @@ export class StakingMaxNominationsConstant {
   /**
    *  Maximum number of nominations per nominator.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'MaxNominations') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Maximum number of nominations per nominator.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'MaxNominations')
   }
 
@@ -5929,7 +5565,7 @@ export class StakingMaxNominatorRewardedPerValidatorConstant {
    *  For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can
    *  claim their reward. This used to limit the i/o cost for the nominator payout.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'MaxNominatorRewardedPerValidator') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -5939,8 +5575,8 @@ export class StakingMaxNominatorRewardedPerValidatorConstant {
    *  For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can
    *  claim their reward. This used to limit the i/o cost for the nominator payout.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'MaxNominatorRewardedPerValidator')
   }
 
@@ -5971,7 +5607,7 @@ export class StakingMaxUnlockingChunksConstant {
    *  migration. The test `reducing_max_unlocking_chunks_abrupt` shows
    *  this effect.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'MaxUnlockingChunks') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -5987,8 +5623,8 @@ export class StakingMaxUnlockingChunksConstant {
    *  migration. The test `reducing_max_unlocking_chunks_abrupt` shows
    *  this effect.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'MaxUnlockingChunks')
   }
 
@@ -6010,15 +5646,15 @@ export class StakingSessionsPerEraConstant {
   /**
    *  Number of sessions per era.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'SessionsPerEra') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Number of sessions per era.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'SessionsPerEra')
   }
 
@@ -6043,7 +5679,7 @@ export class StakingSlashDeferDurationConstant {
    *  This should be less than the bonding duration. Set to 0 if slashes
    *  should be applied immediately, without opportunity for intervention.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Staking', 'SlashDeferDuration') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -6053,8 +5689,8 @@ export class StakingSlashDeferDurationConstant {
    *  This should be less than the bonding duration. Set to 0 if slashes
    *  should be applied immediately, without opportunity for intervention.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Staking', 'SlashDeferDuration')
   }
 
@@ -6096,7 +5732,7 @@ export class StateTrieMigrationMaxKeyLenConstant {
    *  For more info see
    *  <https://www.shawntabrizi.com/substrate/querying-substrate-storage-via-rpc/>
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('StateTrieMigration', 'MaxKeyLen') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -6123,8 +5759,8 @@ export class StateTrieMigrationMaxKeyLenConstant {
    *  For more info see
    *  <https://www.shawntabrizi.com/substrate/querying-substrate-storage-via-rpc/>
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('StateTrieMigration', 'MaxKeyLen')
   }
 
@@ -6146,15 +5782,15 @@ export class SystemBlockHashCountConstant {
   /**
    *  Maximum number of block number to block hash mappings to keep (oldest pruned first).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'BlockHashCount') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Maximum number of block number to block hash mappings to keep (oldest pruned first).
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'BlockHashCount')
   }
 
@@ -6176,15 +5812,15 @@ export class SystemBlockLengthConstant {
   /**
    *  The maximum length of a block (in bytes).
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'BlockLength') === '9aacf667c67dbae172e6d30e5f4026086c8a56d9ebfe50dfdcca3fe40a9f55ca'
   }
 
   /**
    *  The maximum length of a block (in bytes).
    */
-  get asV68(): v68.BlockLength {
-    assert(this.isV68)
+  get asV70(): v70.BlockLength {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'BlockLength')
   }
 
@@ -6206,15 +5842,15 @@ export class SystemBlockWeightsConstant {
   /**
    *  Block & extrinsics weights: base values and limits.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'BlockWeights') === 'fa5692d9032f25a42ae01892fea053f75130751d1302a6b4db45a7a98a9d0760'
   }
 
   /**
    *  Block & extrinsics weights: base values and limits.
    */
-  get asV68(): v68.BlockWeights {
-    assert(this.isV68)
+  get asV70(): v70.BlockWeights {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'BlockWeights')
   }
 
@@ -6236,15 +5872,15 @@ export class SystemDbWeightConstant {
   /**
    *  The weight of runtime database operations the runtime can invoke.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'DbWeight') === 'f2b1a28b00823bafa34a2cd3123e2e54de1b56f53266976a0fa1bbffc1833341'
   }
 
   /**
    *  The weight of runtime database operations the runtime can invoke.
    */
-  get asV68(): v68.RuntimeDbWeight {
-    assert(this.isV68)
+  get asV70(): v70.RuntimeDbWeight {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'DbWeight')
   }
 
@@ -6270,7 +5906,7 @@ export class SystemSS58PrefixConstant {
    *  that the runtime should know about the prefix in order to make use of it as
    *  an identifier of the chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'SS58Prefix') === '32def12560ecd411fe2fc796552e97d0d5ee0ea10e059b3d8918c9e94dfdb334'
   }
 
@@ -6281,8 +5917,8 @@ export class SystemSS58PrefixConstant {
    *  that the runtime should know about the prefix in order to make use of it as
    *  an identifier of the chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'SS58Prefix')
   }
 
@@ -6304,15 +5940,15 @@ export class SystemVersionConstant {
   /**
    *  Get the chain's current version.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('System', 'Version') === 'f6a7df964a5f6d420bccc7ccc38bd9265b00dc71b74c91dc5848badeeaf0cbb8'
   }
 
   /**
    *  Get the chain's current version.
    */
-  get asV68(): v68.RuntimeVersion {
-    assert(this.isV68)
+  get asV70(): v70.RuntimeVersion {
+    assert(this.isV70)
     return this._chain.getConstant('System', 'Version')
   }
 
@@ -6337,7 +5973,7 @@ export class TimestampMinimumPeriodConstant {
    *  generally work with this to determine a sensible block time. e.g. For Aura, it will be
    *  double this period on default settings.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Timestamp', 'MinimumPeriod') === '2e8052d0ae8d237ad263438f986208df52f4f0e9f529557036c3b179dfb42f21'
   }
 
@@ -6347,8 +5983,8 @@ export class TimestampMinimumPeriodConstant {
    *  generally work with this to determine a sensible block time. e.g. For Aura, it will be
    *  double this period on default settings.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Timestamp', 'MinimumPeriod')
   }
 
@@ -6370,15 +6006,15 @@ export class TipsDataDepositPerByteConstant {
   /**
    *  The amount held on deposit per byte within the tip report reason or bounty description.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tips', 'DataDepositPerByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit per byte within the tip report reason or bounty description.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Tips', 'DataDepositPerByte')
   }
 
@@ -6402,7 +6038,7 @@ export class TipsMaximumReasonLengthConstant {
    * 
    *  Benchmarks depend on this value, be sure to update weights file when changing this value
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tips', 'MaximumReasonLength') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -6411,8 +6047,8 @@ export class TipsMaximumReasonLengthConstant {
    * 
    *  Benchmarks depend on this value, be sure to update weights file when changing this value
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Tips', 'MaximumReasonLength')
   }
 
@@ -6434,15 +6070,15 @@ export class TipsTipCountdownConstant {
   /**
    *  The period for which a tip remains open after is has achieved threshold tippers.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tips', 'TipCountdown') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The period for which a tip remains open after is has achieved threshold tippers.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Tips', 'TipCountdown')
   }
 
@@ -6464,15 +6100,15 @@ export class TipsTipFindersFeeConstant {
   /**
    *  The percent of the final tip which goes to the original reporter of the tip.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tips', 'TipFindersFee') === 'afecacff3b029831d50a478055aa405254e6579585f9617d2a2f34743b4aff83'
   }
 
   /**
    *  The percent of the final tip which goes to the original reporter of the tip.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Tips', 'TipFindersFee')
   }
 
@@ -6494,15 +6130,15 @@ export class TipsTipReportDepositBaseConstant {
   /**
    *  The amount held on deposit for placing a tip report.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tips', 'TipReportDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The amount held on deposit for placing a tip report.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Tips', 'TipReportDepositBase')
   }
 
@@ -6521,12 +6157,12 @@ export class TokensMaxLocksConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tokens', 'MaxLocks') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Tokens', 'MaxLocks')
   }
 
@@ -6548,15 +6184,15 @@ export class TokensMaxReservesConstant {
   /**
    *  The maximum number of named reserves that can exist on an account.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Tokens', 'MaxReserves') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum number of named reserves that can exist on an account.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Tokens', 'MaxReserves')
   }
 
@@ -6598,7 +6234,7 @@ export class TransactionPaymentOperationalFeeMultiplierConstant {
    *  on the `inclusion_fee`, but we also amplify the impact of tips applied to `Operational`
    *  transactions.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('TransactionPayment', 'OperationalFeeMultiplier') === 'afecacff3b029831d50a478055aa405254e6579585f9617d2a2f34743b4aff83'
   }
 
@@ -6625,8 +6261,8 @@ export class TransactionPaymentOperationalFeeMultiplierConstant {
    *  on the `inclusion_fee`, but we also amplify the impact of tips applied to `Operational`
    *  transactions.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('TransactionPayment', 'OperationalFeeMultiplier')
   }
 
@@ -6648,15 +6284,15 @@ export class TreasuryBurnConstant {
   /**
    *  Percentage of spare funds (if any) that are burnt per spend period.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'Burn') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Percentage of spare funds (if any) that are burnt per spend period.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'Burn')
   }
 
@@ -6680,7 +6316,7 @@ export class TreasuryMaxApprovalsConstant {
    * 
    *  NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'MaxApprovals') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -6689,8 +6325,8 @@ export class TreasuryMaxApprovalsConstant {
    * 
    *  NOTE: This parameter is also used within the Bounties Pallet extension if enabled.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'MaxApprovals')
   }
 
@@ -6712,15 +6348,15 @@ export class TreasuryPalletIdConstant {
   /**
    *  The treasury's pallet id, used for deriving its sovereign account ID.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'PalletId') === 'c963e59c8e5b7d761234cd0f2cb1f219effb76c998fa93783afd994aed82a434'
   }
 
   /**
    *  The treasury's pallet id, used for deriving its sovereign account ID.
    */
-  get asV68(): Uint8Array {
-    assert(this.isV68)
+  get asV70(): Uint8Array {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'PalletId')
   }
 
@@ -6743,7 +6379,7 @@ export class TreasuryProposalBondConstant {
    *  Fraction of a proposal's value that should be bonded in order to place the proposal.
    *  An accepted proposal gets these back. A rejected proposal does not.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'ProposalBond') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
@@ -6751,8 +6387,8 @@ export class TreasuryProposalBondConstant {
    *  Fraction of a proposal's value that should be bonded in order to place the proposal.
    *  An accepted proposal gets these back. A rejected proposal does not.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'ProposalBond')
   }
 
@@ -6774,15 +6410,15 @@ export class TreasuryProposalBondMaximumConstant {
   /**
    *  Maximum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'ProposalBondMaximum') === 'bfdfd10c88945fb3fe1590ea01f6a3e70d37a6e37ae5abf44fdde45ecc525302'
   }
 
   /**
    *  Maximum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get asV68(): (bigint | undefined) {
-    assert(this.isV68)
+  get asV70(): (bigint | undefined) {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'ProposalBondMaximum')
   }
 
@@ -6804,15 +6440,15 @@ export class TreasuryProposalBondMinimumConstant {
   /**
    *  Minimum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'ProposalBondMinimum') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  Minimum amount of funds that should be placed in a deposit for making a proposal.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'ProposalBondMinimum')
   }
 
@@ -6834,15 +6470,15 @@ export class TreasurySpendPeriodConstant {
   /**
    *  Period between successive spends.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Treasury', 'SpendPeriod') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  Period between successive spends.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Treasury', 'SpendPeriod')
   }
 
@@ -6864,15 +6500,15 @@ export class UniquesAttributeDepositBaseConstant {
   /**
    *  The basic amount of funds that must be reserved when adding an attribute to an item.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'AttributeDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved when adding an attribute to an item.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'AttributeDepositBase')
   }
 
@@ -6894,15 +6530,15 @@ export class UniquesCollectionDepositConstant {
   /**
    *  The basic amount of funds that must be reserved for collection.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'CollectionDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved for collection.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'CollectionDeposit')
   }
 
@@ -6925,7 +6561,7 @@ export class UniquesDepositPerByteConstant {
    *  The additional funds that must be reserved for the number of bytes store in metadata,
    *  either "normal" metadata or attribute metadata.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'DepositPerByte') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
@@ -6933,8 +6569,8 @@ export class UniquesDepositPerByteConstant {
    *  The additional funds that must be reserved for the number of bytes store in metadata,
    *  either "normal" metadata or attribute metadata.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'DepositPerByte')
   }
 
@@ -6956,15 +6592,15 @@ export class UniquesItemDepositConstant {
   /**
    *  The basic amount of funds that must be reserved for an item.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'ItemDeposit') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved for an item.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'ItemDeposit')
   }
 
@@ -6986,15 +6622,15 @@ export class UniquesKeyLimitConstant {
   /**
    *  The maximum length of an attribute key.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'KeyLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of an attribute key.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'KeyLimit')
   }
 
@@ -7016,15 +6652,15 @@ export class UniquesMetadataDepositBaseConstant {
   /**
    *  The basic amount of funds that must be reserved when adding metadata to your item.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'MetadataDepositBase') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The basic amount of funds that must be reserved when adding metadata to your item.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'MetadataDepositBase')
   }
 
@@ -7046,15 +6682,15 @@ export class UniquesStringLimitConstant {
   /**
    *  The maximum length of data stored on-chain.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'StringLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of data stored on-chain.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'StringLimit')
   }
 
@@ -7076,15 +6712,15 @@ export class UniquesValueLimitConstant {
   /**
    *  The maximum length of an attribute value.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Uniques', 'ValueLimit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The maximum length of an attribute value.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Uniques', 'ValueLimit')
   }
 
@@ -7106,15 +6742,15 @@ export class Utilitybatched_calls_limitConstant {
   /**
    *  The limit on the number of batched calls.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Utility', 'batched_calls_limit') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
   /**
    *  The limit on the number of batched calls.
    */
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Utility', 'batched_calls_limit')
   }
 
@@ -7133,12 +6769,12 @@ export class VestingMaxVestingSchedulesConstant {
     this._chain = ctx._chain
   }
 
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Vesting', 'MaxVestingSchedules') === 'b76f37d33f64f2d9b3234e29034ab4a73ee9da01a61ab139c27f8c841971e469'
   }
 
-  get asV68(): number {
-    assert(this.isV68)
+  get asV70(): number {
+    assert(this.isV70)
     return this._chain.getConstant('Vesting', 'MaxVestingSchedules')
   }
 
@@ -7160,15 +6796,15 @@ export class VestingMinVestedTransferConstant {
   /**
    *  The minimum amount transferred to call `vested_transfer`.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('Vesting', 'MinVestedTransfer') === 'a73c503ad07b8dce07ffc3646a2c7aeacb1280015e3b79887f6a9b11dae120f1'
   }
 
   /**
    *  The minimum amount transferred to call `vested_transfer`.
    */
-  get asV68(): bigint {
-    assert(this.isV68)
+  get asV70(): bigint {
+    assert(this.isV70)
     return this._chain.getConstant('Vesting', 'MinVestedTransfer')
   }
 
@@ -7232,7 +6868,7 @@ export class VoterListBagThresholdsConstant {
    *  In the event that this list ever changes, a copy of the old bags list must be retained.
    *  With that `List::migrate` can be called, which will perform the appropriate migration.
    */
-  get isV68() {
+  get isV70() {
     return this._chain.getConstantTypeHash('VoterList', 'BagThresholds') === '80f0a5ace0a61d64a6f491b97a94a053f62a56c6e1bd2c0d0d06946c6741d540'
   }
 
@@ -7281,8 +6917,8 @@ export class VoterListBagThresholdsConstant {
    *  In the event that this list ever changes, a copy of the old bags list must be retained.
    *  With that `List::migrate` can be called, which will perform the appropriate migration.
    */
-  get asV68(): bigint[] {
-    assert(this.isV68)
+  get asV70(): bigint[] {
+    assert(this.isV70)
     return this._chain.getConstant('VoterList', 'BagThresholds')
   }
 

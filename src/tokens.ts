@@ -11,7 +11,7 @@ import {
     TokensWithdrawnEvent,
 } from './types/generated/events'
 import { TokensAccountsStorage } from './types/generated/storage'
-import { CurrencyId } from './types/generated/v68'
+import { CurrencyId } from './types/generated/V70'
 import { Event } from './types/generated/support'
 import { getCurrencyValue } from './common/tools'
 
@@ -130,8 +130,8 @@ function addAccountCurrency(account: string, currency: CurrencyId, accountTokens
 function getBalanceSetAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensBalanceSetEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -140,8 +140,8 @@ function getBalanceSetAccount(ctx: Context, event: Event): [string, CurrencyId] 
 function getTransferAccounts(ctx: Context, event: Event): [string, string, CurrencyId] {
     const data = new TokensTransferEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.from), toHex(data.asV68.to), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.from), toHex(data.asV70.to), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -150,8 +150,8 @@ function getTransferAccounts(ctx: Context, event: Event): [string, string, Curre
 function getEndowedAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensEndowedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -160,8 +160,8 @@ function getEndowedAccount(ctx: Context, event: Event): [string, CurrencyId] {
 function getDepositAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensDepositedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -170,8 +170,8 @@ function getDepositAccount(ctx: Context, event: Event): [string, CurrencyId] {
 function getReservedAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensReservedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -180,8 +180,8 @@ function getReservedAccount(ctx: Context, event: Event): [string, CurrencyId] {
 function getUnreservedAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensUnreservedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -190,8 +190,8 @@ function getUnreservedAccount(ctx: Context, event: Event): [string, CurrencyId] 
 function getWithdrawAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensWithdrawnEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -200,8 +200,8 @@ function getWithdrawAccount(ctx: Context, event: Event): [string, CurrencyId] {
 function getSlashedAccount(ctx: Context, event: Event): [string, CurrencyId] {
     const data = new TokensSlashedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.who), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.who), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }
@@ -210,8 +210,8 @@ function getSlashedAccount(ctx: Context, event: Event): [string, CurrencyId] {
 function getReserveRepatriatedAccounts(ctx: Context, event: Event): [string, string, CurrencyId] {
     const data = new TokensReserveRepatriatedEvent(ctx, event)
 
-    if (data.isV68) {
-        return [toHex(data.asV68.from), toHex(data.asV68.to), data.asV68.currencyId]
+    if (data.isV70) {
+        return [toHex(data.asV70.from), toHex(data.asV70.to), data.asV70.currencyId]
     } else {
         throw new UnknownVersionError(data.constructor.name)
     }

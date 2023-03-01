@@ -32,12 +32,13 @@
     "Sense.PropertyUpdated",
 
     "Battlepass.BattlepassCreated",
+    "Battlepass.BattlepassUpdated",
     "Battlepass.BattlepassClaimed",
     "Battlepass.BattlepassActivated",
     "Battlepass.BattlepassEnded",
 
-    "RmrkCore.CollectionCreated",
-    "RmrkCore.NftMinted",
+    "Uniques.Created",
+    "Uniques.Issued",
 
     "Balances.Transfer",
     "Balances.Endowed",
@@ -79,9 +80,6 @@
 
     "Battlepass.Battlepasses",
     "Battlepass.BattlepassStates",
-
-    "RmrkCore.Nfts",
-    "RmrkCore.Collections",
 
     "System.Account",
     "Balances.Account",

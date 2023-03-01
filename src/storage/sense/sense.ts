@@ -1,6 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { SenseEntitiesStorage, SensePropertiesStorage } from '../../types/generated/storage'
-import { Entity, EntityProperty, PropertyType } from '../../types/generated/v68'
+import { Entity, EntityProperty, PropertyType } from '../../types/generated/V70'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 
@@ -9,8 +9,8 @@ export async function getEntityStorageData(ctx: Context, block: Block, id: Uint8
     const storage = new SenseEntitiesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV68) {
-        return await storage.getAsV68(id)
+    if (storage.isV70) {
+        return await storage.getAsV70(id)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
@@ -20,8 +20,8 @@ export async function getEntityPropertyStorageData(ctx: Context, block: Block, p
     const storage = new SensePropertiesStorage(ctx, block)
     if (!storage.isExists) return undefined
 
-    if (storage.isV68) {
-        return await storage.getAsV68(propertyType, accountId)
+    if (storage.isV70) {
+        return await storage.getAsV70(propertyType, accountId)
     } else {
         throw new UnknownVersionError(storage.constructor.name)
     }
