@@ -1,4 +1,4 @@
-import { OrgType, AccessModel, FeeModel, MemberState} from '../../../types/generated/V70'
+import { OrgType, AccessModel, FeeModel, MemberState} from '../../../types/generated/v70'
 import { Event } from '../../../types/generated/support'
 import { Context } from '../../../processor'
 import {

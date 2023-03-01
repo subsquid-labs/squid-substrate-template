@@ -1,7 +1,7 @@
 import { Call } from '../../../types/generated/support'
 import { Context } from '../../../processor'
 
-import { IdentityInfo } from '../../../types/generated/V70'
+import { IdentityInfo } from '../../../types/generated/v70'
 import { IdentitySetIdentityCall } from '../../../types/generated/calls'
 import { UnknownVersionError } from '../../../common/errors'
 

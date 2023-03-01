@@ -4,7 +4,7 @@ import {
     ControlOrgStatesStorage,
     ControlMemberStatesStorage
 } from '../../types/generated/storage'
-import { MemberState, Org, OrgState } from '../../types/generated/V70'
+import { MemberState, Org, OrgState } from '../../types/generated/v70'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 

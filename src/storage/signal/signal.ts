@@ -1,7 +1,7 @@
 import { UnknownVersionError } from '../../common/errors'
 import { SignalProposalOfStorage, SignalProposalStatesStorage, SignalProposalVotingStorage } from '../../types/generated/storage'
 // TODO: Why instead of Proposal there is Type_805. Make sure the name at least stays the same
-import { Type_746, Type_752, ProposalState } from '../../types/generated/V70'
+import { Type_746, Type_752, ProposalState } from '../../types/generated/v70'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 

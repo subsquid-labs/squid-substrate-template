@@ -1,6 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { SenseEntitiesStorage, SensePropertiesStorage } from '../../types/generated/storage'
-import { Entity, EntityProperty, PropertyType } from '../../types/generated/V70'
+import { Entity, EntityProperty, PropertyType } from '../../types/generated/v70'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 

@@ -1,6 +1,6 @@
 import { UnknownVersionError } from '../../common/errors'
 import { FlowCampaignOfStorage, FlowCampaignStatesStorage } from '../../types/generated/storage'
-import { Campaign, CampaignState } from '../../types/generated/V70'
+import { Campaign, CampaignState } from '../../types/generated/v70'
 import { Block } from '../../types/generated/support'
 import { Context } from '../../processor'
 

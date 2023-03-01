@@ -11,7 +11,7 @@ import {
     TokensWithdrawnEvent,
 } from './types/generated/events'
 import { TokensAccountsStorage } from './types/generated/storage'
-import { CurrencyId } from './types/generated/V70'
+import { CurrencyId } from './types/generated/v70'
 import { Event } from './types/generated/support'
 import { getCurrencyValue } from './common/tools'
 

@@ -4,7 +4,7 @@ import {
     SenseEntityCreatedEvent,
     SensePropertyUpdatedEvent
 } from '../../../types/generated/events'
-import { PropertyType } from '../../../types/generated/V70'
+import { PropertyType } from '../../../types/generated/v70'
 import { UnknownVersionError } from '../../../common/errors'
 
 
