@@ -1303,6 +1303,64 @@ export class TokensWithdrawnEvent {
   }
 }
 
+export class UniquesCollectionMaxSupplySetEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.CollectionMaxSupplySet')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * Max supply has been set for a collection.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.CollectionMaxSupplySet') === '165991456bc3c6a81994ce513fdf36c2303f5220829f5e8caafbf821233135b4'
+  }
+
+  /**
+   * Max supply has been set for a collection.
+   */
+  get asV70(): {collection: number, maxSupply: number} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class UniquesCollectionMetadataSetEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.CollectionMetadataSet')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * New metadata has been set for a `collection`.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.CollectionMetadataSet') === '63ef75086da73b45ed287cac6640abbebd40222433fb8fae9e4fa1bfa173afc2'
+  }
+
+  /**
+   * New metadata has been set for a `collection`.
+   */
+  get asV70(): {collection: number, data: Uint8Array, isFrozen: boolean} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
 export class UniquesCreatedEvent {
   private readonly _chain: Chain
   private readonly event: Event
@@ -1356,6 +1414,35 @@ export class UniquesIssuedEvent {
    * An `item` was issued.
    */
   get asV70(): {collection: number, item: number, owner: Uint8Array} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
+export class UniquesMetadataSetEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.MetadataSet')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * New metadata has been set for an item.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.MetadataSet') === 'dc2370253c17fe69445af313af0113a31f244cc51324e5a3b4b0b98804f91a6f'
+  }
+
+  /**
+   * New metadata has been set for an item.
+   */
+  get asV70(): {collection: number, item: number, data: Uint8Array, isFrozen: boolean} {
     assert(this.isV70)
     return this._chain.decodeEvent(this.event)
   }

@@ -14,6 +14,12 @@ export class NftCollection {
   @ManyToOne_(() => Identity, {nullable: true})
   owner!: Identity
 
+  @Column_("text", {nullable: true})
+  metadata!: string | undefined | null
+
+  @Column_("bool", {nullable: true})
+  metadataIsFrozen!: boolean | undefined | null
+
   @Column_("int4", {nullable: true})
   max!: number | undefined | null
 }
