@@ -39,6 +39,9 @@
 
     "Uniques.Created",
     "Uniques.Issued",
+    "Uniques.CollectionMetadataSet",
+    "Uniques.MetadataSet",
+    "Uniques.CollectionMaxSupplySet",
 
     "Balances.Transfer",
     "Balances.Endowed",

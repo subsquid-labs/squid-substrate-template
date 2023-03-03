@@ -218,11 +218,15 @@ type BattlepassNft @entity {
 type Nft @entity {
     id: ID!
     owner: Identity!
+    metadata: String
+    metadataIsFrozen: Boolean
     collection: NftCollection!
 }
 
 type NftCollection @entity {
     id: ID!
     owner: Identity!
+    metadata: String
+    metadataIsFrozen: Boolean
     max: Int
 }
