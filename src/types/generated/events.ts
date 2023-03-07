@@ -1390,6 +1390,35 @@ export class UniquesCreatedEvent {
   }
 }
 
+export class UniquesDestroyedEvent {
+  private readonly _chain: Chain
+  private readonly event: Event
+
+  constructor(ctx: EventContext)
+  constructor(ctx: ChainContext, event: Event)
+  constructor(ctx: EventContext, event?: Event) {
+    event = event || ctx.event
+    assert(event.name === 'Uniques.Destroyed')
+    this._chain = ctx._chain
+    this.event = event
+  }
+
+  /**
+   * A `collection` was destroyed.
+   */
+  get isV70(): boolean {
+    return this._chain.getEventHash('Uniques.Destroyed') === 'a84ae2f0e555d689a7b5b0ee2914bd693902b07afc4f268377240f6ac92495cb'
+  }
+
+  /**
+   * A `collection` was destroyed.
+   */
+  get asV70(): {collection: number} {
+    assert(this.isV70)
+    return this._chain.decodeEvent(this.event)
+  }
+}
+
 export class UniquesIssuedEvent {
   private readonly _chain: Chain
   private readonly event: Event

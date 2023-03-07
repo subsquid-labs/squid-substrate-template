@@ -42,6 +42,7 @@
     "Uniques.CollectionMetadataSet",
     "Uniques.MetadataSet",
     "Uniques.CollectionMaxSupplySet",
+    "Uniques.Destroyed",
 
     "Balances.Transfer",
     "Balances.Endowed",

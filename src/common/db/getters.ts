@@ -7,11 +7,12 @@ import {
     Voting,
     ProposalVoter,
     SenseEntity,
-    Battlepass
+    Battlepass,
+    Nft,
+    NftCollection,
+    BattlepassNft
 } from '../../model'
 import { Store } from '@subsquid/typeorm-store'
-import { Nft } from '../../model/generated/nft.model';
-import { NftCollection } from '../../model/generated/nftCollection.model';
 
 type EntityConstructor<T> = {
     new (...args: any[]): T;
@@ -76,6 +77,14 @@ function getNftCollection(store: Store, id: string): Promise<NftCollection | nul
     return get(store, NftCollection, id);
 }
 
+async function getCollectionNfts(store: Store, collectionId: string): Promise<Nft[]> {
+    return (await store.find(Nft, { where: { collection: { id: collectionId } } }));
+}
+
+async function getBattlepassNfts(store: Store, collectionId: string): Promise<BattlepassNft[]> {
+    return (await store.find(BattlepassNft, { where: { nft: { collection: {id: collectionId} } } }));
+}
+
 export {
     getOrg,
     getOrgMember,
@@ -87,5 +96,7 @@ export {
     getSenseEntity,
     getBattlepass,
     getNft,
-    getNftCollection
+    getNftCollection,
+    getCollectionNfts,
+    getBattlepassNfts
 };

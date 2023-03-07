@@ -6,6 +6,7 @@ import {
     UniquesCollectionMetadataSetEvent,
     UniquesMetadataSetEvent,
     UniquesCollectionMaxSupplySetEvent,
+    UniquesDestroyedEvent,
 } from '../../../types/generated/events'
 import { UnknownVersionError } from '../../../common/errors'
 
@@ -55,6 +56,16 @@ export function getCollectionMaxSupplySetData(ctx: Context, ev: Event): [number,
     if (event.isV70) {
         const { collection, maxSupply } = event.asV70
         return [ collection, maxSupply ]
+    } else {
+        throw new UnknownVersionError(event.constructor.name)
+    }
+}
+
+export function getCollectionDestroyedData(ctx: Context, ev: Event): [number] {
+    const event = new UniquesDestroyedEvent(ctx, ev)
+    if (event.isV70) {
+        const { collection } = event.asV70
+        return [ collection ]
     } else {
         throw new UnknownVersionError(event.constructor.name)
     }
