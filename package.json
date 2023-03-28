@@ -12,7 +12,7 @@
     "query-node:start": "squid-graphql-server --subscriptions --max-response-size 10000 --dumb-cache in-memory --dumb-cache-ttl 1000 --dumb-cache-size 100 --dumb-cache-max-age 1000"
   },
   "dependencies": {
-    "@subsquid/archive-registry": "2.1.9",
+    "@subsquid/archive-registry": "2.1.10",
     "@subsquid/graphql-server": "3.3.2",
     "@subsquid/ss58": "0.1.4",
     "@subsquid/substrate-processor": "2.4.1",
