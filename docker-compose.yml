@@ -5,7 +5,7 @@ services:
     container_name: subsquid_db
     image: postgres:15
     environment:
-      POSTGRES_DB: squid
+      POSTGRES_DB: postgres
       POSTGRES_PASSWORD: squid
     shm_size: 1gb
     ports:
