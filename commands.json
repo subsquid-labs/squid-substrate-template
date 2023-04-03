@@ -51,6 +51,7 @@
       },
       "process:prod": {
         "description": "Start the squid processor",
+        "deps": ["migration:apply"],
         "cmd": ["node", "lib/processor.js"],
         "hidden": true
       },
