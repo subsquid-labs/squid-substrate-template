@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@subsquid/archive-registry": "3.0.0",
-    "@subsquid/graphql-server": "3.3.2",
+    "@subsquid/graphql-server": "4.2.0",
     "@subsquid/ss58": "0.1.4",
     "@subsquid/substrate-processor": "2.4.1",
     "@subsquid/typeorm-migration": "0.1.6",
