@@ -2,7 +2,7 @@ manifestVersion: subsquid.io/v0.1
 name: substrate-template
 version: 1
 description: |-
-  The very first squid from manifest  
+  Substrate squid template
 build:
 
 deploy:
