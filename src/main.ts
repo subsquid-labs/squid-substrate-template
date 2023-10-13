@@ -1,11 +1,13 @@
+import {TypeormDatabase, Store} from '@subsquid/typeorm-store'
 import {In} from 'typeorm'
 import * as ss58 from '@subsquid/ss58'
-import {Store, TypeormDatabase} from '@subsquid/typeorm-store'
-import {Account, Transfer} from './model'
-import {ProcessorContext, processor} from './processor'
-import {BalancesTransferEvent} from './types/events'
+import assert from 'assert'
 
-processor.run(new TypeormDatabase(), async (ctx) => {
+import {processor, ProcessorContext} from './processor'
+import {Account, Transfer} from './model'
+import {events} from './types'
+
+processor.run(new TypeormDatabase({supportHotBlocks: true}), async (ctx) => {
     let transfersData = getTransfers(ctx)
 
     let accountIds = new Set<string>()
@@ -40,7 +42,7 @@ processor.run(new TypeormDatabase(), async (ctx) => {
         )
     }
 
-    await ctx.store.save(Array.from(accounts.values()))
+    await ctx.store.save([...accounts.values()])
     await ctx.store.insert(transfers)
 })
 
@@ -58,31 +60,35 @@ interface TransferEvent {
 function getTransfers(ctx: ProcessorContext<Store>): TransferEvent[] {
     let transfers: TransferEvent[] = []
     for (let block of ctx.blocks) {
-        for (let item of block.items) {
-            if (item.name == 'Balances.Transfer') {
-                let e = new BalancesTransferEvent(ctx, item.event)
-                let rec: {from: Uint8Array; to: Uint8Array; amount: bigint}
-                if (e.isV1020) {
-                    let [from, to, amount] = e.asV1020
+        for (let event of block.events) {
+            if (event.name == events.balances.transfer.name) {
+                let rec: {from: string; to: string; amount: bigint}
+                if (events.balances.transfer.v1020.is(event)) {
+                    let [from, to, amount] = events.balances.transfer.v1020.decode(event)
                     rec = {from, to, amount}
-                } else if (e.isV1050) {
-                    let [from, to, amount] = e.asV1050
+                }
+                else if (events.balances.transfer.v1050.is(event)) {
+                    let [from, to, amount] = events.balances.transfer.v1050.decode(event)
                     rec = {from, to, amount}
-                } else if (e.isV9130) {
-                    rec = e.asV9130
-                } else {
+                }
+                else if (events.balances.transfer.v9130.is(event)) {
+                    rec = events.balances.transfer.v9130.decode(event)
+                }
+                else {
                     throw new Error('Unsupported spec')
                 }
 
+                assert(block.header.timestamp, 'Got an undefined timestamp')
+
                 transfers.push({
-                    id: item.event.id,
+                    id: event.id,
                     blockNumber: block.header.height,
                     timestamp: new Date(block.header.timestamp),
-                    extrinsicHash: item.event.extrinsic?.hash,
+                    extrinsicHash: event.extrinsic?.hash,
                     from: ss58.codec('kusama').encode(rec.from),
                     to: ss58.codec('kusama').encode(rec.to),
                     amount: rec.amount,
-                    fee: item.event.extrinsic?.fee || 0n,
+                    fee: event.extrinsic?.fee || 0n,
                 })
             }
         }
