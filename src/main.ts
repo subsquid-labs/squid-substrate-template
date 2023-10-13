@@ -29,12 +29,10 @@ interface TransferEvent {
 }
 
 function getTransferEvents(ctx: ProcessorContext<Store>): TransferEvent[] {
-    // filters and decodes the arriving events
+    // Filters and decodes the arriving events
     let transfers: TransferEvent[] = []
     for (let block of ctx.blocks) {
         for (let event of block.events) {
-            // match every data request (e.g. a .addEvent() call)
-            // in src/processor.ts with a filter like this one
             if (event.name == events.balances.transfer.name) {
                 let rec: {from: string; to: string; amount: bigint}
                 if (events.balances.transfer.v1020.is(event)) {
