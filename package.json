@@ -11,7 +11,7 @@
     "@subsquid/archive-registry": "^3.1.0",
     "@subsquid/graphql-server": "^3.3.2",
     "@subsquid/ss58": "^0.1.4",
-    "@subsquid/substrate-processor": "^2.4.1",
+    "@subsquid/substrate-processor": "^7.0.0",
     "@subsquid/typeorm-migration": "^0.1.6",
     "@subsquid/typeorm-store": "^0.2.2",
     "dotenv": "^16.0.0",
