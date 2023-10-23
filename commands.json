@@ -12,11 +12,11 @@
     },
     "up": {
       "description": "Start a PG database",
-      "cmd": ["docker-compose", "up", "-d"]
+      "cmd": ["docker", "compose", "up", "-d"]
     },
     "down": {
       "description": "Drop a PG database",
-      "cmd": ["docker-compose", "down"]
+      "cmd": ["docker", "compose", "down"]
     },
     "migration:apply": {
       "description": "Apply the DB migrations",
@@ -61,10 +61,10 @@
     },
     "serve:prod": {
       "description": "Start the GraphQL API server with caching and limits",
-      "cmd": ["squid-graphql-server", 
-        "--dumb-cache", "in-memory", 
-        "--dumb-cache-ttl", "1000", 
-        "--dumb-cache-size", "100", 
+      "cmd": ["squid-graphql-server",
+        "--dumb-cache", "in-memory",
+        "--dumb-cache-ttl", "1000",
+        "--dumb-cache-size", "100",
         "--dumb-cache-max-age", "1000" ]
     },
     "check-updates": {
