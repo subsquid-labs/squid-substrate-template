@@ -1,3 +1,4 @@
+import {assertNotNull} from '@subsquid/util-internal'
 import {lookupArchive} from '@subsquid/archive-registry'
 import {
     BlockHeader,
@@ -16,10 +17,12 @@ export const processor = new SubstrateBatchProcessor()
         // Lookup archive by the network name in Subsquid registry
         // See https://docs.subsquid.io/substrate-indexing/supported-networks/
         archive: lookupArchive('kusama', {release: 'ArrowSquid'}),
-        // Chain RPC endpoint is required on Substrate
+        // Chain RPC endpoint is required on Substrate for metadata and real-time updates
         chain: {
-            // See https://docs.subsquid.io/substrate-indexing/setup/general/#set-data-source
-            url: 'https://kusama-rpc.polkadot.io',
+            // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
+            // https://docs.subsquid.io/deploy-squid/env-variables/
+            url: assertNotNull(process.env.RPC_KUSAMA_HTTP),
+            // More RPC connection options at https://docs.subsquid.io/substrate-indexing/setup/general/#set-data-source
             rateLimit: 10
         }
     })
