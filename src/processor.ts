@@ -21,7 +21,7 @@ export const processor = new SubstrateBatchProcessor()
         chain: {
             // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
             // https://docs.subsquid.io/deploy-squid/env-variables/
-            url: assertNotNull(process.env.RPC_KUSAMA_HTTP),
+            url: assertNotNull(process.env.RPC_ENDPOINT),
             // More RPC connection options at https://docs.subsquid.io/substrate-indexing/setup/general/#set-data-source
             rateLimit: 10
         }
@@ -42,6 +42,8 @@ export const processor = new SubstrateBatchProcessor()
             timestamp: true
         }
     })
+    // Uncomment to disable RPC ingestion and drastically reduce no of RPC calls
+    //.useArchiveOnly()
 
 export type Fields = SubstrateBatchProcessorFields<typeof processor>
 export type Block = BlockHeader<Fields>
