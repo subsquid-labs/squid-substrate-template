@@ -6,9 +6,11 @@ description: |-
 build:
 
 deploy:
+  secrets:
+    - RPC_ENDPOINT
   addons:
     postgres:
   processor:
-    cmd: [ "node", "lib/main" ]
+    cmd: [ "sqd", "process:prod" ]
   api:
-    cmd: [ "npx", "squid-graphql-server", "--dumb-cache", "in-memory", "--dumb-cache-ttl", "1000", "--dumb-cache-size", "100", "--dumb-cache-max-age", "1000" ]
+    cmd: [ "sqd", "serve:prod" ]
