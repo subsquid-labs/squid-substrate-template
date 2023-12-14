@@ -6,11 +6,11 @@ description: |-
 build:
 
 deploy:
-  secrets:
-    - RPC_ENDPOINT
   addons:
     postgres:
   processor:
     cmd: [ "sqd", "process:prod" ]
+    env:
+      RPC_ENDPOINT: ${{ secrets.RPC_ENDPOINT }}
   api:
     cmd: [ "sqd", "serve:prod" ]
