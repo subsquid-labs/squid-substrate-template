@@ -8,9 +8,9 @@ build:
 deploy:
   addons:
     postgres:
+    rpc:
+      - kusama.http # RPC proxy URL will be supplied via the RPC_KUSAMA_HTTP env variable
   processor:
     cmd: [ "sqd", "process:prod" ]
-    env:
-      RPC_ENDPOINT: ${{ secrets.RPC_ENDPOINT }}
   api:
     cmd: [ "sqd", "serve:prod" ]
