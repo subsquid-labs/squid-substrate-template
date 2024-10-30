@@ -30,7 +30,7 @@ Please [install](https://docs.subsquid.io/squid-cli/installation/) it before pro
 
 ```bash
 # 1. Install dependencies
-npm ci
+npm i
 
 # 2. Start target Postgres database and detach
 sqd up
