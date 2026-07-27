@@ -12,15 +12,21 @@ import {
 import {events} from './types'
 
 export const processor = new SubstrateBatchProcessor()
-  // SQD gateway is the faster source of data, but it is optional
+  // SQD Network gateway is the faster source of historical data, but it is optional
   // Not supplying it will cause all data to be ingested from RPC (slow)
   .setGateway('https://v2.archive.subsquid.io/network/kusama')
+  // Self-hosted v2 gateways now require an API key.
+  // Create one at https://docs.sqd.dev/en/data/api-keys and supply it as:
+  // .setGateway({
+  //     url: 'https://v2.archive.subsquid.io/network/kusama',
+  //     apiKey: process.env.SQD_API_KEY,
+  // })
   // Chain RPC endpoint is required on Substrate for metadata and real-time updates
   .setRpcEndpoint({
-    // Set via .env for local runs or via secrets when deploying to Subsquid Cloud
-    // https://docs.subsquid.io/deploy-squid/env-variables/
+    // Set via .env for local runs or via secrets when deploying to SQD Cloud
+    // https://docs.sqd.dev/en/cloud/resources/env-variables
     url: assertNotNull(process.env.RPC_KUSAMA_HTTP, 'No RPC endpoint supplied'),
-    // More RPC connection options at https://docs.subsquid.io/substrate-indexing/setup/general/#set-data-source
+    // More RPC connection options at https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-processor/general
     rateLimit: 10
   })
   .addEvent({

@@ -3,6 +3,27 @@
 A starter [Squid](https://sqd.dev) project to demonstrate its structure and conventions.
 It accumulates [kusama](https://kusama.network) account transfers and serves them via GraphQL API.
 
+
+## Accessing the SQD Network gateway
+
+This squid sources historical data from the SQD Network v2 gateway
+(`https://v2.archive.subsquid.io/network/kusama`). Since May 19, 2026, **self-hosted** squids need an
+API key to access these gateways (see [SQD API keys](https://docs.sqd.dev/en/data/api-keys)):
+
+1. Create a key at [portal.sqd.dev/app](https://portal.sqd.dev/app).
+2. Add it to `.env`: `SQD_API_KEY=your_api_key`.
+3. Pass it to the `.setGateway(...)` call in `src/processor.ts`:
+
+   ```ts
+   .setGateway({
+       url: 'https://v2.archive.subsquid.io/network/kusama',
+       apiKey: process.env.SQD_API_KEY,
+   })
+   ```
+
+Squids deployed to [SQD Cloud](https://docs.sqd.dev/en/cloud/overview) don't need this — the
+platform provides gateway access.
+
 ## Documentation
 
 - SQD docs: https://docs.sqd.dev
@@ -11,8 +32,7 @@ It accumulates [kusama](https://kusama.network) account transfers and serves the
 ## Summary
 
 - [Quickstart](#quickly-running-the-sample)
-- [Public archives for Parachains](#public-archives-for-parachains)
-- [Self-hosted archive](#self-hosted-archive)
+- [SQD Network gateways for Parachains](#sqd-network-gateways-for-parachains)
 - [Development flow](#dev-flow)
   - [Database Schema](#1-define-database-schema)
   - [Entity classes](#2-generate-typeorm-classes)
@@ -30,8 +50,8 @@ It accumulates [kusama](https://kusama.network) account transfers and serves the
 
 ## Quickly running the sample
 
-Example commands below use [sqd](https://docs.sqd.dev/en/sdk/squid-sdk/squid-cli/installation).
-Please [install](https://docs.sqd.dev/en/sdk/squid-sdk/squid-cli/installation) it before proceeding.
+Example commands below use [sqd](https://docs.sqd.dev/en/cloud/reference/cli/installation).
+Please [install](https://docs.sqd.dev/en/cloud/reference/cli/installation) it before proceeding.
 
 ```bash
 # 1. Install dependencies
@@ -48,36 +68,19 @@ sqd run .
 ```
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
 
-## Public archives for Parachains
+## SQD Network gateways for Parachains
 
-SQD provides archive data sources [for most parachains](https://docs.sqd.dev/en/data/substrate). Use `lookupArchive(<network name>, <lookup filters>)` from `@subsquid/archive-registry` to look up the archive endpoint by the network name, e.g.
-
-```typescript
-processor.setDataSource({
-  archive: lookupArchive("kusama", { release: "ArrowSquid" })
-  //...
-});
-```
-
-To make sure you're indexing the right chain one can additionally filter by the genesis block hash:
+SQD provides gateway (archive) data sources [for most parachains](https://docs.sqd.dev/en/data/substrate). Point the processor at one with `.setGateway(<url>)`, as done in `src/processor.ts`:
 
 ```typescript
-processor.setDataSource({
-  archive: lookupArchive("kusama", { 
-    release: "ArrowSquid",
-    genesis: "0xb0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe" 
-  }),
-  //...
-});
+processor.setGateway('https://v2.archive.subsquid.io/network/kusama')
 ```
 
-If the chain is not yet supported, you can still index it using [RPC ingestion](https://docs.sqd.dev/en/sdk/squid-sdk/reference/processors/substrate-batch/general). If you take this route, use [metadata exporer](https://github.com/subsquid/squid-sdk/tree/master/substrate/substrate-metadata-explorer) with [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/resources/tools/typegen/generation) for help with decoding.
+The gateway supplies historical data; `.setRpcEndpoint(...)` is still required on Substrate for chain metadata and real-time updates. Browse the available network URLs on the [Substrate networks page](https://docs.sqd.dev/en/data/substrate).
 
-You can also fill out this [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request for an Archive/SQD Network dataset.
+If the chain is not yet supported, you can still index it from RPC alone (drop `.setGateway(...)` and keep `.setRpcEndpoint(...)`); see the [processor reference](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-processor/general). If you take this route, use the [metadata explorer](https://github.com/subsquid/squid-sdk/tree/master/substrate/substrate-metadata-explorer) with [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-typegen) for help with decoding.
 
-## Self-hosted archive
-
-Self-hosted Archives are deprecated by the ArrowSquid release. Keep an eye on updates on [SQD Network](https://docs.sqd.dev/en/network) and use it instead once it is released.
+You can also fill out this [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request for an SQD Network dataset.
 
 ## Dev flow
 
@@ -85,13 +88,13 @@ Self-hosted Archives are deprecated by the ArrowSquid release. Keep an eye on up
 
 Start development by defining the schema of the target database via `schema.graphql`.
 Schema definition consists of regular graphql type declarations annotated with custom directives.
-Full description of `schema.graphql` dialect is available [here](https://docs.sqd.dev/en/sdk/squid-sdk/reference/schema-file/intro).
+Full description of `schema.graphql` dialect is available [here](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/schema-files/schema-files-codegen).
 
 ### 2. Generate TypeORM classes
 
 Mapping developers use [TypeORM](https://typeorm.io) entities
 to interact with the target database during data processing. All necessary entity classes are
-[generated](https://docs.sqd.dev/en/sdk/squid-sdk/reference/schema-file/intro) by the squid framework from `schema.graphql`. This is done by running `npx squid-typeorm-codegen`
+[generated](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/schema-files/schema-files-codegen) by the squid framework from `schema.graphql`. This is done by running `npx squid-typeorm-codegen`
 or (equivalently) `sqd codegen` command.
 
 ### 3. Generate database migration
@@ -133,7 +136,7 @@ While it is possible to work with raw untyped json data,
 it's extremely error-prone and the json structure may change over time due to runtime upgrades.
 
 Squid framework provides a tool for generating type-safe wrappers around events, calls and runtime storage items for
-each historical change in the spec version. See the [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/resources/tools/typegen/generation) documentation page.
+each historical change in the spec version. See the [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-typegen) documentation page.
 
 ## Deploy the Squid
 
@@ -162,7 +165,7 @@ The layout of `lib` must reflect `src`.
 * Database migrations must reside in `db/migrations` and must be plain js files.
 * `squid-*(1)` executables consult `.env` file for a number of environment variables.
 
-See the [full desription](https://docs.sqd.dev/en/sdk/squid-sdk/how-to-start/layout) in the documentation.
+See the [full description](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/project-structure) in the documentation.
 
 ## Types bundle
 
@@ -226,4 +229,4 @@ For instance, account data is passed to the handler context as a plain byte arra
 
 It is possible to extend `squid-graphql-server(1)` with custom
 [type-graphql](https://typegraphql.com) resolvers and to add request validation.
-For more details, consult [docs](https://docs.sqd.dev/en/sdk/squid-sdk/resources/serving-graphql).
+For more details, consult [docs](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/guides/serving-graphql).
