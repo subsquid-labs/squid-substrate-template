@@ -4,25 +4,12 @@ A starter [Squid](https://sqd.dev) project to demonstrate its structure and conv
 It accumulates [kusama](https://kusama.network) account transfers and serves them via GraphQL API.
 
 
-## Accessing the SQD Network gateway
+## Data sources
 
-This squid sources historical data from the SQD Network v2 gateway
-(`https://v2.archive.subsquid.io/network/kusama`). Since May 19, 2026, **self-hosted** squids need an
-API key to access these gateways (see [SQD API keys](https://docs.sqd.dev/en/data/api-keys)):
-
-1. Create a key at [portal.sqd.dev/app](https://portal.sqd.dev/app).
-2. Add it to `.env`: `SQD_API_KEY=your_api_key`.
-3. Pass it to the `.setGateway(...)` call in `src/processor.ts`:
-
-   ```ts
-   .setGateway({
-       url: 'https://v2.archive.subsquid.io/network/kusama',
-       apiKey: process.env.SQD_API_KEY,
-   })
-   ```
-
-Squids deployed to [SQD Cloud](https://docs.sqd.dev/en/cloud/overview) don't need this — the
-platform provides gateway access.
+This squid sources finalized historical data from the public [SQD Portal](https://docs.sqd.dev/en/portal/overview)
+(`https://portal.sqd.dev/datasets/kusama`, no API key needed) and blocks above the Portal's head from the
+chain RPC endpoint in `.env`. Migrating an older squid from the v2 gateway (`.setGateway(...)`)? See the
+[Portal migration guide](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/guides/migration/gateway-to-portal).
 
 ## Documentation
 
@@ -32,7 +19,7 @@ platform provides gateway access.
 ## Summary
 
 - [Quickstart](#quickly-running-the-sample)
-- [SQD Network gateways for Parachains](#sqd-network-gateways-for-parachains)
+- [SQD Portal datasets for Parachains](#sqd-portal-datasets-for-parachains)
 - [Development flow](#dev-flow)
   - [Database Schema](#1-define-database-schema)
   - [Entity classes](#2-generate-typeorm-classes)
@@ -68,17 +55,17 @@ sqd run .
 ```
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
 
-## SQD Network gateways for Parachains
+## SQD Portal datasets for Parachains
 
-SQD provides gateway (archive) data sources [for most parachains](https://docs.sqd.dev/en/data/substrate). Point the processor at one with `.setGateway(<url>)`, as done in `src/processor.ts`:
+SQD Portal serves datasets for [many parachains](https://docs.sqd.dev/en/data/substrate). Point the processor at one with `.setPortal(<url>)`, as done in `src/processor.ts`:
 
 ```typescript
-processor.setGateway('https://v2.archive.subsquid.io/network/kusama')
+processor.setPortal('https://portal.sqd.dev/datasets/kusama')
 ```
 
-The gateway supplies historical data; `.setRpcEndpoint(...)` is still required on Substrate for chain metadata and real-time updates. Browse the available network URLs on the [Substrate networks page](https://docs.sqd.dev/en/data/substrate).
+The Portal supplies finalized historical data; `.setRpcEndpoint(...)` is still required on Substrate for chain metadata and real-time updates. Browse the available datasets at [portal.sqd.dev/datasets](https://portal.sqd.dev/datasets).
 
-If the chain is not yet supported, you can still index it from RPC alone (drop `.setGateway(...)` and keep `.setRpcEndpoint(...)`); see the [processor reference](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-processor/general). If you take this route, use the [metadata explorer](https://github.com/subsquid/squid-sdk/tree/master/substrate/substrate-metadata-explorer) with [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-typegen) for help with decoding.
+If the chain is not yet supported, you can still index it from RPC alone (drop `.setPortal(...)` and keep `.setRpcEndpoint(...)`); see the [processor reference](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-processor/general). If you take this route, use the [metadata explorer](https://github.com/subsquid/squid-sdk/tree/master/substrate/substrate-metadata-explorer) with [Substrate typegen](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/reference/substrate-typegen) for help with decoding.
 
 You can also fill out this [form](https://forms.gle/Vhr3exPs4HrF4Zt36) to submit a request for an SQD Network dataset.
 

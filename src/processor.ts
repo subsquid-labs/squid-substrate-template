@@ -12,15 +12,9 @@ import {
 import {events} from './types'
 
 export const processor = new SubstrateBatchProcessor()
-  // SQD Network gateway is the faster source of historical data, but it is optional
+  // SQD Portal is the faster source of finalized historical data, but it is optional
   // Not supplying it will cause all data to be ingested from RPC (slow)
-  .setGateway('https://v2.archive.subsquid.io/network/kusama')
-  // Self-hosted v2 gateways now require an API key.
-  // Create one at https://docs.sqd.dev/en/data/api-keys and supply it as:
-  // .setGateway({
-  //     url: 'https://v2.archive.subsquid.io/network/kusama',
-  //     apiKey: process.env.SQD_API_KEY,
-  // })
+  .setPortal('https://portal.sqd.dev/datasets/kusama')
   // Chain RPC endpoint is required on Substrate for metadata and real-time updates
   .setRpcEndpoint({
     // Set via .env for local runs or via secrets when deploying to SQD Cloud
@@ -46,7 +40,8 @@ export const processor = new SubstrateBatchProcessor()
     }
   })
   // Uncomment to disable RPC ingestion and drastically reduce no of RPC calls
-  //.useArchiveOnly()
+  // (only finalized blocks served by the Portal will be processed)
+  //.setRpcDataIngestionSettings({disabled: true})
 
 export type Fields = SubstrateBatchProcessorFields<typeof processor>
 export type Block = BlockHeader<Fields>
