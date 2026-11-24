@@ -7,7 +7,7 @@ It accumulates [kusama](https://kusama.network) account transfers and serves the
 ## Data sources
 
 This squid sources finalized historical data from the public [SQD Portal](https://docs.sqd.dev/en/portal/overview)
-(`https://portal.sqd.dev/datasets/kusama`, no API key needed) and blocks above the Portal's head from the
+(`https://portal.sqd.dev/datasets/kusama`) and blocks above the Portal's head from the
 chain RPC endpoint in `.env`. Migrating an older squid from the v2 gateway (`.setGateway(...)`)? See the
 [Portal migration guide](https://docs.sqd.dev/en/sdk/squid-sdk/substrate/guides/migration/gateway-to-portal).
 
